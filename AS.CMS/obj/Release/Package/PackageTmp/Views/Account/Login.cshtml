@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Giriş Yap";
+}
+
+<!doctype html>
+<html class="no-js" lang="tr">
+<head>
+    @Html.Partial("~/Views/Shared/Head.cshtml")
+</head>
+<body>
+    <div class="auth">
+        <div class="auth-container">
+            <div class="card">
+                <header class="auth-header">
+                    <h1 class="auth-title">
+                        <div class="logo">
+                            <span class="l l1"></span>
+                            <span class="l l2"></span>
+                            <span class="l l3"></span>
+                            <span class="l l4"></span>
+                            <span class="l l5"></span>
+                        </div>        AS.CMS
+                    </h1>
+                </header>
+                <div class="auth-content">
+                    <p class="text-xs-center">Lütfen Giriş Yapın</p>
+                    <form id="login-form" action="@Url.Action("ValidateUser")" method="POST" novalidate="">
+                        <div class="form-group"> <label for="userName"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;Kullanıcı</label> <input type="email" class="form-control underlined" name="userName" id="userName" placeholder="E-Mail Adresinizi Giriniz." required> </div>
+                        <div class="form-group"> <label for="password"><i class="fa fa-key"></i>&nbsp;&nbsp;&nbsp;Şifre</label> <input type="password" class="form-control underlined" name="password" id="password" placeholder="Şifrenizi Giriniz." required> </div>
+                        <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Giriş Yap</button> </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Reference block for JS -->
+    <div class="ref" id="ref">
+        <div class="color-primary"></div>
+        <div class="chart">
+            <div class="color-primary"></div>
+            <div class="color-secondary"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="login-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"><i class="fa fa-warning"></i> Hatalı Giriş</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@ViewBag.ErrorMessage</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("~/Views/Shared/Script.cshtml")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @{
+                if (ViewBag.ErrorMessage != null)
+                {
+                    <text>
+                        $('#login-modal').modal('show');
+                    </text>
+                }
+            }
+        });
+    </script>
+</body>
+</html>

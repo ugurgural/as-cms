@@ -1,0 +1,16 @@
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\AS.CMS.Data.dll
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\AS.CMS.Data.pdb
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\AS.CMS.Data.UOW.dll
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\AS.CMS.Domain.dll
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\FluentNHibernate.dll
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\Iesi.Collections.dll
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\NHibernate.dll
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\AS.CMS.Data.UOW.pdb
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\AS.CMS.Domain.pdb
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\FluentNHibernate.pdb
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\FluentNHibernate.xml
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\Iesi.Collections.xml
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\bin\Release\NHibernate.xml
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\obj\Release\AS.CMS.Data.csprojResolveAssemblyReference.cache
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\obj\Release\AS.CMS.Data.dll
+C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data\obj\Release\AS.CMS.Data.pdb

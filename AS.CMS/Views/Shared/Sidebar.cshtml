@@ -1,0 +1,107 @@
+﻿<aside class="sidebar">
+    <div class="sidebar-container">
+        <div class="sidebar-header">
+            <div class="brand">
+                <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> AS.CMS
+            </div>
+        </div>
+        <nav class="menu">
+            <ul class="nav metismenu" id="sidebar-menu">
+                <li class="active">
+                    <a href="/"> <i class="fa fa-home"></i> Dashboard </a>
+                </li>
+                <li>
+                    <a href=""> <i class="fa fa-th-large"></i> Menü Yönetimi <i class="fa arrow"></i> </a>
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("yeni-menu-ekle", "Menu")">
+                                Yeni Menü Ekle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("menu-listesi", "Menu")">
+                                Menü Sıralaması
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href=""> <i class="fa fa-pencil-square-o"></i> İçerik Yönetimi <i class="fa arrow"></i> </a>
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("yeni-icerik-ekle", "icerik")">
+                                Yeni İçerik Ekle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("icerik-listesi", "icerik")">
+                                İçerikler
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href=""> <i class="fa fa-newspaper-o"></i> Haber Yönetimi <i class="fa arrow"></i> </a>
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("yeni-haber-ekle", "haber")">
+                                Yeni Haber Ekle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("haber-listesi", "haber")">
+                                Haberler
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href=""> <i class="fa fa-bullhorn"></i> Duyuru Yönetimi <i class="fa arrow"></i> </a>
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("yeni-duyuru-ekle", "duyuru")">
+                                Yeni Duyuru Ekle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("duyuru-listesi", "duyuru")">
+                                Duyurular
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href=""> <i class="fa fa-male"></i> Aday Yönetimi <i class="fa arrow"></i> </a>
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("yeni-aday-ekle", "aday")">
+                                Yeni Aday Ekle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("aday-listesi", "aday")">
+                                Adaylar
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href=""> <i class="fa fa-user"></i> Üye Yönetimi <i class="fa arrow"></i> </a>
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("yeni-uye-ekle", "uye")">
+                                Yeni Üye Ekle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("uye-listesi", "uye")">
+                                Üyeler
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>

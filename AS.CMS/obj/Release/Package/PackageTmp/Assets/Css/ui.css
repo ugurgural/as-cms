@@ -1,0 +1,43 @@
+﻿.menu-save {
+    float: left;
+    width: 50%;
+    padding-bottom:100px;
+}
+
+.menu-order {
+    float: left;
+    width: 50%;
+    padding-bottom:100px;
+}
+
+.menu-order-button {
+    margin-top: 25px;
+    margin-left: 15px
+}
+
+.menu-order-remove-button {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-right: 10px;
+    color: #FF4444;
+    font-size: 16px;
+}
+
+.menu-order-remove-button:hover {
+    color: #C22727;
+    cursor: pointer;
+}
+
+.menu-order-edit-button {
+    float: left;
+    margin-top: 10px;
+    padding-right: 15px;
+    color: #85CE36;
+    font-size: 16px;
+}
+
+.menu-order-edit-button:hover {
+    color: #ABE070;
+    cursor: pointer;
+}

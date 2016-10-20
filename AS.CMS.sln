@@ -1,0 +1,100 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AS.CMS", "AS.CMS\AS.CMS.csproj", "{D8CFD5FB-FAF5-4995-98C4-41BF7CFC6CBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AS.CMS.Tests", "AS.CMS.Tests\AS.CMS.Tests.csproj", "{0EDE584A-4E7A-4D5F-A5ED-A187D68F0200}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AS.CMS.Data", "AS.CMS.Data\AS.CMS.Data.csproj", "{F5E5DDFE-AABC-4AF8-8FB6-8547BA91F1DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AS.CMS.Domain", "AS.CMS.Domain\AS.CMS.Domain.csproj", "{97D00EB3-DE4B-4216-AF5A-FCC2477DDDE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AS.CMS.Data.UOW", "AS.CMS.Data.UOW\AS.CMS.Data.UOW.csproj", "{DD42A387-2D2F-49D1-8209-2C2AFA167424}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{9A54F85C-BC00-4771-89B3-51863D6A6A65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{48A3F418-61B5-4CAD-9F43-B3EBEF3779B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{BCFB963F-7096-4B09-9E4C-619C38EAADB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2DD9EB33-9454-492A-8112-88591ACED521}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{6C0D0F8E-DADB-4A00-87D1-3C4D7476C922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AS.CMS.Business", "AS.CMS.Business\AS.CMS.Business.csproj", "{737EE59E-8B22-4A51-9130-B5B3CD15C765}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8CFD5FB-FAF5-4995-98C4-41BF7CFC6CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CFD5FB-FAF5-4995-98C4-41BF7CFC6CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CFD5FB-FAF5-4995-98C4-41BF7CFC6CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CFD5FB-FAF5-4995-98C4-41BF7CFC6CBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EDE584A-4E7A-4D5F-A5ED-A187D68F0200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDE584A-4E7A-4D5F-A5ED-A187D68F0200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDE584A-4E7A-4D5F-A5ED-A187D68F0200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDE584A-4E7A-4D5F-A5ED-A187D68F0200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E5DDFE-AABC-4AF8-8FB6-8547BA91F1DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E5DDFE-AABC-4AF8-8FB6-8547BA91F1DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E5DDFE-AABC-4AF8-8FB6-8547BA91F1DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E5DDFE-AABC-4AF8-8FB6-8547BA91F1DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D00EB3-DE4B-4216-AF5A-FCC2477DDDE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D00EB3-DE4B-4216-AF5A-FCC2477DDDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D00EB3-DE4B-4216-AF5A-FCC2477DDDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D00EB3-DE4B-4216-AF5A-FCC2477DDDE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD42A387-2D2F-49D1-8209-2C2AFA167424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD42A387-2D2F-49D1-8209-2C2AFA167424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD42A387-2D2F-49D1-8209-2C2AFA167424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD42A387-2D2F-49D1-8209-2C2AFA167424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{737EE59E-8B22-4A51-9130-B5B3CD15C765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{737EE59E-8B22-4A51-9130-B5B3CD15C765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{737EE59E-8B22-4A51-9130-B5B3CD15C765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{737EE59E-8B22-4A51-9130-B5B3CD15C765}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8CFD5FB-FAF5-4995-98C4-41BF7CFC6CBC} = {9A54F85C-BC00-4771-89B3-51863D6A6A65}
+		{0EDE584A-4E7A-4D5F-A5ED-A187D68F0200} = {2DD9EB33-9454-492A-8112-88591ACED521}
+		{F5E5DDFE-AABC-4AF8-8FB6-8547BA91F1DE} = {48A3F418-61B5-4CAD-9F43-B3EBEF3779B6}
+		{97D00EB3-DE4B-4216-AF5A-FCC2477DDDE0} = {BCFB963F-7096-4B09-9E4C-619C38EAADB8}
+		{DD42A387-2D2F-49D1-8209-2C2AFA167424} = {48A3F418-61B5-4CAD-9F43-B3EBEF3779B6}
+		{737EE59E-8B22-4A51-9130-B5B3CD15C765} = {6C0D0F8E-DADB-4A00-87D1-3C4D7476C922}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://asworks.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AS.CMS.Business\\AS.CMS.Business.csproj
+		SccProjectTopLevelParentUniqueName1 = AS.CMS.sln
+		SccProjectName1 = AS.CMS.Business
+		SccLocalPath1 = AS.CMS.Business
+		SccProjectUniqueName2 = AS.CMS.Data.UOW\\AS.CMS.Data.UOW.csproj
+		SccProjectTopLevelParentUniqueName2 = AS.CMS.sln
+		SccProjectName2 = AS.CMS.Data.UOW
+		SccLocalPath2 = AS.CMS.Data.UOW
+		SccProjectUniqueName3 = AS.CMS.Data\\AS.CMS.Data.csproj
+		SccProjectTopLevelParentUniqueName3 = AS.CMS.sln
+		SccProjectName3 = AS.CMS.Data
+		SccLocalPath3 = AS.CMS.Data
+		SccProjectUniqueName4 = AS.CMS.Domain\\AS.CMS.Domain.csproj
+		SccProjectTopLevelParentUniqueName4 = AS.CMS.sln
+		SccProjectName4 = AS.CMS.Domain
+		SccLocalPath4 = AS.CMS.Domain
+		SccProjectUniqueName5 = AS.CMS.Tests\\AS.CMS.Tests.csproj
+		SccProjectTopLevelParentUniqueName5 = AS.CMS.sln
+		SccProjectName5 = AS.CMS.Tests
+		SccLocalPath5 = AS.CMS.Tests
+		SccProjectUniqueName6 = AS.CMS\\AS.CMS.csproj
+		SccProjectTopLevelParentUniqueName6 = AS.CMS.sln
+		SccProjectName6 = AS.CMS
+		SccLocalPath6 = AS.CMS
+	EndGlobalSection
+EndGlobal

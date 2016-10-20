@@ -1,0 +1,190 @@
+﻿@using AS.CMS.Domain.Base;
+@model Content
+@section CustomCSS
+{
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/datepicker.min.css")">
+}
+@section CustomJS
+{
+    <script src="@Url.Content("~/Assets/Scripts/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/CKFinderScripts/ckfinder.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/View/contentadd.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/datepicker.min.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/datepicker.tr.js")"></script>
+}
+@{
+    ViewBag.Title = "İçerikler";
+    Layout = "~/Views/Layout/_Main.cshtml";
+    Content currentContent = Model;
+    string siteDomain = Request.Url.GetLeftPart(UriPartial.Authority);
+}
+<article class="content item-editor-page">
+    <div class="title-block">
+        <h3 class="title">
+            Yeni İçerik Ekle <span class="sparkline bar" data-type="bar"></span>
+        </h3>
+    </div>
+    <form id="saveContentForm" method="post" action="@Url.Action("SaveContent")" name="item">
+        <input type="hidden" id="ID" name="ID" value="@currentContent.ID" />
+
+        <div class="card card-block">
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Başlık:
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" id="Title" name="Title" class="form-control boxed" placeholder="Başlık Giriniz" value="@currentContent.Title">
+                </div>
+                <div class="col-sm-2" style="margin-left:-35px;">
+                    <a href="#" class="btn btn-pill-right btn-primary btn-permalink-generate"><i class="fa fa-link"></i> Permalink</a>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Permalink:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Permalink" name="Permalink" class="form-control boxed" placeholder="Permalink Giriniz" value="@currentContent.Permalink">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Tarih:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Date" name="Date" class="form-control boxed datepicker-here" data-language='tr' placeholder="Tarih Giriniz" value="@currentContent.Date">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    İçerik:
+                </label>
+                <div class="col-sm-10">
+                    <textarea id="EditorText" name="EditorText">@currentContent.EditorText</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    SEO Title:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="SeoTitle" name="SeoTitle" class="form-control boxed" placeholder="Seo Title Giriniz" value="@currentContent.SeoTitle">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    SEO Description:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="txtSeoDescription" name="SeoDescription" class="form-control boxed" placeholder="Seo Description Giriniz" value="@currentContent.SeoDescription">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    SEO Keyword:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="SeoKeyword" name="SeoKeyword" class="form-control boxed" placeholder="Seo Keyword Giriniz" value="@currentContent.SeoKeyword">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Yayın Durumu:
+                </label>
+                <div class="col-sm-10">
+                    <select id="IsPublished" name="IsPublished" class="c-select form-control boxed">
+                        <option value="true" @Html.Raw(currentContent.IsPublished ? "selected" : string.Empty)>Yayında</option>
+                        <option value="false" @Html.Raw(!currentContent.IsPublished ? "selected" : string.Empty)>Yayında Değil</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Aktif:
+                </label>
+                <div class="col-sm-10">
+                    <select id="IsActive" name="IsActive" class="c-select form-control boxed">
+                        <option value="true" @Html.Raw(currentContent.IsActive ? "selected" : string.Empty)>Evet</option>
+                        <option value="false" @Html.Raw(!currentContent.IsActive ? "selected" : string.Empty)>Hayır</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Sayfa Görseli:
+                </label>
+                <div class="col-sm-10">
+                    <div class="images-container single">
+                        @if (!string.IsNullOrWhiteSpace(currentContent.EditorImageList))
+                        {
+                            foreach (string imageItem in currentContent.EditorImageList.Split(','))
+                            {
+                                if (!string.IsNullOrWhiteSpace(imageItem))
+                                {
+                                    <div class="image-container" data-fileurl="@imageItem">
+                                        <div class="controls">
+                                            <a href="#" class="control-btn remove upload-remove-single">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </div>
+                                        <div class="image" style="background-image:url('@imageItem')">
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <a href="#" class="add-single-image">
+                                <div class="image-container new">
+                                    <div class="image"> <i class="fa fa-plus"></i> </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <input type="hidden" id="pageImage" name="pageImage" value="@currentContent.EditorImageList" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Galeri:
+                </label>
+                <div class="col-sm-10">
+                    <div class="images-container gallery">
+                        <a href="#" class="add-image">
+                            <div class="image-container new">
+                                <div class="image"> <i class="fa fa-plus"></i> </div>
+                            </div>
+                        </a>
+                        @if (!string.IsNullOrWhiteSpace(currentContent.ImageGallery))
+                        {
+                            foreach (string imageItem in currentContent.ImageGallery.Split(','))
+                            {
+                                if (!string.IsNullOrWhiteSpace(imageItem))
+                                {
+                                    <div class="image-container" data-fileurl="@imageItem">
+                                        <div class="controls">
+                                            <a href="#" class="control-btn move">
+                                                <i class="fa fa-arrows"></i>
+                                            </a>
+                                            <a href="#" class="control-btn remove upload-remove"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                        <div class="image" style="background-image:url('@imageItem')"></div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                    <input type="hidden" id="galleryImages" name="galleryImages" value="@currentContent.ImageGallery" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</article>

@@ -1,0 +1,121 @@
+﻿@using AS.CMS.Domain.Base;
+@model Menu
+@section CustomCSS
+{
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/nestable.css")">
+}
+@section CustomJS
+{
+    <script src="@Url.Content("~/Assets/Scripts/nestable.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/View/menuadd.js")"></script>
+}
+@{
+    ViewBag.Title = "Yeni Menü Ekle";
+    Layout = "~/Views/Layout/_Main.cshtml";
+    string menuHtml = ViewBag.Menu;
+    Menu currentMenu = Model;
+}
+<article class="content item-editor-page">
+    <div class="title-block">
+        <h3 class="title">
+            Yeni Menü Ekle <span class="sparkline bar" data-type="bar"></span>
+        </h3>
+    </div>
+    <form name="saveMenuForm" id="saveMenuForm" method="post" action="@Url.Action("SaveMenu")">
+        <input type="hidden" id="ID" name="ID" value="@currentMenu.ID" />
+        <input type="hidden" id="ItemOrder" name="ItemOrder" value="@currentMenu.ItemOrder" />
+        <div class="menu-save">
+            <div class="card card-block">
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label text-xs-right">
+                        Başlık:
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control boxed" name="Name" id="Name" placeholder="Başlık Giriniz." value="@currentMenu.Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label text-xs-right">
+                        Açıklama:
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control boxed" name="Caption" id="Caption" placeholder="Açıklama Giriniz." value="@currentMenu.Caption">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label text-xs-right">
+                        Menü Tipi:
+                    </label>
+                    <div class="col-sm-8">
+                        <select id="ItemType" name="ItemType" class="c-select form-control boxed">
+                            <option @(currentMenu.ItemType == 0 ? "selected" : string.Empty)>Menü Tipi Seçiniz</option>
+                            <option value="1" @(currentMenu.ItemType == 1 ? "selected" : string.Empty)>Sayfa</option>
+                            <option value="2" @(currentMenu.ItemType == 2 ? "selected" : string.Empty)>Modül</option>
+                            <option value="3" @(currentMenu.ItemType == 3 ? "selected" : string.Empty)>Dış Link</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label text-xs-right">
+                        Permalink:
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control boxed" name="Permalink" id="Permalink" placeholder="Link Giriniz." value="@currentMenu.Permalink">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label text-xs-right">
+                        Permalink Hedef:
+                    </label>
+                    <div class="col-sm-8">
+                        <select id="PermalinkTarget" name="PermalinkTarget" class="c-select form-control boxed">
+                            <option value="_self" @((!string.IsNullOrWhiteSpace(currentMenu.PermalinkTarget) && currentMenu.PermalinkTarget.Equals("_self")) ? "selected" : string.Empty)>_self</option>
+                            <option value="_blank" @((!string.IsNullOrWhiteSpace(currentMenu.PermalinkTarget) && currentMenu.PermalinkTarget.Equals("_blank")) ? "selected" : string.Empty)>_blank</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 form-control-label text-xs-right">
+                        Sitede Gözükür:
+                    </label>
+                    <div class="col-sm-8">
+                        <select id="IsPublished" name="IsPublished" class="c-select form-control boxed">
+                            <option value="true" @(currentMenu.IsPublished ? "selected" : string.Empty)>Evet</option>
+                            <option value="false" @(!currentMenu.IsPublished ? "selected" : string.Empty)>Hayır</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <button type="submit" class="btn btn-primary">
+                            Kaydet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form name="orderMenuForm" method="post" action="@Url.Action("SaveMenuPosition")">
+        <div class="menu-order">
+            <div class="card card-block">
+                <div class="col-lg-12">
+                    <div class="cf nestable-lists">
+                        <div class="dd" id="nestable">
+                            <ol class="dd-list">
+                                @Html.Raw(menuHtml)
+                            </ol>
+                        </div>
+                    </div>
+                    <input type="hidden" id="hdnMenuOrder" name="hdnMenuOrder" />
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 menu-order-button">
+                        <button type="submit" class="btn btn-primary">
+                            Sıralamayı Güncelle
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</article>

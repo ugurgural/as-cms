@@ -1,0 +1,47 @@
+﻿@using AS.CMS.Domain.Base;
+@model IList<Menu>
+@{
+    ViewBag.Title = "Menüler";
+    Layout = "~/Views/Layout/_Main.cshtml";
+    string menuHtml = ViewBag.Menu;
+}
+@section CustomCSS
+{
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/nestable.css")">
+}
+@section CustomJS
+{
+    <script src="@Url.Content("~/Assets/Scripts/nestable.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/View/menuindex.js")"></script>
+}
+
+<article class="content item-editor-page">
+    <div class="title-block">
+        <h3 class="title">
+            Menü Sıralaması <span class="sparkline bar" data-type="bar"></span>
+        </h3>
+    </div>
+    <form name="orderMenuForm" method="post" action="@Url.Action("SaveMenuPosition")">
+        <div class="menu-list">
+            <div class="card card-block">
+                <div class="col-lg-12">
+                    <div class="cf nestable-lists">
+                        <div class="dd" id="nestable">
+                            <ol class="dd-list">
+                                @Html.Raw(menuHtml)
+                            </ol>
+                        </div>
+                    </div>
+                    <input type="hidden" id="hdnMenuOrder" name="hdnMenuOrder" />
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 menu-order-button">
+                        <button type="submit" class="btn btn-primary">
+                            Sıralamayı Güncelle
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</article>

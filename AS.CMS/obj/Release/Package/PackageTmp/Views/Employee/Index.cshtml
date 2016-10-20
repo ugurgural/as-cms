@@ -1,0 +1,83 @@
+﻿@using AS.CMS.Domain.Base;
+@model IList<Employee>
+@{
+    ViewBag.Title = "İçerikler";
+    Layout = "~/Views/Layout/_ListBase.cshtml";
+}
+
+<div class="card items">
+    <ul class="item-list striped">
+        <li class="item item-list-header hidden-sm-down">
+            <div class="item-row">
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Ad</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Soyad</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Doğum Tarihi</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-date">
+                    <div> <span>Cinsiyet</span> </div>
+                </div>
+                <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
+            </div>
+        </li>
+
+        @foreach (var employeeItem in Model)
+        {
+            <li class="item">
+                <div class="item-row">
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Ad</div>
+                        <div>
+                            <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.ID })" class="">
+                                <h4 class="item-title">@employeeItem.FirstName</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Soyad</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.ID })">@employeeItem.LastName</a> </div>
+                    </div>
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Doğum Tarihi</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.ID })">@employeeItem.BirthDate.ToString("dd/MM/yyyy")</a> </div>
+                    </div>
+                    <div class="item-col item-col-date">
+                        <div class="item-heading">Cinsiyet</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.ID })">@employeeItem.Gender</a> </div>
+                    </div>
+                    <div class="item-col fixed item-col-actions-dropdown">
+                        <div class="item-actions-dropdown">
+                            <a class="item-actions-toggle-btn">
+                                <span class="inactive">
+                                    <i class="fa fa-cog"></i>
+                                </span> <span class="active">
+                                    <i class="fa fa-chevron-circle-right"></i>
+                                </span>
+                            </a>
+                            <div class="item-actions-block">
+                                <ul class="item-actions-list">
+                                    <li>
+                                        <a class="edit" title="Düzenle" href="@Url.Action("yeni-adat-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-pencil"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="edit" title="CV Görüntüle" href="@Url.Action("yeni-aday-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-file-text-o"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="edit" title="Katıldığı Etkinlikler" href="@Url.Action("yeni-aday-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-calendar-o"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="edit" title="Ödemeler" href="@Url.Action("yeni-aday-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-try"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

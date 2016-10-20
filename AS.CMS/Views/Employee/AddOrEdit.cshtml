@@ -1,0 +1,204 @@
+﻿@using AS.CMS.Domain.Base;
+@using AS.CMS.Domain.Common;
+@model Employee
+@section CustomCSS
+{
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/datepicker.min.css")">
+}
+@section CustomJS
+{
+    <script src="@Url.Content("~/Assets/Scripts/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/CKFinderScripts/ckfinder.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/View/employeeadd.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/datepicker.min.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/datepicker.tr.js")"></script>
+}
+@{
+    ViewBag.Title = "Adaylar";
+    Layout = "~/Views/Layout/_Main.cshtml";
+    Employee currentEmployee = Model;
+    string siteDomain = Request.Url.GetLeftPart(UriPartial.Authority);
+}
+<article class="content item-editor-page">
+    <div class="title-block">
+        <h3 class="title">
+            Yeni Aday Ekle <span class="sparkline bar" data-type="bar"></span>
+        </h3>
+    </div>
+    <form id="saveEmployeeForm" method="post" action="@Url.Action("SaveEmployee")" name="item">
+        <input type="hidden" id="ID" name="ID" value="@currentEmployee.ID" />
+
+        <div class="card card-block">
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    İsim:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="FirstName" name="FirstName" class="form-control boxed" placeholder="İsim Giriniz" value="@currentEmployee.FirstName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Soyisim:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="LastName" name="LastName" class="form-control boxed" placeholder="Soyisim Giriniz" value="@currentEmployee.LastName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Doğum Tarihi:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="BirthDate" name="BirthDate" class="form-control boxed datepicker-here" data-language='tr' placeholder="Doğum Tarihi Giriniz" value="@(currentEmployee.BirthDate != DateTime.MinValue ? currentEmployee.BirthDate.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy") )">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Telefon:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Phone" name="Phone" class="form-control boxed" placeholder="Telefon Giriniz" value="@currentEmployee.Phone">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Mail:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="MailAddress" name="MailAddress" class="form-control boxed" placeholder="Mail Giriniz" value="@currentEmployee.MailAddress">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Adres:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Address" name="Address" class="form-control boxed" placeholder="Adres Giriniz" value="@currentEmployee.Address">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Cinsiyet:
+                </label>
+                <div class="col-sm-10">
+                    <select id="Gender" name="Gender" class="c-select form-control boxed">
+                        <option value="1" @Html.Raw(currentEmployee.Gender == GenderType.Male ? "selected" : string.Empty)>Erkek</option>
+                        <option value="2" @Html.Raw(currentEmployee.Gender == GenderType.Female ? "selected" : string.Empty)>Kadın</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Boy:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Height" name="Height" class="form-control boxed" placeholder="Boy Giriniz" value="@currentEmployee.Height">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Kilo:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Weight" name="Weight" class="form-control boxed" placeholder="Kilo Giriniz" value="@currentEmployee.Weight">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Açıklama:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Description" name="Description" class="form-control boxed" placeholder="Açıklama Giriniz" value="@currentEmployee.Description">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Aktif:
+                </label>
+                <div class="col-sm-10">
+                    <select id="IsActive" name="IsActive" class="c-select form-control boxed">
+                        <option value="true" @Html.Raw(currentEmployee.IsActive ? "selected" : string.Empty)>Evet</option>
+                        <option value="false" @Html.Raw(!currentEmployee.IsActive ? "selected" : string.Empty)>Hayır</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Aday Resim:
+                </label>
+                <div class="col-sm-10">
+                    <div class="images-container single">
+                        @if (!string.IsNullOrWhiteSpace(currentEmployee.Picture))
+                        {
+                            foreach (string imageItem in currentEmployee.Picture.Split(','))
+                            {
+                                if (!string.IsNullOrWhiteSpace(imageItem))
+                                {
+                                    <div class="image-container" data-fileurl="@imageItem">
+                                        <div class="controls">
+                                            <a href="#" class="control-btn remove upload-remove-single">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </div>
+                                        <div class="image" style="background-image:url('@imageItem')">
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <a href="#" class="add-single-image">
+                                <div class="image-container new">
+                                    <div class="image"> <i class="fa fa-plus"></i> </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <input type="hidden" id="picture" name="picture" value="@currentEmployee.Picture" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Aday CV:
+                </label>
+                <div class="col-sm-10">
+                    <div class="images-container gallery">
+                        <a href="#" class="add-image">
+                            <div class="image-container new">
+                                <div class="image"> <i class="fa fa-plus"></i> </div>
+                            </div>
+                        </a>
+                        @if (!string.IsNullOrWhiteSpace(currentEmployee.CVFile))
+                        {
+                            foreach (string imageItem in currentEmployee.CVFile.Split(','))
+                            {
+                                if (!string.IsNullOrWhiteSpace(imageItem))
+                                {
+                                    <div class="image-container" data-fileurl="@imageItem">
+                                        <div class="controls">
+                                            <a href="#" class="control-btn move">
+                                                <i class="fa fa-arrows"></i>
+                                            </a>
+                                            <a href="#" class="control-btn remove upload-remove"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                        <div class="image" style="background-image:url('@imageItem')"></div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                    <input type="hidden" id="galleryImages" name="galleryImages" value="@currentEmployee.CVFile" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</article>

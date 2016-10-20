@@ -1,0 +1,73 @@
+﻿@using AS.CMS.Domain.Common;
+@using AS.CMS.Business.Helpers;
+@{ 
+    ModalStatus modalStatus = ModalStatus.Success;
+    string modalStatusMessage = string.Empty;
+    string modalStatusIcon = string.Empty;
+
+    if (TempData["ModalStatusMessage"] != null)
+    {
+        modalStatus = (ModalStatus)TempData["ModalStatus"];
+        modalStatusMessage = TempData["ModalStatusMessage"].ToString();
+        modalStatusIcon = TempData["ModalStatusIcon"].ToString();
+    }
+
+}
+<!doctype html>
+<html class="no-js" lang="tr">
+<head>
+    @Html.Partial("~/Views/Shared/Head.cshtml")
+    @RenderSection("CustomCSS", false)
+
+   
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="app" id="app">
+            @Html.Partial("~/Views/Shared/Header.cshtml")
+            @Html.Partial("~/Views/Shared/Sidebar.cshtml")
+            
+            @RenderBody()
+            
+            @Html.Partial("~/Views/Shared/Footer.cshtml")
+        </div>
+    </div>
+
+    @Html.Partial("~/Views/Shared/Script.cshtml")
+    @RenderSection("CustomJS", false)
+
+    <div class="modal fade" id="status-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"><i class="@modalStatusIcon"></i> @modalStatus.ToDescription()</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@modalStatusMessage</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @{
+                if (TempData["ModalStatusMessage"] != null)
+                {
+                    <text>
+                        $('#status-modal').modal('show');
+                        setTimeout(function ()
+                        {
+                            $('#status-modal').fadeOut();
+                            $('#status-modal').modal('hide');
+                        }, 1500);
+                    </text>
+                }
+            }
+        });
+    </script>
+</body>
+</html>

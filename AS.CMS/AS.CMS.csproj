@@ -1,0 +1,1136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D8CFD5FB-FAF5-4995-98C4-41BF7CFC6CBC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AS.CMS</RootNamespace>
+    <AssemblyName>AS.CMS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CKSource.CKFinder.Connector.Config, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CKSource.CKFinder.Connector.Config.3.3.0\lib\net45\CKSource.CKFinder.Connector.Config.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CKSource.CKFinder.Connector.Core, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CKSource.CKFinder.Connector.Core.3.3.1\lib\net45\CKSource.CKFinder.Connector.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CKSource.CKFinder.Connector.Host.Owin, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CKSource.CKFinder.Connector.Host.Owin.3.3.1\lib\net45\CKSource.CKFinder.Connector.Host.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CKSource.FileSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CKSource.FileSystem.1.0.0\lib\net45\CKSource.FileSystem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CKSource.FileSystem.Local, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CKSource.FileSystem.Local.1.0.0\lib\net45\CKSource.FileSystem.Local.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.3.3.0\lib\net45\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.DynamicProxy.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authorization\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Bootstrap\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\AnnouncementController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleBasedAuthenticator.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Css\app-blue.css" />
+    <Content Include="Assets\Css\app-custom.css" />
+    <Content Include="Assets\Css\app-green.css" />
+    <Content Include="Assets\Css\app-orange.css" />
+    <Content Include="Assets\Css\app-purple.css" />
+    <Content Include="Assets\Css\app-red.css" />
+    <Content Include="Assets\Css\app-seagreen.css" />
+    <Content Include="Assets\Css\app.css" />
+    <Content Include="Assets\Css\datepicker.min.css" />
+    <Content Include="Assets\Css\nestable.css" />
+    <Content Include="Assets\Css\ui.css" />
+    <Content Include="Assets\Css\vendor.css" />
+    <Content Include="Assets\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\Images\demo.png" />
+    <Content Include="Assets\Images\faces\3.jpg" />
+    <Content Include="Assets\Images\faces\4.jpg" />
+    <Content Include="Assets\Images\faces\5.jpg" />
+    <Content Include="Assets\Images\faces\7.jpg" />
+    <Content Include="Assets\Images\faces\8.jpg" />
+    <Content Include="Assets\Images\features.png" />
+    <Content Include="Assets\Scripts\app.js" />
+    <Content Include="Assets\Scripts\ckeditor\adapters\jquery.js" />
+    <Content Include="Assets\Scripts\ckeditor\build-config.js" />
+    <Content Include="Assets\Scripts\ckeditor\ckeditor.js" />
+    <Content Include="Assets\Scripts\ckeditor\config.js" />
+    <Content Include="Assets\Scripts\ckeditor\contents.css" />
+    <Content Include="Assets\Scripts\ckeditor\lang\en.js" />
+    <Content Include="Assets\Scripts\ckeditor\lang\tr.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\af.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\de-ch.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\en-gb.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\eu.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\fo.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ko.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\tt.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\zh.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\icons.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\magicline\images\hidpi\icon-rtl.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\magicline\images\icon-rtl.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\af.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\da.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\de-ch.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\en-gb.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\eu.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\km.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\ko.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\lt.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\tt.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\zh.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\css\samples.css" />
+    <Content Include="Assets\Scripts\ckeditor\samples\img\github-top.png" />
+    <Content Include="Assets\Scripts\ckeditor\samples\img\header-bg.png" />
+    <Content Include="Assets\Scripts\ckeditor\samples\img\header-separator.png" />
+    <Content Include="Assets\Scripts\ckeditor\samples\img\logo.png" />
+    <Content Include="Assets\Scripts\ckeditor\samples\img\navigation-tip.png" />
+    <Content Include="Assets\Scripts\ckeditor\samples\index.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\js\sample.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\js\sf.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\ajax.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\api.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\appendto.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\assets\inlineall\logo.png" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\assets\sample.jpg" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\assets\uilanguages\languages.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\datafiltering.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\dialog\assets\my_dialog.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\dialog\dialog.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\divreplace.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\enterkey\enterkey.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.swf" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\htmlwriter\assets\outputforflash\swfobject.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\htmlwriter\outputforflash.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\htmlwriter\outputhtml.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\index.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\inlineall.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\inlinebycode.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\inlinetextarea.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\jquery.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\magicline\magicline.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\readonly.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\replacebyclass.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\replacebycode.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\sample.css" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\sample.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\tabindex.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\toolbar\toolbar.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\uicolor.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\uilanguages.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\wysiwygarea\fullpage.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\xhtmlstyle.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\font\LICENSE.txt" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\index.html" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\js\fulltoolbareditor.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\js\toolbarmodifier.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\js\toolbartextmodifier.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\dialog.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\dialog_ie.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\dialog_ie7.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\dialog_ie8.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\dialog_iequirks.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\editor.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\editor_gecko.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\editor_ie.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\editor_ie7.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\editor_ie8.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\editor_iequirks.css" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\icons.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\icons_hidpi.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\arrow.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\close.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\hidpi\close.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\hidpi\lock-open.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\hidpi\lock.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\hidpi\refresh.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\lock-open.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\lock.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\refresh.png" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\images\spinner.gif" />
+    <Content Include="Assets\Scripts\ckeditor\styles.js" />
+    <Content Include="Assets\Scripts\datepicker.tr.js" />
+    <Content Include="Assets\Scripts\datepicker.min.js" />
+    <Content Include="Assets\Scripts\nestable.js" />
+    <Content Include="Assets\Scripts\vendor.js" />
+    <Content Include="Assets\Scripts\CKFinderScripts\CHANGELOG.html" />
+    <Content Include="Assets\Scripts\CKFinderScripts\ckfinder.html" />
+    <Content Include="Assets\Scripts\CKFinderScripts\ckfinder.js" />
+    <Content Include="Assets\Scripts\CKFinderScripts\config.js" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\caman.js" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\ajax-loader.gif" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\action-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\action-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\alert-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\alert-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-d-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-d-l-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-d-l-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-d-r-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-d-r-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-d-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-l-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-l-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-r-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-r-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-u-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-u-l-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-u-l-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-u-r-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-u-r-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\arrow-u-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\audio-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\audio-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\back-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\back-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\bars-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\bars-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\bullets-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\bullets-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\calendar-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\calendar-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\camera-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\camera-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\carat-d-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\carat-d-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\carat-l-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\carat-l-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\carat-r-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\carat-r-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\carat-u-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\carat-u-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\check-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\check-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\clock-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\clock-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\cloud-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\cloud-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\comment-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\comment-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\delete-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\delete-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\edit-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\edit-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\eye-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\eye-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\forbidden-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\forbidden-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\forward-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\forward-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\gear-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\gear-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\grid-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\grid-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\heart-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\heart-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\home-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\home-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\info-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\info-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\location-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\location-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\lock-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\lock-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\mail-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\mail-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\minus-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\minus-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\navigation-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\navigation-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\phone-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\phone-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\plus-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\plus-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\power-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\power-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\recycle-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\recycle-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\refresh-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\refresh-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\search-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\search-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\shop-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\shop-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\star-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\star-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\tag-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\tag-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\user-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\user-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\video-black.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\images\icons-png\video-white.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\jquery.js" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\jquery.mobile.icons.css" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\jquery.mobile.js" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\jquery.mobile.structure.css" />
+    <Content Include="Assets\Scripts\CKFinderScripts\libs\jquery.mobile.theme.css" />
+    <Content Include="Assets\Scripts\CKFinderScripts\LICENSE.html" />
+    <Content Include="Assets\Scripts\CKFinderScripts\README.html" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\ckfinder.css" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\7z.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\access.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\audio.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\calc.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\css.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\csv.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\directory.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\draw.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\excel.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\html.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\impress.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\javascript.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\log.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\msword.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\pdf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\php.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\plain.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\powerpoint.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\rar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\readme.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\rtf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\sql.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\tar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\unknown.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\video.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\writer.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\128\zip.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\7z.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\access.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\audio.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\calc.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\css.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\csv.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\directory.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\draw.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\excel.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\html.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\impress.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\javascript.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\log.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\msword.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\pdf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\php.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\plain.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\powerpoint.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\rar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\readme.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\rtf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\sql.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\tar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\unknown.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\video.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\writer.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\16\zip.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\7z.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\access.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\audio.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\calc.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\css.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\csv.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\directory.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\draw.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\excel.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\html.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\javascript.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\log.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\msword.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\pdf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\php.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\plain.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\powerpoint.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\rar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\readme.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\rtf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\sql.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\tar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\unknown.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\video.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\22\zip.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\7z.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\access.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\audio.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\calc.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\css.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\csv.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\directory.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\draw.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\excel.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\html.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\javascript.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\log.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\msword.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\pdf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\php.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\plain.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\powerpoint.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\rar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\readme.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\rtf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\sql.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\tar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\unknown.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\video.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\256\zip.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\7z.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\access.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\audio.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\calc.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\css.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\csv.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\directory.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\draw.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\excel.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\html.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\impress.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\javascript.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\log.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\msword.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\pdf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\php.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\plain.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\powerpoint.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\rar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\readme.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\rtf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\sql.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\tar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\unknown.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\video.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\writer.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\32\zip.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\7z.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\access.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\audio.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\calc.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\css.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\csv.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\directory.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\draw.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\excel.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\html.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\impress.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\javascript.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\log.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\msword.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\pdf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\php.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\plain.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\powerpoint.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\rar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\readme.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\rtf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\sql.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\tar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\unknown.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\video.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\writer.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\48\zip.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\7z.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\access.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\audio.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\calc.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\css.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\csv.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\directory.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\draw.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\excel.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\html.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\impress.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\javascript.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\log.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\msword.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\pdf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\php.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\plain.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\powerpoint.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\rar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\readme.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\rtf.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\sql.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\tar.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\unknown.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\video.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\writer.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\file-icons\64\zip.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\images\custom\128\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\images\custom\256\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\images\custom\32\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\images\custom\48\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\core\images\custom\64\image.png" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\jquery-mobile\icons.css" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\moono\ckfinder.css" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\moono\icons.css" />
+    <Content Include="Assets\Scripts\CKFinderScripts\skins\moono\images\ajax-loader.gif" />
+    <Content Include="Assets\Scripts\View\employeeadd.js" />
+    <Content Include="Assets\Scripts\View\memberadd.js" />
+    <Content Include="Assets\Scripts\View\announcementadd.js" />
+    <Content Include="Assets\Scripts\View\menuadd.js" />
+    <Content Include="Assets\Scripts\View\newsadd.js" />
+    <Content Include="Assets\Scripts\View\contentadd.js" />
+    <Content Include="Assets\Scripts\View\listbase.js" />
+    <Content Include="Assets\Scripts\View\menuindex.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Layout\_Main.cshtml" />
+    <Content Include="Views\Menu\AddOrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Views\Module\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Head.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Script.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\Fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Sidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AS.CMS.Business\AS.CMS.Business.csproj">
+      <Project>{737ee59e-8b22-4a51-9130-b5b3cd15c765}</Project>
+      <Name>AS.CMS.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AS.CMS.Data.UOW\AS.CMS.Data.UOW.csproj">
+      <Project>{dd42a387-2d2f-49d1-8209-2c2afa167424}</Project>
+      <Name>AS.CMS.Data.UOW</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AS.CMS.Domain\AS.CMS.Domain.csproj">
+      <Project>{97d00eb3-de4b-4216-af5a-fcc2477ddde0}</Project>
+      <Name>AS.CMS.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\AddOrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\plugins\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\zh-tw.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\zh-cn.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\vi.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\tr.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\sv.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\sr.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\sl.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\sk.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\ru.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\ro.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\pt-br.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\pl.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\no.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\nn.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\nl.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\nb.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\lv.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\lt.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\ku.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\ko.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\ja.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\it.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\id.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\hu.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\hr.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\hi.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\he.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\gu.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\fr.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\fi.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\fa.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\eu.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\et.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\es.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\es-mx.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\eo.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\en.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\el.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\de.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\da.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\cy.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\cs.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\ca.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\bs.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\CKFinderScripts\lang\bg.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Scripts\ckeditor\CHANGES.md" />
+    <Content Include="Assets\Scripts\ckeditor\LICENSE.md" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\scayt\CHANGELOG.md" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\scayt\README.md" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Assets\Scripts\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Assets\Scripts\ckeditor\README.md" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\assets\posteddata.php" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Assets\Scripts\ckeditor\samples\old\sample_posteddata.php" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="Assets\Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="Assets\Scripts\ckeditor\skins\moono\readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Layout\_ListBase.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\AddOrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Member\AddOrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Member\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\AS.CMS.pubxml" />
+    <Content Include="Views\Announcement\AddOrEdit.cshtml" />
+    <Content Include="Views\Announcement\Index.cshtml" />
+    <Content Include="Views\Employee\AddOrEdit.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>23505</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:23505/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
