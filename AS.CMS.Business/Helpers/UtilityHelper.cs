@@ -1,6 +1,7 @@
-﻿
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 namespace AS.CMS.Business.Helpers
 {
@@ -21,7 +22,9 @@ namespace AS.CMS.Business.Helpers
 
             return strBuilder.ToString();
         }
-
-       
+        public static string GetSiteDomain()
+        {
+            return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+        }
     }
 }

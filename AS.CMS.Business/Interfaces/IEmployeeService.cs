@@ -1,4 +1,4 @@
-﻿using AS.CMS.Domain.Base;
+﻿using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Common;
 
 namespace AS.CMS.Business.Interfaces

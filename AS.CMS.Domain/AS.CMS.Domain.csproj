@@ -46,12 +46,19 @@
   <ItemGroup>
     <Compile Include="Base\Announcement.cs" />
     <Compile Include="Base\Content.cs" />
-    <Compile Include="Base\Employee.cs" />
+    <Compile Include="Base\Employee\Employee.cs" />
+    <Compile Include="Base\Employee\EmployeeAvailability.cs" />
+    <Compile Include="Base\Employee\EmployeeCertificateAndLanguage.cs" />
+    <Compile Include="Base\Employee\EmployeeEducation.cs" />
+    <Compile Include="Base\Employee\EmployeeJobExperience.cs" />
     <Compile Include="Base\EntityBase.cs" />
+    <Compile Include="Base\Event\Event.cs" />
+    <Compile Include="Base\Event\EventType.cs" />
     <Compile Include="Base\Member.cs" />
     <Compile Include="Base\Menu.cs" />
     <Compile Include="Base\Module.cs" />
     <Compile Include="Base\News.cs" />
+    <Compile Include="Base\Profession.cs" />
     <Compile Include="Base\Role.cs" />
     <Compile Include="Common\CustomPrincipal.cs" />
     <Compile Include="Common\GenderType.cs" />
@@ -59,6 +66,8 @@
     <Compile Include="Common\ModalStatus.cs" />
     <Compile Include="Common\PageResultSet.cs" />
     <Compile Include="Common\PagingFilter.cs" />
+    <Compile Include="Common\WeekDay.cs" />
+    <Compile Include="Common\WorkType.cs" />
     <Compile Include="Interfaces\ICMSEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

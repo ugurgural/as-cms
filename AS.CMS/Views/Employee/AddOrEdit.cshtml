@@ -1,9 +1,12 @@
-﻿@using AS.CMS.Domain.Base;
+﻿@using AS.CMS.Domain.Base.Employee;
+@using AS.CMS.Domain.Base;
 @using AS.CMS.Domain.Common;
+@using AS.CMS.Business.Helpers;
 @model Employee
 @section CustomCSS
 {
     <link rel="stylesheet" href="@Url.Content("~/Assets/Css/datepicker.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/chosen.css")">
 }
 @section CustomJS
 {
@@ -12,12 +15,35 @@
     <script src="@Url.Content("~/Assets/Scripts/View/employeeadd.js")"></script>
     <script src="@Url.Content("~/Assets/Scripts/datepicker.min.js")"></script>
     <script src="@Url.Content("~/Assets/Scripts/datepicker.tr.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/chosen.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.chosen-select').chosen();
+            $("#employeeWorkDays_chosen").width("100%")
+            $("#employeeWorkType_chosen").width("100%")
+        });
+    </script>
 }
 @{
     ViewBag.Title = "Adaylar";
     Layout = "~/Views/Layout/_Main.cshtml";
     Employee currentEmployee = Model;
-    string siteDomain = Request.Url.GetLeftPart(UriPartial.Authority);
+    string siteDomain = UtilityHelper.GetSiteDomain();
+
+    List<SelectListItem> studentStatus = new List<SelectListItem>();
+    studentStatus.Add(new SelectListItem() { Text = "Öğrenci", Value = "true" });
+    studentStatus.Add(new SelectListItem() { Text = "Mezun", Value = "false", Selected = true });
+
+    if (Model.EmployeeAvailability == null)
+    {
+        Model.EmployeeAvailability = new List<EmployeeAvailability>();
+    }
+
+    if (Model.Profession == null)
+    {
+        Model.Profession = new List<Profession>();
+    }
+
 }
 <article class="content item-editor-page">
     <div class="title-block">
@@ -28,174 +54,427 @@
     <form id="saveEmployeeForm" method="post" action="@Url.Action("SaveEmployee")" name="item">
         <input type="hidden" id="ID" name="ID" value="@currentEmployee.ID" />
 
+
         <div class="card card-block">
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    İsim:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="FirstName" name="FirstName" class="form-control boxed" placeholder="İsim Giriniz" value="@currentEmployee.FirstName">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Soyisim:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="LastName" name="LastName" class="form-control boxed" placeholder="Soyisim Giriniz" value="@currentEmployee.LastName">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Doğum Tarihi:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="BirthDate" name="BirthDate" class="form-control boxed datepicker-here" data-language='tr' placeholder="Doğum Tarihi Giriniz" value="@(currentEmployee.BirthDate != DateTime.MinValue ? currentEmployee.BirthDate.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy") )">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Telefon:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="Phone" name="Phone" class="form-control boxed" placeholder="Telefon Giriniz" value="@currentEmployee.Phone">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Mail:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="MailAddress" name="MailAddress" class="form-control boxed" placeholder="Mail Giriniz" value="@currentEmployee.MailAddress">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Adres:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="Address" name="Address" class="form-control boxed" placeholder="Adres Giriniz" value="@currentEmployee.Address">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Cinsiyet:
-                </label>
-                <div class="col-sm-10">
-                    <select id="Gender" name="Gender" class="c-select form-control boxed">
-                        <option value="1" @Html.Raw(currentEmployee.Gender == GenderType.Male ? "selected" : string.Empty)>Erkek</option>
-                        <option value="2" @Html.Raw(currentEmployee.Gender == GenderType.Female ? "selected" : string.Empty)>Kadın</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Boy:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="Height" name="Height" class="form-control boxed" placeholder="Boy Giriniz" value="@currentEmployee.Height">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Kilo:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="Weight" name="Weight" class="form-control boxed" placeholder="Kilo Giriniz" value="@currentEmployee.Weight">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Açıklama:
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" id="Description" name="Description" class="form-control boxed" placeholder="Açıklama Giriniz" value="@currentEmployee.Description">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Aktif:
-                </label>
-                <div class="col-sm-10">
-                    <select id="IsActive" name="IsActive" class="c-select form-control boxed">
-                        <option value="true" @Html.Raw(currentEmployee.IsActive ? "selected" : string.Empty)>Evet</option>
-                        <option value="false" @Html.Raw(!currentEmployee.IsActive ? "selected" : string.Empty)>Hayır</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Aday Resim:
-                </label>
-                <div class="col-sm-10">
-                    <div class="images-container single">
-                        @if (!string.IsNullOrWhiteSpace(currentEmployee.Picture))
-                        {
-                            foreach (string imageItem in currentEmployee.Picture.Split(','))
-                            {
-                                if (!string.IsNullOrWhiteSpace(imageItem))
+
+            <ul class="nav nav-tabs nav-tabs-bordered">
+                <li class="nav-item"> <a href="#home" class="nav-link active" data-target="#home" data-toggle="tab" aria-controls="home" role="tab">Kişisel</a> </li>
+                <li class="nav-item"> <a href="#profile" class="nav-link" data-target="#profile" aria-controls="profile" data-toggle="tab" role="tab">İş & Eğitim</a> </li>
+                <li class="nav-item"> <a href="" class="nav-link" data-target="#messages" aria-controls="messages" data-toggle="tab" role="tab">Tercihler</a> </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content tabs-bordered">
+                <div class="tab-pane fade in active" id="home">
+                    <h4>Kişisel Bilgiler</h4>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            İsim:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="FirstName" name="FirstName" class="form-control boxed" placeholder="İsim Giriniz" value="@currentEmployee.FirstName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Soyisim:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="LastName" name="LastName" class="form-control boxed" placeholder="Soyisim Giriniz" value="@currentEmployee.LastName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            TC Kimlik No:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="TCIdentityNo" name="TCIdentityNo" class="form-control boxed" placeholder="TC Kimlik No Giriniz" value="@currentEmployee.TCIdentityNo">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Telefon:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Phone" name="Phone" class="form-control boxed" placeholder="Telefon Giriniz" value="@currentEmployee.Phone">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Mail:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="MailAddress" name="MailAddress" class="form-control boxed" placeholder="Mail Giriniz" value="@currentEmployee.MailAddress">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Adres:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Address" name="Address" class="form-control boxed" placeholder="Adres Giriniz" value="@currentEmployee.Address">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Cinsiyet:
+                        </label>
+                        <div class="col-sm-10">
+                            <select id="Gender" name="Gender" class="c-select form-control boxed">
+                                <option value="1" @Html.Raw(currentEmployee.Gender == GenderType.Male ? "selected" : string.Empty)>Erkek</option>
+                                <option value="2" @Html.Raw(currentEmployee.Gender == GenderType.Female ? "selected" : string.Empty)>Kadın</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Doğum Tarihi:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="BirthDate" name="BirthDate" class="form-control boxed datepicker-here" data-language='tr' placeholder="Doğum Tarihi Giriniz" value="@(currentEmployee.BirthDate != DateTime.MinValue ? currentEmployee.BirthDate.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy") )">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Doğum Yeri:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="BirthPlace" name="BirthPlace" class="form-control boxed" placeholder="Doğum Yeri Giriniz" value="@currentEmployee.BirthPlace">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Boy:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Height" name="Height" class="form-control boxed" placeholder="Boy Giriniz" value="@currentEmployee.Height">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Kilo:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Weight" name="Weight" class="form-control boxed" placeholder="Kilo Giriniz" value="@currentEmployee.Weight">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Saç Rengi:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="HairColor" name="HairColor" class="form-control boxed" placeholder="Saç Rengi Giriniz" value="@currentEmployee.HairColor">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Göz Rengi:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="EyeColor" name="EyeColor" class="form-control boxed" placeholder="Göz Rengi Giriniz" value="@currentEmployee.EyeColor">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Üst Beden:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="UpperBodySize" name="UpperBodySize" class="form-control boxed" placeholder="Üst Beden Giriniz" value="@currentEmployee.UpperBodySize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Alt Beden:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="LowerBodySize" name="LowerBodySize" class="form-control boxed" placeholder="Alt Beden Giriniz" value="@currentEmployee.LowerBodySize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Ceket Ölçüsü:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="JacketSize" name="JacketSize" class="form-control boxed" placeholder="Ölçü Giriniz" value="@currentEmployee.JacketSize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Pantolon Ölçüsü:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="PantSize" name="PantSize" class="form-control boxed" placeholder="Ölçü Giriniz" value="@currentEmployee.PantSize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Jean Ölçüsü:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="JeanSize" name="JeanSize" class="form-control boxed" placeholder="Ölçü Giriniz" value="@currentEmployee.JeanSize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Etek Ölçüsü:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="SkirtSize" name="SkirtSize" class="form-control boxed" placeholder="Ölçü Giriniz" value="@currentEmployee.SkirtSize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Ayakkabı Ölçüsü:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="ShoeSize" name="ShoeSize" class="form-control boxed" placeholder="Ölçü Giriniz" value="@currentEmployee.ShoeSize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Göğüs Ölçüsü:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="ChestSize" name="ChestSize" class="form-control boxed" placeholder="Ölçü Giriniz" value="@currentEmployee.ChestSize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Bel Ölçüsü:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="WaistSize" name="WaistSize" class="form-control boxed" placeholder="Ölçü Giriniz" value="@currentEmployee.WaistSize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Basen Ölçüsü:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="HipSize" name="HipSize" class="form-control boxed" placeholder="Ölçü Giriniz" value="@currentEmployee.HipSize">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Açıklama:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Description" name="Description" class="form-control boxed" placeholder="Açıklama Giriniz" value="@currentEmployee.Description">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Ehliyet:
+                        </label>
+                        <div class="col-sm-10">
+                            <select id="HasDriverLicense" name="HasDriverLicense" class="c-select form-control boxed">
+                                <option value="true" @Html.Raw(currentEmployee.HasDriverLicense ? "selected" : string.Empty)>Var</option>
+                                <option value="false" @Html.Raw(!currentEmployee.HasDriverLicense ? "selected" : string.Empty)>Yok</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Aktif Araç Kullanılıyor Mu ?:
+                        </label>
+                        <div class="col-sm-10">
+                            <select id="ActiveCarDriver" name="ActiveCarDriver" class="c-select form-control boxed">
+                                <option value="true" @Html.Raw(currentEmployee.ActiveCarDriver ? "selected" : string.Empty)>Evet</option>
+                                <option value="false" @Html.Raw(!currentEmployee.ActiveCarDriver ? "selected" : string.Empty)>Hayır</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Aktif:
+                        </label>
+                        <div class="col-sm-10">
+                            <select id="IsActive" name="IsActive" class="c-select form-control boxed">
+                                <option value="true" @Html.Raw(currentEmployee.IsActive ? "selected" : string.Empty)>Evet</option>
+                                <option value="false" @Html.Raw(!currentEmployee.IsActive ? "selected" : string.Empty)>Hayır</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Aday Resim:
+                        </label>
+                        <div class="col-sm-10">
+                            <div class="images-container single">
+                                @if (!string.IsNullOrWhiteSpace(currentEmployee.Picture))
                                 {
-                                    <div class="image-container" data-fileurl="@imageItem">
-                                        <div class="controls">
-                                            <a href="#" class="control-btn remove upload-remove-single">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </div>
-                                        <div class="image" style="background-image:url('@imageItem')">
-                                        </div>
+                                    foreach (string imageItem in currentEmployee.Picture.Split(','))
+                                    {
+                                        if (!string.IsNullOrWhiteSpace(imageItem))
+                                        {
+                                <div class="image-container" data-fileurl="@imageItem">
+                                    <div class="controls">
+                                        <a href="#" class="control-btn remove upload-remove-single">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
                                     </div>
-                                }
-                            }
-                        }
-                        else
-                        {
-                            <a href="#" class="add-single-image">
-                                <div class="image-container new">
-                                    <div class="image"> <i class="fa fa-plus"></i> </div>
+                                    <div class="image" style="background-image:url('@imageItem')">
+                                    </div>
                                 </div>
-                            </a>
-                        }
-                    </div>
-                    <input type="hidden" id="picture" name="picture" value="@currentEmployee.Picture" />
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 form-control-label text-xs-right">
-                    Aday CV:
-                </label>
-                <div class="col-sm-10">
-                    <div class="images-container gallery">
-                        <a href="#" class="add-image">
-                            <div class="image-container new">
-                                <div class="image"> <i class="fa fa-plus"></i> </div>
-                            </div>
-                        </a>
-                        @if (!string.IsNullOrWhiteSpace(currentEmployee.CVFile))
-                        {
-                            foreach (string imageItem in currentEmployee.CVFile.Split(','))
-                            {
-                                if (!string.IsNullOrWhiteSpace(imageItem))
-                                {
-                                    <div class="image-container" data-fileurl="@imageItem">
-                                        <div class="controls">
-                                            <a href="#" class="control-btn move">
-                                                <i class="fa fa-arrows"></i>
-                                            </a>
-                                            <a href="#" class="control-btn remove upload-remove"><i class="fa fa-trash-o"></i></a>
-                                        </div>
-                                        <div class="image" style="background-image:url('@imageItem')"></div>
-                                    </div>
+                                        }
+                                    }
                                 }
-                            }
+                                else
+                                {
+                                <a href="#" class="add-single-image">
+                                    <div class="image-container new">
+                                        <div class="image"> <i class="fa fa-plus"></i> </div>
+                                    </div>
+                                </a>
+                                }
+                            </div>
+                            <input type="hidden" id="picture" name="picture" value="@currentEmployee.Picture" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Aday CV:
+                        </label>
+                        <div class="col-sm-10">
+                            <div class="images-container gallery">
+                                <a href="#" class="add-image">
+                                    <div class="image-container new">
+                                        <div class="image"> <i class="fa fa-plus"></i> </div>
+                                    </div>
+                                </a>
+                                @if (!string.IsNullOrWhiteSpace(currentEmployee.CVFile))
+                                {
+                                    foreach (string imageItem in currentEmployee.CVFile.Split(','))
+                                    {
+                                        if (!string.IsNullOrWhiteSpace(imageItem))
+                                        {
+                                <div class="image-container" data-fileurl="@imageItem">
+                                    <div class="controls">
+                                        <a href="#" class="control-btn move">
+                                            <i class="fa fa-arrows"></i>
+                                        </a>
+                                        <a href="#" class="control-btn remove upload-remove"><i class="fa fa-trash-o"></i></a>
+                                    </div>
+                                    <div class="image"><i class="fa fa-file-pdf-o"></i></div>
+                                </div>
+                                        }
+                                    }
+                                }
+                            </div>
+                            <input type="hidden" id="CVFile" name="CVFile" value="@currentEmployee.CVFile" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile">
+                    <h4>İş & Eğitim Bilgileri</h4>
+                    <br />
+                    <h5>İş Deneyimi</h5>
+                    <div class="form-group row">
+                        @for (int i = 0; i < 3; ++i)
+                        {
+                        @Html.HiddenFor(m => m.EmployeeJobExperience[i].ID)
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.EmployeeJobExperience[i].CompanyName, new { @class = "form-control boxed", @placeholder = "Firma Adı" })
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.TextBoxFor(m => m.EmployeeJobExperience[i].Title, new { @class = "form-control boxed", @placeholder = "Görev" })
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(m => m.EmployeeJobExperience[i].WorkYear, new { type = "number", min = "0", max = "50", @class = "form-control boxed", @placeholder = "Yıl" })
+                            </div>
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(m => m.EmployeeJobExperience[i].WorkMonth, new { type = "number", min = "0", max = "11", @class = "form-control boxed", @placeholder = "Ay" })
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.TextBoxFor(m => m.EmployeeJobExperience[i].QuitReason, new { @class = "form-control boxed", @placeholder = "Ayrılma Sebebi" })
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.TextBoxFor(m => m.EmployeeJobExperience[i].Salary, new { @class = "form-control boxed", @placeholder = "Kazanç" })
+                        </div>
                         }
                     </div>
-                    <input type="hidden" id="galleryImages" name="galleryImages" value="@currentEmployee.CVFile" />
+                    <br />
+                    <h5>Eğitim Bilgileri</h5>
+                    <div class="form-group row">
+                        @for (int i = 0; i < 3; ++i)
+                        {
+                        @Html.HiddenFor(m => m.EmployeeEducation[i].ID)
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.EmployeeEducation[i].OrganizationName, new { @class = "form-control boxed", @placeholder = "Kurum Adı" })
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.EmployeeEducation[i].Institute, new { @class = "form-control boxed", @placeholder = "Bölüm" })
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.TextBoxFor(m => m.EmployeeEducation[i].Degree, new { @class = "form-control boxed", @placeholder = "Derece" })
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.DropDownListFor(m => m.EmployeeEducation[i].ActiveEducation, studentStatus, new { @class = "c-select form-control boxed" })
+                        </div>
+                        }
+                    </div>
+                    <br />
+                    <h5>Yabancı Dil</h5>
+                    <div class="form-group row">
+                        @for (int i = 0; i < 3; ++i)
+                        {
+                        @Html.HiddenFor(m => m.EmployeeCertificateAndLanguage[i].ID)
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.EmployeeCertificateAndLanguage[i].Title, new { @class = "form-control boxed", @placeholder = "Adı" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.EmployeeCertificateAndLanguage[i].OrganizationName, new { @class = "form-control boxed", @placeholder = "Kurum" })
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.TextBoxFor(m => m.EmployeeCertificateAndLanguage[i].ReadingRate, new { type = "number", min = "0", max = "10", @class = "form-control boxed", @placeholder = "Okuma" })
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.TextBoxFor(m => m.EmployeeCertificateAndLanguage[i].WritingRate, new { type = "number", min = "0", max = "10", @class = "form-control boxed", @placeholder = "Yazma" })
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.TextBoxFor(m => m.EmployeeCertificateAndLanguage[i].SpeakingRate, new { type = "number", min = "0", max = "10", @class = "form-control boxed", @placeholder = "Konuşma" })
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="messages">
+                    <h4>Tercihler</h4>
+                    <br />
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Meslek Tercihi:
+                        </label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("professionID", ViewBag.ProfessionsSelectList as IEnumerable<SelectListItem>, new { @class = "c-select form-control boxed" })
+                        </div>
+                    </div>
+
+                    @(Model.EmployeeAvailability.Count > 0 ? Html.Hidden("EmployeeAvailability.ID", Model.EmployeeAvailability[0].ID) : null)
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Çalışma Şekli :
+                        </label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("employeeWorkDays", ViewBag.AvailableDaysSelectList as MultiSelectList, new { @class = "c-select form-control boxed chosen-select", @multiple = "multiple", @data_placeholder = "Çalışma Şekli Seçiniz" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right">
+                            Uygun Günler :
+                        </label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("employeeWorkType", ViewBag.WorkTypesSelectList as MultiSelectList, new { @class = "c-select form-control boxed chosen-select", @multiple = "multiple", @data_placeholder = "Uygun Günleri Seçiniz" })
+                        </div>
+                    </div>
                 </div>
             </div>
+            <br />
             <div class="form-group row">
-                <div class="col-sm-10 col-sm-offset-2">
+                <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary">
-                        Kaydet
+                        Tüm Bilgileri Kaydet
                     </button>
                 </div>
             </div>

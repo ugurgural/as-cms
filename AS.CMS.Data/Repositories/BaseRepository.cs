@@ -112,7 +112,9 @@ namespace AS.CMS.Data.Repositories
                 _unitOfWork.Commit();
                 result = true;
             }
-            catch { }
+            catch ( Exception ex)
+            { }
+            
 
             return result;
         }
@@ -129,7 +131,8 @@ namespace AS.CMS.Data.Repositories
                 _unitOfWork.Commit();
                 result = true;
             }
-            catch { }
+            catch (Exception ex)
+            { }
 
             return result;
         }

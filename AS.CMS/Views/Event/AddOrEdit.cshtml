@@ -1,0 +1,168 @@
+﻿@using AS.CMS.Domain.Base.Event;
+@using AS.CMS.Business.Helpers;
+@model Event
+@section CustomCSS
+{
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/datepicker.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/chosen.css")">
+}
+@section CustomJS
+{
+    <script src="@Url.Content("~/Assets/Scripts/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/CKFinderScripts/ckfinder.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/View/eventadd.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/datepicker.min.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/datepicker.tr.js")"></script>
+    <script src="@Url.Content("~/Assets/Scripts/chosen.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.chosen-select').chosen();
+        });
+    </script>
+}
+@{
+    ViewBag.Title = "Etkinlikler";
+    Layout = "~/Views/Layout/_Main.cshtml";
+    Event currentEvent = Model;
+    string siteDomain = UtilityHelper.GetSiteDomain();
+}
+<article class="content item-editor-page">
+    <div class="title-block">
+        <h3 class="title">
+            Yeni Etkinlik Ekle <span class="sparkline bar" data-type="bar"></span>
+        </h3>
+    </div>
+    <form id="saveEventForm" method="post" action="@Url.Action("SaveEvent")" name="item">
+        <input type="hidden" id="ID" name="ID" value="@currentEvent.ID" />
+
+        <div class="card card-block">
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Etkinlik Adı:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Name" name="Name" class="form-control boxed" placeholder="İsim Giriniz" value="@currentEvent.Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Etkinlik Tipi:
+                </label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("eventTypeID", ViewBag.EventTypeSelectList as IEnumerable<SelectListItem>, new { @class = "c-select form-control boxed" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Etkinlik Açıklama:
+                </label>
+                <div class="col-sm-10">
+                    <textarea id="Description" name="Description">@currentEvent.Description</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Etkinlik Kuralları:
+                </label>
+                <div class="col-sm-10">
+                    <textarea id="Restriction" name="Restriction">@currentEvent.Restriction</textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Başlangıç Tarihi:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="BeginDate" name="BeginDate" class="form-control boxed datepicker-here" data-language='tr' placeholder="Başlangıç Tarihi Giriniz" value="@(currentEvent.BeginDate != DateTime.MinValue ? currentEvent.BeginDate.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy") )">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Bitiş Tarihi:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="EndDate" name="EndDate" class="form-control boxed datepicker-here" data-language='tr' placeholder="Bitiş Tarihi Giriniz" value="@(currentEvent.EndDate != DateTime.MinValue ? currentEvent.EndDate.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy") )">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Etkinlik Günleri:
+                </label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("eventDaysList", ViewBag.EventDaysSelectList as MultiSelectList, new { @class = "c-select form-control boxed chosen-select", @multiple = "multiple", @data_placeholder = "Etkinlik Günü Seçiniz" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Lokasyonu:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Location" name="Location" class="form-control boxed" placeholder="Lokasyon Giriniz" value="@currentEvent.Location">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Etkinlik Ücreti:
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" id="Price" name="Price" class="form-control boxed" placeholder="Ücret Giriniz" value="@currentEvent.Price">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Aktif:
+                </label>
+                <div class="col-sm-10">
+                    <select id="IsActive" name="IsActive" class="c-select form-control boxed">
+                        <option value="true" @Html.Raw(currentEvent.IsActive ? "selected" : string.Empty)>Evet</option>
+                        <option value="false" @Html.Raw(!currentEvent.IsActive ? "selected" : string.Empty)>Hayır</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Etkinlik Dosyaları:
+                </label>
+                <div class="col-sm-10">
+                    <div class="images-container single">
+                        @if (!string.IsNullOrWhiteSpace(currentEvent.EventDocument))
+                        {
+                            foreach (string docItem in currentEvent.EventDocument.Split(','))
+                            {
+                                if (!string.IsNullOrWhiteSpace(docItem))
+                                {
+                                    <div class="image-container" data-fileurl="@docItem">
+                                        <div class="controls">
+                                            <a href="#" class="control-btn remove upload-remove-single">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </div>
+                                        <div class="image" style="background-image:url('@docItem')">
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <a href="#" class="add-single-image">
+                                <div class="image-container new">
+                                    <div class="image"> <i class="fa fa-plus"></i> </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <input type="hidden" id="EventDocument" name="EventDocument" value="@currentEvent.EventDocument" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</article>

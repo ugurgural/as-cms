@@ -56,6 +56,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomMappings\EmployeeAvailabilityMappings.cs" />
+    <Compile Include="CustomMappings\EmployeeCertificateAndLanguageMappings.cs" />
+    <Compile Include="CustomMappings\EmployeeEducationMappings.cs" />
+    <Compile Include="CustomMappings\EmployeeJobExperienceMappings.cs" />
+    <Compile Include="CustomMappings\EmployeeMappings.cs" />
+    <Compile Include="CustomMappings\EventMappings.cs" />
+    <Compile Include="CustomMappings\EventTypeMappings.cs" />
     <Compile Include="CustomMappings\MemberMappings.cs" />
     <Compile Include="CustomMappings\MenuMappings.cs" />
     <Compile Include="Helpers\AutoMappingConfiguration.cs" />

@@ -237,6 +237,8 @@
     <Compile Include="Bootstrap\NinjectWebCommon.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EventTypeController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -245,6 +247,7 @@
     <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProfessionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -261,11 +264,14 @@
     <Content Include="Assets\Css\app-red.css" />
     <Content Include="Assets\Css\app-seagreen.css" />
     <Content Include="Assets\Css\app.css" />
+    <Content Include="Assets\Css\chosen.css" />
     <Content Include="Assets\Css\datepicker.min.css" />
     <Content Include="Assets\Css\nestable.css" />
     <Content Include="Assets\Css\ui.css" />
     <Content Include="Assets\Css\vendor.css" />
     <Content Include="Assets\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\Images\chosen-sprite%402x.png" />
+    <Content Include="Assets\Images\chosen-sprite.png" />
     <Content Include="Assets\Images\demo.png" />
     <Content Include="Assets\Images\faces\3.jpg" />
     <Content Include="Assets\Images\faces\4.jpg" />
@@ -274,6 +280,7 @@
     <Content Include="Assets\Images\faces\8.jpg" />
     <Content Include="Assets\Images\features.png" />
     <Content Include="Assets\Scripts\app.js" />
+    <Content Include="Assets\Scripts\chosen.js" />
     <Content Include="Assets\Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\Scripts\ckeditor\build-config.js" />
     <Content Include="Assets\Scripts\ckeditor\ckeditor.js" />
@@ -823,6 +830,7 @@
     <Content Include="Assets\Scripts\CKFinderScripts\skins\moono\ckfinder.css" />
     <Content Include="Assets\Scripts\CKFinderScripts\skins\moono\icons.css" />
     <Content Include="Assets\Scripts\CKFinderScripts\skins\moono\images\ajax-loader.gif" />
+    <Content Include="Assets\Scripts\View\eventadd.js" />
     <Content Include="Assets\Scripts\View\employeeadd.js" />
     <Content Include="Assets\Scripts\View\memberadd.js" />
     <Content Include="Assets\Scripts\View\announcementadd.js" />
@@ -1086,6 +1094,14 @@
     <Content Include="Views\Announcement\Index.cshtml" />
     <Content Include="Views\Employee\AddOrEdit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Event\AddOrEdit.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\EventType\AddOrEdit.cshtml" />
+    <Content Include="Views\EventType\Index.cshtml" />
+    <Content Include="Views\Profession\AddOrEdit.cshtml" />
+    <Content Include="Views\Profession\Index.cshtml" />
+    <Content Include="Views\EventQuota\AddOrEdit.cshtml" />
+    <Content Include="Views\EventQuota\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

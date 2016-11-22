@@ -39,11 +39,11 @@
 
 $('.images-container.gallery').on({
     drop: function () {
-        $("#galleryImages").val("");
+        $("#CVFile").val("");
 
         $(".images-container.gallery .image-container").each(function (item) {
             if ($(this).data("fileurl") != undefined) {
-                $("#galleryImages").val($("#galleryImages").val() + $(this).data("fileurl") + ",");
+                $("#CVFile").val($("#CVFile").val() + $(this).data("fileurl") + ",");
             }
         });
     }
@@ -54,11 +54,11 @@ $(document).on("click", ".upload-remove", function () {
     if (confirmDialog) {
 
         $(this).parent().parent().remove();
-        $("#galleryImages").val("");
+        $("#CVFile").val("");
 
         $(".images-container.gallery .image-container").each(function (item) {
             if ($(this).data("fileurl") != undefined) {
-                $("#galleryImages").val($("#galleryImages").val() + $(this).data("fileurl") + ",");
+                $("#CVFile").val($("#CVFile").val() + $(this).data("fileurl") + ",");
             }
         });
 
@@ -110,9 +110,9 @@ function selectFileWithCKFinder() {
             finder.on('files:choose', function (evt) {
                 var file = evt.data.files.toArray();
                 for (var i = 0; i < file.length; i++) {
-                    var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file[i].getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn move\"><i class=\"fa fa-arrows\"></i></a><a href=\"#\" class=\"control-btn remove upload-remove\"><i class=\"fa fa-trash-o\"></i></a></div><div class=\"image\" style=\"background-image:url('" + file[i].getUrl() + "')\"></div></div>";
+                    var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file[i].getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn move\"><i class=\"fa fa-arrows\"></i></a><a href=\"#\" class=\"control-btn remove upload-remove\"><i class=\"fa fa-trash-o\"></i></a></div><div class=\"image\"\"><i class=\"fa fa-file-pdf-o\"></i></div></div>";
                     $(".images-container.gallery").append(uploadItem);
-                    $("#galleryImages").val($("#galleryImages").val() + file[i].getUrl() + ",");
+                    $("#CVFile").val($("#CVFile").val() + file[i].getUrl() + ",");
                 }
             });
         }
@@ -127,7 +127,7 @@ function selectMainImageFileWithCKFinder() {
         onInit: function (finder) {
             finder.on('files:choose', function (evt) {
                 var file = evt.data.files.first();
-                var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file.getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn remove upload-remove-single\"><i class=\"fa fa-trash-o\"></i></a></div><div class=\"image\" style=\"background-image:url('" + file.getUrl() + "')\"></div></div>";
+                var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file.getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn remove upload-remove-single\"><i class=\"fa fa-trash-o\"></i></a></div><div class=\"image\"\"><i class=\"fa fa-file-pdf-o\"></i></div></div>";
                 $(".images-container.single").empty();
                 $(".images-container.single").append(uploadItem);
                 $("#picture").val(file.getUrl());

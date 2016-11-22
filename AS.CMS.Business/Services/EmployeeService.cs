@@ -1,7 +1,7 @@
 ﻿using AS.CMS.Business.Helpers;
 using AS.CMS.Business.Interfaces;
 using AS.CMS.Data.Interfaces;
-using AS.CMS.Domain.Base;
+using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Common;
 using NHibernate.Criterion;
 
@@ -24,6 +24,26 @@ namespace AS.CMS.Business.Services
 
         public bool SaveEmployee(Employee employeeEntity)
         {
+            foreach (var jobExperienceItem in employeeEntity.EmployeeJobExperience)
+            {
+                jobExperienceItem.Employee = employeeEntity;
+            }
+
+            foreach (var educationItem in employeeEntity.EmployeeEducation)
+            {
+                educationItem.Employee = employeeEntity;
+            }
+
+            foreach (var certificateItem in employeeEntity.EmployeeCertificateAndLanguage)
+            {
+                certificateItem.Employee = employeeEntity;
+            }
+
+            foreach (var availabilityItem in employeeEntity.EmployeeAvailability)
+            {
+                availabilityItem.Employee = employeeEntity;
+            }
+
             if (employeeEntity.ID == 0)
             {
                 _employeeRepository.Create(employeeEntity);

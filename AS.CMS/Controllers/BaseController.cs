@@ -62,6 +62,6 @@ namespace AS.CMS.Controllers
             TempData.Add("ModalStatus", status);
             TempData.Add("ModalStatusMessage", message);
             TempData.Add("ModalStatusIcon", icon);
-        }
+        }       
     }
 }
