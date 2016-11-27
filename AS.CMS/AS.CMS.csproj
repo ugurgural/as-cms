@@ -238,6 +238,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EventTypeController.cs" />
+    <Compile Include="Controllers\EventProfessionQuotaController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
@@ -1100,8 +1101,8 @@
     <Content Include="Views\EventType\Index.cshtml" />
     <Content Include="Views\Profession\AddOrEdit.cshtml" />
     <Content Include="Views\Profession\Index.cshtml" />
-    <Content Include="Views\EventQuota\AddOrEdit.cshtml" />
-    <Content Include="Views\EventQuota\Index.cshtml" />
+    <Content Include="Views\EventProfessionQuota\AddOrEdit.cshtml" />
+    <Content Include="Views\EventProfessionQuota\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -53,6 +53,7 @@
     <Compile Include="Base\Employee\EmployeeJobExperience.cs" />
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="Base\Event\Event.cs" />
+    <Compile Include="Base\Event\EventProfessionQuota.cs" />
     <Compile Include="Base\Event\EventType.cs" />
     <Compile Include="Base\Member.cs" />
     <Compile Include="Base\Menu.cs" />

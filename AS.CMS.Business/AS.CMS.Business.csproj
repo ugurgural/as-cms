@@ -68,6 +68,7 @@
     <Compile Include="Helpers\UtilityHelper.cs" />
     <Compile Include="Interfaces\IEmployeeService.cs" />
     <Compile Include="Interfaces\IContentService.cs" />
+    <Compile Include="Interfaces\IEventProfessionQuotaService.cs" />
     <Compile Include="Interfaces\IProfessionService.cs" />
     <Compile Include="Interfaces\IEventTypeService.cs" />
     <Compile Include="Interfaces\IEventService.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Services\AnnouncementService.cs" />
     <Compile Include="Services\ContentService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\EventProfessionQuotaService.cs" />
     <Compile Include="Services\ProfessionService.cs" />
     <Compile Include="Services\EventTypeService.cs" />
     <Compile Include="Services\EventService.cs" />
