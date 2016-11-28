@@ -237,8 +237,8 @@
     <Compile Include="Bootstrap\NinjectWebCommon.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\EventTypeController.cs" />
     <Compile Include="Controllers\EventProfessionQuotaController.cs" />
+    <Compile Include="Controllers\EventTypeController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
