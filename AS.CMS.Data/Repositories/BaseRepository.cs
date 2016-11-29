@@ -58,6 +58,21 @@ namespace AS.CMS.Data.Repositories
             return result;
         }
 
+        public IList<T> GetWithCriteriaByPaging(DetachedCriteria criteria, PagingFilter pagingFilter)
+        {
+            IList<T> result;
+
+            _unitOfWork.BeginTransaction();
+            result = criteria
+                    .SetFirstResult((pagingFilter.PageIndex - 1) * pagingFilter.PageSize)
+                    .SetMaxResults(pagingFilter.PageSize)
+                    .GetExecutableCriteria(_unitOfWork.Session).List<T>();
+            _unitOfWork.Session.Flush();
+            _unitOfWork.Commit();
+
+            return result;
+        }
+
         public IList<T> GetWithCriteriaByPaging(DetachedCriteria criteria, PagingFilter pagingFilter, Order order)
         {
             IList<T> result;

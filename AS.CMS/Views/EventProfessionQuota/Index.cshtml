@@ -1,5 +1,5 @@
 ﻿@using AS.CMS.Domain.Base.Event;
-@model IList<EventType>
+@model IList<EventProfessionQuota>
 @{
     ViewBag.Title = "Etkinlik Kota";
     Layout = "~/Views/Layout/_ListBase.cshtml";
@@ -22,21 +22,25 @@
             </div>
         </li>
 
-        @foreach (var eventTypeItem in Model)
+        @foreach (var eventprofessionQuotaItem in Model)
         {
             <li class="item">
                 <div class="item-row">
                     <div class="item-col item-col-author">
-                        <div class="item-heading">Adı</div>
+                        <div class="item-heading">Etkinlik Adı</div>
                         <div>
-                            <a href="@Url.Action("yeni-etkinlik-tipi-ekle", "etkinlik", new { eventTypeID = eventTypeItem.ID })" class="">
-                                <h4 class="item-title">@eventTypeItem.Name</h4>
+                            <a href="@Url.Action("yeni-etkinlik-kota-ekle", "etkinlik-kota", new { eventProfessionQuotaID = eventprofessionQuotaItem.ID })" class="">
+                                <h4 class="item-title">@eventprofessionQuotaItem.Event.Name</h4>
                             </a>
                         </div>
                     </div>
                     <div class="item-col item-col-author">
-                        <div class="item-heading">Soyad</div>
-                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-tipi-ekle", "etkinlik", new { eventTypeID = eventTypeItem.ID })" class="">@eventTypeItem.Description</a> </div>
+                        <div class="item-heading">Meslek</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-kota-ekle", "etkinlik-kota", new { eventProfessionQuotaID = eventprofessionQuotaItem.ID })" class="">@eventprofessionQuotaItem.Profession.Title</a> </div>
+                    </div>
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Kota Sayısı</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-kota-ekle", "etkinlik-kota", new { eventProfessionQuotaID = eventprofessionQuotaItem.ID })" class="">@eventprofessionQuotaItem.Quantity</a> </div>
                     </div>
                     <div class="item-col fixed item-col-actions-dropdown">
                         <div class="item-actions-dropdown">
@@ -50,7 +54,7 @@
                             <div class="item-actions-block">
                                 <ul class="item-actions-list">
                                     <li>
-                                        <a class="edit" title="Düzenle" href="@Url.Action("yeni-etkinlik-tipi-ekle", "etkinlik", new {  eventTypeID = eventTypeItem.ID })"> <i class="fa fa-pencil"></i> </a>
+                                        <a class="edit" title="Düzenle" href="@Url.Action("yeni-etkinlik-kota-ekle", "etkinlik-kota", new { eventProfessionQuotaID = eventprofessionQuotaItem.ID })"> <i class="fa fa-pencil"></i> </a>
                                     </li>
                                 </ul>
                             </div>

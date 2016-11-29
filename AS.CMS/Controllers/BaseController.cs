@@ -18,6 +18,12 @@ namespace AS.CMS.Controllers
         public Module GetCurrentModule()
         {
             string moduleName = System.Web.HttpContext.Current.Request.Url.Segments[1].Replace("/", "");
+
+            if (moduleName.LastIndexOf('?') > 0)
+            {
+                moduleName = moduleName.Remove(moduleName.LastIndexOf('?'));
+            }
+
             return _moduleService.GetModuleFromPermalink(moduleName);
         }
 
@@ -62,6 +68,6 @@ namespace AS.CMS.Controllers
             TempData.Add("ModalStatus", status);
             TempData.Add("ModalStatusMessage", message);
             TempData.Add("ModalStatusIcon", icon);
-        }       
+        }
     }
 }

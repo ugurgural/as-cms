@@ -1,13 +1,22 @@
 ﻿@using AS.CMS.Domain.Base.Event;
-@model EventType
+@model EventProfessionQuota
 @section CustomCSS
 {
-    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/datepicker.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/chosen.css")">
+}
+@section CustomJS
+{
+    <script src="@Url.Content("~/Assets/Scripts/chosen.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.chosen-select').chosen();
+        });
+    </script>
 }
 @{
     ViewBag.Title = "Etkinlik Kota";
     Layout = "~/Views/Layout/_Main.cshtml";
-    EventType currentEventType = Model;
+    EventProfessionQuota currentEventProfessionQuota = Model;
 }
 <article class="content item-editor-page">
     <div class="title-block">
@@ -15,24 +24,32 @@
             Yeni Kota Ekle <span class="sparkline bar" data-type="bar"></span>
         </h3>
     </div>
-    <form id="saveEventTypeForm" method="post" action="@Url.Action("SaveEventType")" name="item">
-        <input type="hidden" id="ID" name="ID" value="@currentEventType.ID" />
+    <form id="saveEventTypeForm" method="post" action="@Url.Action("SaveEventProfessionQuota")" name="item">
+        <input type="hidden" id="ID" name="ID" value="@currentEventProfessionQuota.ID" />
 
         <div class="card card-block">
             <div class="form-group row">
                 <label class="col-sm-2 form-control-label text-xs-right">
-                    Adı:
+                    Etkinlik:
                 </label>
                 <div class="col-sm-10">
-                    <input type="text" id="Name" name="Name" class="form-control boxed" placeholder="İsim Giriniz" value="@currentEventType.Name">
+                    @Html.DropDownList("eventDaysList", ViewBag.EventSelectList as SelectList, new { @class = "c-select form-control boxed chosen-select", @data_placeholder = "Etkinlik Seçiniz" })
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 form-control-label text-xs-right">
-                    Açıklama:
+                    Meslek:
                 </label>
                 <div class="col-sm-10">
-                    <input type="text" id="Description" name="Description" class="form-control boxed" placeholder="Açıklama Giriniz" value="@currentEventType.Description">
+                   @Html.DropDownList("eventDaysList", ViewBag.ProfessionSelectList as SelectList, new { @class = "c-select form-control boxed chosen-select", @data_placeholder = "Meslek Seçiniz" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    Kota:
+                </label>
+                <div class="col-sm-10">
+                    <input id="Quantity" name="Quantity" type="number" min="0" max="100" class="form-control boxed" placeholder="Kota Sayısını Giriniz." value="@currentEventProfessionQuota.Quantity" />
                 </div>
             </div>
             <div class="form-group row">
@@ -41,8 +58,8 @@
                 </label>
                 <div class="col-sm-10">
                     <select id="IsActive" name="IsActive" class="c-select form-control boxed">
-                        <option value="true" @Html.Raw(currentEventType.IsActive ? "selected" : string.Empty)>Evet</option>
-                        <option value="false" @Html.Raw(!currentEventType.IsActive ? "selected" : string.Empty)>Hayır</option>
+                        <option value="true" @Html.Raw(currentEventProfessionQuota.IsActive ? "selected" : string.Empty)>Evet</option>
+                        <option value="false" @Html.Raw(!currentEventProfessionQuota.IsActive ? "selected" : string.Empty)>Hayır</option>
                     </select>
                 </div>
             </div>    

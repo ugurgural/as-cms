@@ -4,8 +4,8 @@ namespace AS.CMS.Domain.Base.Event
 {
     public class EventProfessionQuota : EntityBase, ICMSEntity
     {
-        public Event Event { get; set; }
-        public Profession Profession { get; set; }
-        public int Quantity { get; set; }
+        public virtual Event Event { get; set; }
+        public virtual Profession Profession { get; set; }
+        public virtual int Quantity { get; set; }
     }
 }

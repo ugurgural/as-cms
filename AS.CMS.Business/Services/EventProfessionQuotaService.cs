@@ -38,12 +38,16 @@ namespace AS.CMS.Business.Services
 
         public PageResultSet<EventProfessionQuota> GetActiveEventProfessionQuotas(PagingFilter pagingFilter)
         {
-            DetachedCriteria rowCountcriteria = CriteriaHelper.GetDefaultSearchCriteria<EventProfessionQuota>("ID", pagingFilter.SearchText);
-            DetachedCriteria activeContentPagingcriteria = CriteriaHelper.GetDefaultSearchCriteria<EventProfessionQuota>("ID", pagingFilter.SearchText);
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<EventProfessionQuota>();
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+            defaultCriteria.Add(Expression.Eq("Event.ID", int.Parse(pagingFilter.SearchText)));
+
+            DetachedCriteria rowCountcriteria = defaultCriteria;
+            DetachedCriteria activeContentPagingcriteria = defaultCriteria;
 
             return new PageResultSet<EventProfessionQuota>()
             {
-                PageData = _eventProfessionQuotaRepository.GetWithCriteriaByPaging(activeContentPagingcriteria, pagingFilter, CriteriaHelper.GetDefaultOrder()),
+                PageData = _eventProfessionQuotaRepository.GetWithCriteriaByPaging(activeContentPagingcriteria, pagingFilter),
                 Count = _eventProfessionQuotaRepository.GetRowCountWithCriteria(rowCountcriteria)
             };
         }
