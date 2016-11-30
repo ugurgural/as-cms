@@ -53,7 +53,7 @@ namespace AS.CMS.Controllers
 
             IList<Profession> professionList = _professionService.GetActiveProfessions(new PagingFilter()).PageData;
             int selectedProfessionID = currentEventProfessionQuota.Profession != null ? currentEventProfessionQuota.Profession.ID : 0;
-            ViewBag.ProfessionSelectList = new SelectList(eventList, "ID", "Title", selectedProfessionID);
+            ViewBag.ProfessionSelectList = new SelectList(professionList, "ID", "Title", selectedProfessionID);
 
             return View(currentEventProfessionQuota);
         }
@@ -76,7 +76,7 @@ namespace AS.CMS.Controllers
                 SetModalStatusMessage(ModalStatus.Error);
             }
 
-            return RedirectToAction("etkinlik-kota-listesi", "etkinlik-kota");
+            return RedirectToAction("etkinlik-kota-listesi", "etkinlik-kota", new { eventID = eventID });
         }
     }
 }

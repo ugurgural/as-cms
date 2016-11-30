@@ -33,7 +33,7 @@
                     Etkinlik:
                 </label>
                 <div class="col-sm-10">
-                    @Html.DropDownList("eventDaysList", ViewBag.EventSelectList as SelectList, new { @class = "c-select form-control boxed chosen-select", @data_placeholder = "Etkinlik Seçiniz" })
+                    @Html.DropDownList("eventID", ViewBag.EventSelectList as SelectList, new { @class = "c-select form-control boxed chosen-select", @data_placeholder = "Etkinlik Seçiniz" })
                 </div>
             </div>
             <div class="form-group row">
@@ -41,7 +41,7 @@
                     Meslek:
                 </label>
                 <div class="col-sm-10">
-                   @Html.DropDownList("eventDaysList", ViewBag.ProfessionSelectList as SelectList, new { @class = "c-select form-control boxed chosen-select", @data_placeholder = "Meslek Seçiniz" })
+                   @Html.DropDownList("professionID", ViewBag.ProfessionSelectList as SelectList, new { @class = "c-select form-control boxed chosen-select", @data_placeholder = "Meslek Seçiniz" })
                 </div>
             </div>
             <div class="form-group row">
