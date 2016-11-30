@@ -74,5 +74,30 @@ namespace AS.CMS.Controllers
 
             return RedirectToAction("etkinlik-listesi", "etkinlik");
         }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveEventEmployee(int eventID, int employeeID)
+        {
+            eventEntity.EventType = new EventType() { ID = eventTypeID };
+
+            if (eventDaysList.Length > 0)
+            {
+                eventEntity.EventDays = string.Join(",", eventDaysList);
+            }
+
+            bool result = _eventService.SaveEvent(eventEntity);
+
+            if (result)
+            {
+                SetModalStatusMessage(ModalStatus.Success);
+            }
+            else
+            {
+                SetModalStatusMessage(ModalStatus.Error);
+            }
+
+            return RedirectToAction("etkinlik-listesi", "etkinlik");
+        }
     }
 }

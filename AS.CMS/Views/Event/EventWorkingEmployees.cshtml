@@ -1,0 +1,78 @@
+﻿@using AS.CMS.Domain.Base.Event;
+@model IList<Event>
+@{
+    ViewBag.Title = "Etkinlikler";
+    Layout = "~/Views/Layout/_ListBase.cshtml";
+}
+
+<div class="card items">
+    <ul class="item-list striped">
+        <li class="item item-list-header hidden-sm-down">
+            <div class="item-row">
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Etkinlik Adı</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Açıklama</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Lokasyon</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-date">
+                    <div> <span>Ücret</span> </div>
+                </div>
+                <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
+            </div>
+        </li>
+
+        @foreach (var eventItem in Model)
+        {
+            <li class="item">
+                <div class="item-row">
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Etkinlik Adı</div>
+                        <div>
+                            <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })" class="">
+                                <h4 class="item-title">@eventItem.Name</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Açıklama</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Description</a> </div>
+                    </div>
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Lokasyon</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Location</a> </div>
+                    </div>
+                    <div class="item-col item-col-date">
+                        <div class="item-heading">Ücret</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Price</a> </div>
+                    </div>
+                    <div class="item-col fixed item-col-actions-dropdown">
+                        <div class="item-actions-dropdown">
+                            <a class="item-actions-toggle-btn">
+                                <span class="inactive">
+                                    <i class="fa fa-cog"></i>
+                                </span> <span class="active">
+                                    <i class="fa fa-chevron-circle-right"></i>
+                                </span>
+                            </a>
+                            <div class="item-actions-block">
+                                <ul class="item-actions-list">
+                                    <li>
+                                        <a class="edit" title="Etkinlik Kotası" href="@Url.Action("etkinlik-kota-listesi", "etkinlik-kota", new {  eventID = eventItem.ID })"> <i class="fa fa-sort-numeric-asc"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="edit" title="Düzenle" href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new {  eventID = eventItem.ID })"> <i class="fa fa-pencil"></i> </a>
+                                    </li>
+                                    <li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

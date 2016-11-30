@@ -1103,6 +1103,9 @@
     <Content Include="Views\Profession\Index.cshtml" />
     <Content Include="Views\EventProfessionQuota\AddOrEdit.cshtml" />
     <Content Include="Views\EventProfessionQuota\Index.cshtml" />
+    <Content Include="Views\Event\EventAvailableEmployees.cshtml" />
+    <Content Include="Views\Event\EventWorkingEmployees.cshtml" />
+    <Content Include="Views\Layout\_ListSearchBase.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
