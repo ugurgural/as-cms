@@ -12,10 +12,12 @@ namespace AS.CMS.Business.Services
         #region Repository Injection
 
         private IBaseRepository<Event> _eventRepository;
+        private IBaseRepository<EventEmployee> _eventEmployeeRepository;
 
-        public EventService(IBaseRepository<Event> eventRepository)
+        public EventService(IBaseRepository<Event> eventRepository, IBaseRepository<EventEmployee> eventEmployeeRepository)
         {
             _eventRepository = eventRepository;
+            _eventEmployeeRepository = eventEmployeeRepository;
         }
 
         #endregion
@@ -31,6 +33,20 @@ namespace AS.CMS.Business.Services
             else
             {
                 _eventRepository.Update(eventEntity);
+            }
+
+            return true;
+        }
+
+        public bool SaveEventEmployee(EventEmployee eventEmployeeEntity)
+        {
+            if (eventEmployeeEntity.ID == 0)
+            {
+                _eventEmployeeRepository.Create(eventEmployeeEntity);
+            }
+            else
+            {
+                _eventEmployeeRepository.Update(eventEmployeeEntity);
             }
 
             return true;

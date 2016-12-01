@@ -31,6 +31,19 @@ namespace AS.CMS.Data.Repositories
             return result;
         }
 
+        public IList<T> GetWithCriteria(DetachedCriteria criteria)
+        {
+            IList<T> result;
+
+            _unitOfWork.BeginTransaction();
+            result = criteria.GetExecutableCriteria(_unitOfWork.Session).List<T>();
+            _unitOfWork.Session.Flush();
+            _unitOfWork.Commit();
+
+
+            return result;
+        }
+
         public IList<T> GetWithCriteria(DetachedCriteria criteria, Order order)
         {
             IList<T> result;

@@ -12,6 +12,7 @@ namespace AS.CMS.Data.Interfaces
         bool Create(T entity);
         bool Update(T entity);
         bool Delete(int id);
+        IList<T> GetWithCriteria(DetachedCriteria criteria);
         IList<T> GetWithCriteria(DetachedCriteria criteria, Order order);
         int GetRowCountWithCriteria(DetachedCriteria criteria);
         IList<T> GetWithCriteriaByPaging(DetachedCriteria criteria, PagingFilter pagingFilter);

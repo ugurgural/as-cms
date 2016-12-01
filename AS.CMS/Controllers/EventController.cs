@@ -1,9 +1,10 @@
-﻿using AS.CMS.Business.Interfaces;
+﻿using AS.CMS.Business.Helpers;
+using AS.CMS.Business.Interfaces;
+using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Base.Event;
 using AS.CMS.Domain.Common;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using AS.CMS.Business.Helpers;
 
 namespace AS.CMS.Controllers
 {
@@ -13,11 +14,15 @@ namespace AS.CMS.Controllers
     {
         private IEventService _eventService;
         private IEventTypeService _eventTypeService;
+        private IEventProfessionQuotaService _eventProfessionQuotaService;
+        private IEmployeeService _employeeService;
 
-        public EventController(IEventService eventService, IEventTypeService eventTypeService, IModuleService moduleService) : base(moduleService)
+        public EventController(IEventService eventService, IEventTypeService eventTypeService, IEmployeeService employeeService, IEventProfessionQuotaService eventProfessionQuotaService, IModuleService moduleService) : base(moduleService)
         {
             _eventService = eventService;
             _eventTypeService = eventTypeService;
+            _eventProfessionQuotaService = eventProfessionQuotaService;
+            _employeeService = employeeService;
         }
 
         [Route("etkinlik-listesi")]
@@ -79,13 +84,11 @@ namespace AS.CMS.Controllers
         [ValidateInput(false)]
         public ActionResult SaveEventEmployee(int eventID, int employeeID)
         {
-            eventEntity.EventType = new EventType() { ID = eventTypeID };
+            Employee currentEmployee = _employeeService.GetEmployeeWithID(employeeID);
 
-            if (eventDaysList.Length > 0)
-            {
-                eventEntity.EventDays = string.Join(",", eventDaysList);
-            }
-
+            IList<EventProfessionQuota> eventProfessionList = _eventProfessionQuotaService.GetEventProfessionQuotaWithProfessionID
+                                                                                       (eventID, currentEmployee.Profession[0].ID);
+            
             bool result = _eventService.SaveEvent(eventEntity);
 
             if (result)

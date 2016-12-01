@@ -4,6 +4,7 @@ using AS.CMS.Data.Interfaces;
 using AS.CMS.Domain.Base.Event;
 using AS.CMS.Domain.Common;
 using NHibernate.Criterion;
+using System.Collections.Generic;
 
 namespace AS.CMS.Business.Services
 {
@@ -50,6 +51,16 @@ namespace AS.CMS.Business.Services
                 PageData = _eventProfessionQuotaRepository.GetWithCriteriaByPaging(activeContentPagingcriteria, pagingFilter),
                 Count = _eventProfessionQuotaRepository.GetRowCountWithCriteria(rowCountcriteria)
             };
+        }
+
+        public IList<EventProfessionQuota> GetEventProfessionQuotaWithProfessionID(int eventID, int professionID)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<EventProfessionQuota>();
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+            defaultCriteria.Add(Expression.Eq("Event.ID", eventID));
+            defaultCriteria.Add(Expression.Eq("Profession.ID", professionID));
+
+            return _eventProfessionQuotaRepository.GetWithCriteria(defaultCriteria);
         }
 
         public EventProfessionQuota GetEventProfessionQuotaWithID(int eventProfessionQuotaID)

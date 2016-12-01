@@ -78,3 +78,5 @@ C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Tests\bin\Debug\Iesi.Collections.xml
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Tests\obj\Debug\AS.CMS.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Tests\obj\Debug\AS.CMS.Tests.dll
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Tests\obj\Debug\AS.CMS.Tests.pdb
+D:\Git\Ugur\AS.CMS\AS.CMS.Tests\obj\Debug\AS.CMS.Tests.dll
+D:\Git\Ugur\AS.CMS\AS.CMS.Tests\obj\Debug\AS.CMS.Tests.pdb
