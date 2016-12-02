@@ -86,6 +86,7 @@ namespace AS.CMS.Controllers
         {
             Employee currentEmployee = _employeeService.GetEmployeeWithID(employeeID);
 
+
             IList<EventProfessionQuota> eventProfessionList = _eventProfessionQuotaService.GetEventProfessionQuotaWithProfessionID
                                                                                        (eventID, currentEmployee.Profession[0].ID);
             
