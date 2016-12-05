@@ -48,10 +48,10 @@ namespace AS.CMS.Controllers
                 selectedProfessionID = currentEmployee.Profession[0].ID;
             }
 
-            string[] selectedAvailableDays = currentEmployee.EmployeeAvailability != null ? currentEmployee.EmployeeAvailability[0].WorkDays.Split(',') : new string[0];
+            string[] selectedAvailableDays = currentEmployee.EmployeeAvailability.Count > 0 ? currentEmployee.EmployeeAvailability[0].WorkDays.Split(',') : null;
             ViewBag.AvailableDaysSelectList = new MultiSelectList(EnumHelper.EnumToSelectList<WeekDay>(), "Text", "Value", selectedAvailableDays);
 
-            string[] selectedWorkTypes = currentEmployee.EmployeeAvailability != null ? currentEmployee.EmployeeAvailability[0].WorkType.Split(',') : new string[0];
+            string[] selectedWorkTypes = currentEmployee.EmployeeAvailability.Count > 0 ? currentEmployee.EmployeeAvailability[0].WorkType.Split(',') : null;
             ViewBag.WorkTypesSelectList = new MultiSelectList(EnumHelper.EnumToSelectList<WorkType>(), "Text", "Value", selectedWorkTypes);
 
             ViewBag.ProfessionsSelectList = new SelectList(professionList, "ID", "Title", selectedProfessionID);

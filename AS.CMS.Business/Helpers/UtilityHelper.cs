@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace AS.CMS.Business.Helpers
@@ -26,5 +27,11 @@ namespace AS.CMS.Business.Helpers
         {
             return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
         }
+
+        public static string StripHtml(this string value)
+        {
+            return Regex.Replace(value, "<(.|\\n)*?>", string.Empty);
+        }
+
     }
 }

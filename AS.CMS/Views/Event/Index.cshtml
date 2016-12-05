@@ -1,4 +1,5 @@
 ﻿@using AS.CMS.Domain.Base.Event;
+@using AS.CMS.Business.Helpers;
 @model IList<Event>
 @{
     ViewBag.Title = "Etkinlikler";
@@ -39,7 +40,7 @@
                     </div>
                     <div class="item-col item-col-author">
                         <div class="item-heading">Açıklama</div>
-                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Description</a> </div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Description.StripHtml()</a> </div>
                     </div>
                     <div class="item-col item-col-author">
                         <div class="item-heading">Lokasyon</div>
@@ -62,6 +63,12 @@
                                 <ul class="item-actions-list">
                                     <li>
                                         <a class="edit" title="Etkinlik Kotası" href="@Url.Action("etkinlik-kota-listesi", "etkinlik-kota", new {  eventID = eventItem.ID })"> <i class="fa fa-sort-numeric-asc"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="edit" title="Etkinlik Uygun Aday Listesi" href="@Url.Action("etkinlik-uygun-aday-listesi", "etkinlik", new {  eventID = eventItem.ID })"> <i class="fa fa-search-plus"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="edit" title="Etkinlik Çalışan Aday Listesi" href="@Url.Action("etkinlik-aday-listesi", "etkinlik", new {  eventID = eventItem.ID })"> <i class="fa fa-user"></i> </a>
                                     </li>
                                     <li>
                                         <a class="edit" title="Düzenle" href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new {  eventID = eventItem.ID })"> <i class="fa fa-pencil"></i> </a>

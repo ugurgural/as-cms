@@ -1,3 +1,4 @@
+D:\Git\Ugur\AS.CMS\AS.CMS\obj\Debug\AS.CMS.csprojResolveAssemblyReference.cache
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS\bin\roslyn\csc.exe
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -104,4 +105,3 @@ C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS\bin\Iesi.Collections.xml
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS\obj\Debug\AS.CMS.csprojResolveAssemblyReference.cache
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS\obj\Debug\AS.CMS.dll
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS\obj\Debug\AS.CMS.pdb
-D:\Git\Ugur\AS.CMS\AS.CMS\obj\Debug\AS.CMS.csprojResolveAssemblyReference.cache

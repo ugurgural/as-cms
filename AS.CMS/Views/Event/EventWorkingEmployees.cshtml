@@ -1,8 +1,10 @@
 ﻿@using AS.CMS.Domain.Base.Event;
-@model IList<Event>
+@using AS.CMS.Business.Helpers;
+@model IList<EventEmployee>
 @{
-    ViewBag.Title = "Etkinlikler";
-    Layout = "~/Views/Layout/_ListBase.cshtml";
+    ViewBag.Title = "Etkinliğe Katılan Adaylar";
+    Layout = "~/Views/Layout/_ListSearchBase.cshtml";
+    int eventID = int.Parse(Request.QueryString["eventID"]);
 }
 
 <div class="card items">
@@ -10,44 +12,44 @@
         <li class="item item-list-header hidden-sm-down">
             <div class="item-row">
                 <div class="item-col item-col-header item-col-author">
-                    <div> <span>Etkinlik Adı</span> </div>
+                    <div> <span>Adı</span> </div>
                 </div>
                 <div class="item-col item-col-header item-col-author">
-                    <div> <span>Açıklama</span> </div>
+                    <div> <span>Soyadı</span> </div>
                 </div>
                 <div class="item-col item-col-header item-col-author">
-                    <div> <span>Lokasyon</span> </div>
+                    <div> <span>Cinsiyet</span> </div>
                 </div>
                 <div class="item-col item-col-header item-col-date">
-                    <div> <span>Ücret</span> </div>
+                    <div> <span>Telefon</span> </div>
                 </div>
                 <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
             </div>
         </li>
 
-        @foreach (var eventItem in Model)
+        @foreach (var employeeItem in Model)
         {
             <li class="item">
                 <div class="item-row">
                     <div class="item-col item-col-author">
-                        <div class="item-heading">Etkinlik Adı</div>
+                        <div class="item-heading">Adı</div>
                         <div>
-                            <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })" class="">
-                                <h4 class="item-title">@eventItem.Name</h4>
+                            <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.Employee.ID })" target="_blank" class="">
+                                <h4 class="item-title">@employeeItem.Employee.FirstName</h4>
                             </a>
                         </div>
                     </div>
                     <div class="item-col item-col-author">
-                        <div class="item-heading">Açıklama</div>
-                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Description</a> </div>
+                        <div class="item-heading">Soyadı</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.Employee.ID })" target="_blank">@employeeItem.Employee.LastName</a> </div>
                     </div>
                     <div class="item-col item-col-author">
-                        <div class="item-heading">Lokasyon</div>
-                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Location</a> </div>
+                        <div class="item-heading">Cinsiyet</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.Employee.ID })" target="_blank">@employeeItem.Employee.Gender.ToDescription()</a> </div>
                     </div>
                     <div class="item-col item-col-date">
-                        <div class="item-heading">Ücret</div>
-                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Price</a> </div>
+                        <div class="item-heading">Telefon</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.Employee.ID })" target="_blank">@employeeItem.Employee.Phone</a> </div>
                     </div>
                     <div class="item-col fixed item-col-actions-dropdown">
                         <div class="item-actions-dropdown">
@@ -61,12 +63,8 @@
                             <div class="item-actions-block">
                                 <ul class="item-actions-list">
                                     <li>
-                                        <a class="edit" title="Etkinlik Kotası" href="@Url.Action("etkinlik-kota-listesi", "etkinlik-kota", new {  eventID = eventItem.ID })"> <i class="fa fa-sort-numeric-asc"></i> </a>
+                                        <a class="edit" title="Adayı Etkinlikten Çıkar" href="@Url.Action("etkinlik-aday-silme", "etkinlik", new {  eventID = eventID, employeeID = employeeItem.Employee.ID })"> <i class="fa fa-recycle"></i> </a>
                                     </li>
-                                    <li>
-                                        <a class="edit" title="Düzenle" href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new {  eventID = eventItem.ID })"> <i class="fa fa-pencil"></i> </a>
-                                    </li>
-                                    <li>
                                 </ul>
                             </div>
                         </div>

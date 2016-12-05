@@ -1,4 +1,5 @@
 ﻿using AS.CMS.Domain.Interfaces;
+using System.Collections.Generic;
 
 namespace AS.CMS.Domain.Base.Event
 {

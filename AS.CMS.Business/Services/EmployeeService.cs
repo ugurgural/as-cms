@@ -68,6 +68,51 @@ namespace AS.CMS.Business.Services
             };
         }
 
+        public PageResultSet<Employee> GetActiveEmployeesFromSearch(Employee employeeSearchCriteria, PagingFilter pagingFilter)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<Employee>();
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+
+            if (!string.IsNullOrWhiteSpace(employeeSearchCriteria.FirstName))
+            {
+                defaultCriteria.Add(Expression.Eq("FirstName", employeeSearchCriteria.FirstName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(employeeSearchCriteria.LastName))
+            {
+                defaultCriteria.Add(Expression.Eq("LastName", employeeSearchCriteria.LastName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(employeeSearchCriteria.Phone))
+            {
+                defaultCriteria.Add(Expression.Eq("Phone", employeeSearchCriteria.Phone));
+            }
+
+            if (employeeSearchCriteria.Height > 0)
+            {
+                defaultCriteria.Add(Expression.Eq("Height", employeeSearchCriteria.Height));
+            }
+
+            if (employeeSearchCriteria.Weight > 0)
+            {
+                defaultCriteria.Add(Expression.Eq("Weight", employeeSearchCriteria.Weight));
+            }
+
+            if (employeeSearchCriteria.Gender != GenderType.Unknown)
+            {
+                defaultCriteria.Add(Expression.Eq("Gender", employeeSearchCriteria.Gender));
+            }
+
+            DetachedCriteria rowCountcriteria = defaultCriteria;
+            DetachedCriteria activeContentPagingcriteria = defaultCriteria;
+
+            return new PageResultSet<Employee>()
+            {
+                PageData = _employeeRepository.GetWithCriteriaByPaging(activeContentPagingcriteria, pagingFilter),
+                Count = _employeeRepository.GetRowCountWithCriteria(rowCountcriteria)
+            };
+        }
+
         public Employee GetEmployeeWithID(int employeeID)
         {
             return _employeeRepository.GetById(employeeID);

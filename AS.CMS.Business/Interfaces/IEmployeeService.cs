@@ -7,6 +7,7 @@ namespace AS.CMS.Business.Interfaces
     {
         bool SaveEmployee(Employee employeeEntity);
         PageResultSet<Employee> GetActiveEmployees(PagingFilter pagingFilter);
+        PageResultSet<Employee> GetActiveEmployeesFromSearch(Employee employeeSearchCriteria, PagingFilter pagingFilter);
         Employee GetEmployeeWithID(int employeeID);
     }
 }

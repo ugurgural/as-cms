@@ -61,6 +61,7 @@
     <Compile Include="CustomMappings\EmployeeEducationMappings.cs" />
     <Compile Include="CustomMappings\EmployeeJobExperienceMappings.cs" />
     <Compile Include="CustomMappings\EmployeeMappings.cs" />
+    <Compile Include="CustomMappings\EventEmployeeMappings.cs" />
     <Compile Include="CustomMappings\EventMappings.cs" />
     <Compile Include="CustomMappings\EventProfessionQuotaMappings.cs" />
     <Compile Include="CustomMappings\EventTypeMappings.cs" />

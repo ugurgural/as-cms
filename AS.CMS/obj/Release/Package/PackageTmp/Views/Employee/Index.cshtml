@@ -1,7 +1,7 @@
-﻿@using AS.CMS.Domain.Base;
+﻿@using AS.CMS.Domain.Base.Employee;
 @model IList<Employee>
 @{
-    ViewBag.Title = "İçerikler";
+    ViewBag.Title = "Adaylar";
     Layout = "~/Views/Layout/_ListBase.cshtml";
 }
 
@@ -61,7 +61,7 @@
                             <div class="item-actions-block">
                                 <ul class="item-actions-list">
                                     <li>
-                                        <a class="edit" title="Düzenle" href="@Url.Action("yeni-adat-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-pencil"></i> </a>
+                                        <a class="edit" title="Düzenle" href="@Url.Action("yeni-aday-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-pencil"></i> </a>
                                     </li>
                                     <li>
                                         <a class="edit" title="CV Görüntüle" href="@Url.Action("yeni-aday-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-file-text-o"></i> </a>

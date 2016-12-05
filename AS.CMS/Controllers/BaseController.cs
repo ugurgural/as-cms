@@ -39,18 +39,18 @@ namespace AS.CMS.Controllers
             };
         }
 
-        public void SetModalStatusMessage(ModalStatus status)
+        public void SetModalStatusMessage(ModalStatus status, string message = "")
         {
-            string message = string.Empty;
+            string defaultMessage = string.Empty;
             string icon = string.Empty;
             switch (status)
             {
                 case ModalStatus.Success:
-                    message = "Kayıt Başarılı.";
+                    defaultMessage = "Kayıt Başarılı.";
                     icon = "fa fa-check-circle";
                     break;
                 case ModalStatus.Error:
-                    message = "Kayıt Esnasında Hata Oluştu, Tekrar Deneyiniz.";
+                    defaultMessage = "Kayıt Esnasında Hata Oluştu, Tekrar Deneyiniz.";
                     icon = "fa fa-times-circle";
                     break;
                 case ModalStatus.Warning:
@@ -66,7 +66,7 @@ namespace AS.CMS.Controllers
             }
 
             TempData.Add("ModalStatus", status);
-            TempData.Add("ModalStatusMessage", message);
+            TempData.Add("ModalStatusMessage", string.IsNullOrWhiteSpace(message) ? defaultMessage : message);
             TempData.Add("ModalStatusIcon", icon);
         }
     }

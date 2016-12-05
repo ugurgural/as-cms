@@ -4,6 +4,8 @@ using AS.CMS.Data.Interfaces;
 using AS.CMS.Domain.Base.Event;
 using AS.CMS.Domain.Common;
 using NHibernate.Criterion;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AS.CMS.Business.Services
 {
@@ -50,6 +52,34 @@ namespace AS.CMS.Business.Services
             }
 
             return true;
+        }
+
+        public IList<EventEmployee> GetActiveEventEmployees(int eventID)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<EventEmployee>();
+            defaultCriteria.Add(Expression.Eq("Event.ID", eventID));
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+
+            return _eventEmployeeRepository.GetWithCriteria(defaultCriteria).Where(x => x.Event.IsActive == true).ToList();
+        }
+
+        public IList<EventEmployee> GetActiveEmployeeEvents(int employeeID)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<EventEmployee>();
+            defaultCriteria.Add(Expression.Eq("Employee.ID", employeeID));
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+
+            return _eventEmployeeRepository.GetWithCriteria(defaultCriteria).Where(x => x.Event.IsActive == true).ToList();
+        }
+
+        public IList<EventEmployee> GetEventEmployeeWithID(int employeeID, int eventID)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<EventEmployee>();
+            defaultCriteria.Add(Expression.Eq("Employee.ID", employeeID));
+            defaultCriteria.Add(Expression.Eq("Event.ID", eventID));
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+
+            return _eventEmployeeRepository.GetWithCriteria(defaultCriteria);
         }
 
         public PageResultSet<Event> GetActiveEvents(PagingFilter pagingFilter)
