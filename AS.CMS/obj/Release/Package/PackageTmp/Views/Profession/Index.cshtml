@@ -1,0 +1,60 @@
+﻿@using AS.CMS.Domain.Base;
+@model IList<Profession>
+@{
+    ViewBag.Title = "Meslekler";
+    Layout = "~/Views/Layout/_ListBase.cshtml";
+}
+
+<div class="card items">
+    <ul class="item-list striped">
+        <li class="item item-list-header hidden-sm-down">
+            <div class="item-row">
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Meslek Adı</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Açıklama</span> </div>
+                </div>
+                <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
+            </div>
+        </li>
+
+        @foreach (var professionItem in Model)
+        {
+            <li class="item">
+                <div class="item-row">
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Meslek Adı</div>
+                        <div>
+                            <a href="@Url.Action("yeni-meslek-ekle", "meslek", new { professionID = professionItem.ID })" class="">
+                                <h4 class="item-title">@professionItem.Title</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Açıklama</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-meslek-ekle", "meslek", new { professionID = professionItem.ID })" class="">@professionItem.Description</a> </div>
+                    </div>
+                    <div class="item-col fixed item-col-actions-dropdown">
+                        <div class="item-actions-dropdown">
+                            <a class="item-actions-toggle-btn">
+                                <span class="inactive">
+                                    <i class="fa fa-cog"></i>
+                                </span> <span class="active">
+                                    <i class="fa fa-chevron-circle-right"></i>
+                                </span>
+                            </a>
+                            <div class="item-actions-block">
+                                <ul class="item-actions-list">
+                                    <li>
+                                        <a class="edit" title="Düzenle" href="@Url.Action("yeni-meslek-ekle", "meslek", new { professionID = professionItem.ID })"> <i class="fa fa-pencil"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

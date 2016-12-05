@@ -12,3 +12,17 @@ C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data.UOW\bin\Release\NHibernate.xml
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data.UOW\obj\Release\AS.CMS.Data.UOW.csprojResolveAssemblyReference.cache
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data.UOW\obj\Release\AS.CMS.Data.UOW.dll
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Data.UOW\obj\Release\AS.CMS.Data.UOW.pdb
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\AS.CMS.Data.UOW.dll
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\AS.CMS.Data.UOW.pdb
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\AS.CMS.Domain.dll
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\FluentNHibernate.dll
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\Iesi.Collections.dll
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\NHibernate.dll
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\AS.CMS.Domain.pdb
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\FluentNHibernate.pdb
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\FluentNHibernate.xml
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\Iesi.Collections.xml
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\bin\Release\NHibernate.xml
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\obj\Release\AS.CMS.Data.UOW.csprojResolveAssemblyReference.cache
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\obj\Release\AS.CMS.Data.UOW.dll
+D:\Git\Ugur\AS.CMS\AS.CMS.Data.UOW\obj\Release\AS.CMS.Data.UOW.pdb

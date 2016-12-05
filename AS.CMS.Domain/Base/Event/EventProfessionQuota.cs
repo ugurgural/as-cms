@@ -7,5 +7,6 @@ namespace AS.CMS.Domain.Base.Event
         public virtual Event Event { get; set; }
         public virtual Profession Profession { get; set; }
         public virtual int Quantity { get; set; }
+        public virtual double Price { get; set; }
     }
 }
