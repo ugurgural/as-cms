@@ -12,7 +12,6 @@ namespace AS.CMS.Domain.Base.Event
 
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }
-        public virtual double Price { get; set; }
         public virtual EventType EventType { get; set; }
         public virtual DateTime BeginDate { get; set; }
         public virtual DateTime EndDate { get; set; }

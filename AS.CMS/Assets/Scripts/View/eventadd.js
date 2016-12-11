@@ -15,14 +15,12 @@
         rules: {
             Name: "required",
             Description: "required",
-            Restriction: "required",
-            Price: "required"
+            Restriction: "required"
         },
         messages: {
             Name: "Bu alan boş geçilemez",
             Description: "Bu alan boş geçilemez",
-            Restriction: "Bu alan boş geçilemez",
-            Price: "Bu alan boş geçilemez"
+            Restriction: "Bu alan boş geçilemez"
         },
         invalidHandler: function () {
             animate({
