@@ -17,11 +17,11 @@
                     <div> <span>Açıklama</span> </div>
                 </div>
                 <div class="item-col item-col-header item-col-author">
+                    <div> <span>Başlangıç - Bitiş Tarihi</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-author">
                     <div> <span>Lokasyon</span> </div>
-                </div>
-                <div class="item-col item-col-header item-col-date">
-                    <div> <span>Ücret</span> </div>
-                </div>
+                </div>              
                 <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
             </div>
         </li>
@@ -43,13 +43,13 @@
                         <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Description.StripHtml()</a> </div>
                     </div>
                     <div class="item-col item-col-author">
+                        <div class="item-heading">Başlangıç - Bitiş Tarihi</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@string.Format("{0} - {1}", eventItem.BeginDate.ToShortDateString(), eventItem.EndDate.ToShortDateString())</a> </div>
+                    </div>
+                    <div class="item-col item-col-author">
                         <div class="item-heading">Lokasyon</div>
                         <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Location</a> </div>
-                    </div>
-                    <div class="item-col item-col-date">
-                        <div class="item-heading">Ücret</div>
-                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Price</a> </div>
-                    </div>
+                    </div>               
                     <div class="item-col fixed item-col-actions-dropdown">
                         <div class="item-actions-dropdown">
                             <a class="item-actions-toggle-btn">

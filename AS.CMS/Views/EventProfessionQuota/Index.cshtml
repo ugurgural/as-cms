@@ -1,4 +1,5 @@
 ﻿@using AS.CMS.Domain.Base.Event;
+@using AS.CMS.Business.Helpers;
 @model IList<EventProfessionQuota>
 @{
     ViewBag.Title = "Etkinlik Kota";
@@ -14,6 +15,9 @@
                 </div>
                 <div class="item-col item-col-header item-col-author">
                     <div> <span>Meslek</span> </div>
+                </div>
+                <div class="item-col item-col-header item-col-author">
+                    <div> <span>Cinsiyet</span> </div>
                 </div>
                 <div class="item-col item-col-header item-col-author">
                     <div> <span>Kota Sayısı</span> </div>
@@ -40,6 +44,10 @@
                     <div class="item-col item-col-author">
                         <div class="item-heading">Meslek</div>
                         <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-kota-ekle", "etkinlik-kota", new { eventProfessionQuotaID = eventprofessionQuotaItem.ID })" class="">@eventprofessionQuotaItem.Profession.Title</a> </div>
+                    </div>
+                    <div class="item-col item-col-author">
+                        <div class="item-heading">Cinsiyet</div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-kota-ekle", "etkinlik-kota", new { eventProfessionQuotaID = eventprofessionQuotaItem.ID })" class="">@eventprofessionQuotaItem.Gender.ToDescription()</a> </div>
                     </div>
                     <div class="item-col item-col-author">
                         <div class="item-heading">Kota Sayısı</div>

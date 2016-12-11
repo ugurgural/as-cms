@@ -1,17 +1,19 @@
 ﻿@using AS.CMS.Domain.Common;
 @using AS.CMS.Domain.Base;
-@section CustomCSS
-{
-}
-@section CustomJS
-{
-    <script src="@Url.Content("~/Assets/Scripts/View/listbase.js")"></script>
-}
 @{
     Layout = "~/Views/Layout/_Main.cshtml";
 
     PagingFilter pageFilter = ViewBag.PageFilter;
     Module currentModule = ViewBag.CurrentModule;
+}
+@section CustomCSS
+{
+    @RenderSection("CustomCSS", false)
+}
+@section CustomJS
+{
+    <script src="@Url.Content("~/Assets/Scripts/View/listbase.js")"></script>
+    @RenderSection("CustomJS", false)
 }
 
 <article class="content items-list-page">

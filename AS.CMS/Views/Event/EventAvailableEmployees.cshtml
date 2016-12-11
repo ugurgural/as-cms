@@ -1,10 +1,32 @@
 ﻿@using AS.CMS.Domain.Base.Employee;
 @using AS.CMS.Business.Helpers;
 @model IList<Employee>
+@section CustomCSS
+{
+    <link rel="stylesheet" href="@Url.Content("~/Assets/Css/chosen.css")">
+}
+@section CustomJS
+{
+    <script src="@Url.Content("~/Assets/Scripts/chosen.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.chosen-select').chosen();
+            $("#professionID_chosen").width("100%");
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(".edit").click(function () {
+            $("#employeeID").val($(this).data("employeeid"));
+            $('#event-modal').modal('show');
+        });
+    </script>
+}
 @{
     ViewBag.Title = "Etkinliğe Uygun Adaylar";
     Layout = "~/Views/Layout/_ListSearchBase.cshtml";
     int eventID = !string.IsNullOrWhiteSpace(Request.QueryString["eventID"]) ? int.Parse(Request.QueryString["eventID"]) : int.Parse(ViewBag.EventID);
+
 }
 
 <div class="card items">
@@ -63,7 +85,7 @@
                             <div class="item-actions-block">
                                 <ul class="item-actions-list">
                                     <li>
-                                        <a class="edit" title="Adayı Etkinliğe Ekle" href="@Url.Action("etkinlik-aday-kayit", "etkinlik", new {  eventID = eventID, employeeID = employeeItem.ID })"> <i class="fa fa-sort-numeric-asc"></i> </a>
+                                        <a class="edit" title="Adayı Etkinliğe Ekle" data-employeeid="@employeeItem.ID" href="#"> <i class="fa fa-sort-numeric-asc"></i> </a>
                                     </li>
                                 </ul>
                             </div>
@@ -74,6 +96,43 @@
         }
     </ul>
 </div>
+
+<form id="saveEventEmployee" method="post" action="@Url.Action("SaveEventEmployee")" name="employeeForm">
+    <div class="modal fade" id="event-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"><i class="fa fa-question-circle"></i> Aday Hangi Kotaya Eklenecek</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="card card-block">
+                        <input type="hidden" id="eventID" name="eventID" value="@eventID" />
+                        <input type="hidden" id="employeeID" name="employeeID" />
+
+                        <div class="form-group row" style="width: 100%">
+                            <label class="col-sm-2 form-control-label text-xs-right">
+                                Kota:
+                            </label>
+                            <div class="col-sm-10">
+                                @Html.DropDownList("professionID", ViewBag.professionSelectList as IEnumerable<SelectListItem>, new { @class = "c-select form-control boxed chosen-select", @data_placeholder = "Çalışma Şekli Seçiniz" })
+                            </div>
+                        </div>
+                        <div class="form-group row" style="width: 100%">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <button type="submit" class="btn btn-primary">
+                                    Kaydet
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 <form id="searchEmployeeForm" method="post" action="@Url.Action("EventAvailableEmployees", "Event", new { eventID = eventID})" name="employeeForm">
     <div class="modal fade" id="search-modal">

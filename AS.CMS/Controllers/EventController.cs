@@ -15,7 +15,7 @@ namespace AS.CMS.Controllers
     {
         private IEventService _eventService;
         private IEventTypeService _eventTypeService;
-        private IEventProfessionQuotaService _eventProfessionQuotaService;    
+        private IEventProfessionQuotaService _eventProfessionQuotaService;
         private IEmployeeService _employeeService;
 
         public EventController(IEventService eventService, IEventTypeService eventTypeService, IEmployeeService employeeService, IEventProfessionQuotaService eventProfessionQuotaService, IModuleService moduleService) : base(moduleService)
@@ -81,17 +81,17 @@ namespace AS.CMS.Controllers
             return RedirectToAction("etkinlik-listesi", "etkinlik");
         }
 
-        [Route("etkinlik-aday-kayit")]
-        public ActionResult SaveEventEmployee(int eventID, int employeeID)
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveEventEmployee(int eventID, int employeeID, int professionID)
         {
             Employee currentEmployee = _employeeService.GetEmployeeWithID(employeeID);
             Event currentEvent = _eventService.GetEventWithID(eventID);
-            
-            int eventProfessionQuotaCount = _eventProfessionQuotaService.GetEventProfessionQuotaWithProfessionID
-                                                                                       (eventID, currentEmployee.Profession[0].ID).Count();
+
+            int eventProfessionQuotaCount = _eventProfessionQuotaService.GetEventProfessionQuotaWithProfessionID(eventID, professionID).Where(x => x.Gender == currentEmployee.Gender).Count();
 
             int employeeProfessionCountForCurrentEvent = _eventService.GetActiveEventEmployees(eventID)
-                                                         .Where(x => x.Employee.Profession[0].ID == currentEmployee.Profession[0].ID).Count();
+                                                         .Where(x => x.Employee.Profession.Where(y => y.ID == professionID).Any() &&                                    x.Employee.Gender == currentEmployee.Gender).Count();
 
             var employeeActiveEvents = _eventService.GetActiveEmployeeEvents(employeeID);
 
@@ -149,17 +149,17 @@ namespace AS.CMS.Controllers
             {
                 SetModalStatusMessage(ModalStatus.Error, "Seçilen aday için etkinlik kotası dolmuştur. Lütfen kontrol ediniz !");
                 return RedirectToAction("etkinlik-listesi", "etkinlik");
-            }           
+            }
 
             _eventService.SaveEventEmployee(new EventEmployee() { Employee = currentEmployee, Event = currentEvent });
-            SetModalStatusMessage(ModalStatus.Error, "Seçilen aday etkinliğe dahil edilmiştir.");
+            SetModalStatusMessage(ModalStatus.Success, "Seçilen aday etkinliğe dahil edilmiştir.");
             return RedirectToAction("etkinlik-listesi", "etkinlik");
         }
 
         [Route("etkinlik-aday-silme")]
         public ActionResult RemoveEventEmployee(int eventID, int employeeID)
         {
-            EventEmployee currentEventEmployee = _eventService.GetEventEmployeeWithID(eventID, employeeID).FirstOrDefault();
+            EventEmployee currentEventEmployee = _eventService.GetEventEmployeeWithID(employeeID, eventID).FirstOrDefault();
             currentEventEmployee.IsActive = false;
 
             SetModalStatusMessage(ModalStatus.Success, "Seçilen aday etkinlik listesinden çıkarılmıştır !");
@@ -174,6 +174,15 @@ namespace AS.CMS.Controllers
             PageResultSet<Employee> availableEventEmployees = _employeeService.GetActiveEmployeesFromSearch(employeeSearchCriteria, new PagingFilter());
             SetPageFilters(new PagingFilter(), availableEventEmployees.Count);
 
+            IList<EventProfessionQuota> professionQuotaList = _eventProfessionQuotaService.GetActiveEventProfessionQuotas
+                (new PagingFilter() { SearchText = (Request.QueryString["eventID"]).ToString() }).PageData;
+
+            ViewBag.professionSelectList = professionQuotaList.Select(i => new SelectListItem()
+            {
+                Text = i.Profession.Title,
+                Value = i.Profession.ID.ToString()
+            });
+
             return View(availableEventEmployees.PageData);
         }
 
@@ -184,6 +193,15 @@ namespace AS.CMS.Controllers
             PageResultSet<Employee> availableEventEmployees = _employeeService.GetActiveEmployeesFromSearch(employeeSearchCriteria, pageFilter);
             SetPageFilters(pageFilter, availableEventEmployees.Count);
             ViewBag.EventID = eventID;
+            IList<EventProfessionQuota> professionQuotaList = _eventProfessionQuotaService.GetActiveEventProfessionQuotas
+                ( new PagingFilter() { SearchText = eventID.ToString() } ).PageData;
+
+            ViewBag.professionSelectList = professionQuotaList.Select(i => new SelectListItem()
+            {
+                Text = i.Profession.Title,
+                Value = i.Profession.ID.ToString()
+            });
+
             return View(availableEventEmployees.PageData);
         }
 

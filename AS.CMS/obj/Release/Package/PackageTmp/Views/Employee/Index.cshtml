@@ -1,4 +1,5 @@
 ﻿@using AS.CMS.Domain.Base.Employee;
+@using AS.CMS.Business.Helpers;
 @model IList<Employee>
 @{
     ViewBag.Title = "Adaylar";
@@ -47,7 +48,7 @@
                     </div>
                     <div class="item-col item-col-date">
                         <div class="item-heading">Cinsiyet</div>
-                        <div class="no-overflow"> <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.ID })">@employeeItem.Gender</a> </div>
+                        <div class="no-overflow"> <a href="@Url.Action("yeni-aday-ekle", "aday", new { employeeID = employeeItem.ID })">@employeeItem.Gender.ToDescription()</a> </div>
                     </div>
                     <div class="item-col fixed item-col-actions-dropdown">
                         <div class="item-actions-dropdown">
