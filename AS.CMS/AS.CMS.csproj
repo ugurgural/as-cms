@@ -271,6 +271,8 @@
     <Content Include="Assets\Css\ui.css" />
     <Content Include="Assets\Css\vendor.css" />
     <Content Include="Assets\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\Images\b2logo.png" />
+    <Content Include="Assets\Images\b2logologin.png" />
     <Content Include="Assets\Images\chosen-sprite%402x.png" />
     <Content Include="Assets\Images\chosen-sprite.png" />
     <Content Include="Assets\Images\demo.png" />

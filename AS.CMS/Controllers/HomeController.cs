@@ -9,15 +9,32 @@ namespace AS.CMS.Controllers
     public class HomeController : Controller
     {
         private INewsService _newsService;
+        private IEventService _eventService;
+        private IEmployeeService _employeeService;
+        private IProfessionService _professionService;
+        private IAnnouncementService _announcementService;
 
-        public HomeController(INewsService newsService)
+        public HomeController(INewsService newsService, IEventService eventService, IEmployeeService employeeService, IProfessionService professionService, IAnnouncementService announcementService)
         {
             _newsService = newsService;
+            _eventService = eventService;
+            _employeeService = employeeService;
+            _professionService = professionService;
+            _announcementService = announcementService;
         }
 
         public ActionResult Index()
         {
-            return View(_newsService.GetActiveNews(new PagingFilter()).PageData.Take(5).ToList());
+            ViewBag.EmployeeCount = _employeeService.GetActiveEmployees(new PagingFilter()).Count;
+            ViewBag.EmployeeMaleCount = _employeeService.GetEmployeeCountByGender(GenderType.Male);
+            ViewBag.EmployeeFemaleCount = _employeeService.GetEmployeeCountByGender(GenderType.Female);
+            ViewBag.EventCount = _eventService.GetActiveEvents(new PagingFilter()).Count;
+            ViewBag.ProfessionCount = _professionService.GetActiveProfessions(new PagingFilter()).Count;
+            ViewBag.AnnouncementCount = _announcementService.GetActiveAnnouncements(new PagingFilter()).Count;
+
+            ViewBag.HighestEventNames = _eventService.GetEventCounts();
+
+            return View(_eventService.GetActiveEvents(new PagingFilter()).PageData.Take(5).ToList());
         }
     }
 }

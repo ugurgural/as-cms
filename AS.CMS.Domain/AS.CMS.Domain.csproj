@@ -70,6 +70,7 @@
     <Compile Include="Common\PagingFilter.cs" />
     <Compile Include="Common\WeekDay.cs" />
     <Compile Include="Common\WorkType.cs" />
+    <Compile Include="Dto\EventCount.cs" />
     <Compile Include="Interfaces\ICMSEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

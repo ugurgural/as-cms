@@ -68,6 +68,15 @@ namespace AS.CMS.Business.Services
             };
         }
 
+        public int GetEmployeeCountByGender(GenderType gender)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<Employee>();
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+            defaultCriteria.Add(Expression.Eq("Gender", gender));
+
+            return _employeeRepository.GetRowCountWithCriteria(defaultCriteria);
+        }
+
         public PageResultSet<Employee> GetActiveEmployeesFromSearch(Employee employeeSearchCriteria, PagingFilter pagingFilter)
         {
             DetachedCriteria defaultCriteria = DetachedCriteria.For<Employee>();

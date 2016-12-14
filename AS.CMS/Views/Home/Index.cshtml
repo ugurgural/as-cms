@@ -1,8 +1,91 @@
-﻿@using AS.CMS.Domain.Base;
+﻿@using AS.CMS.Domain.Base.Event;
+@using AS.CMS.Domain.Dto;
 @{
     ViewBag.Title = "Anasayfa";
     Layout = "~/Views/Layout/_Main.cshtml";
-    List<News> newsList = Model;
+    List<Event> eventList = Model;
+    int totalEmployeeCount = ViewBag.EmployeeCount;
+    int maleEmployeePercentage = (int)Math.Round((double)(100 * ViewBag.EmployeeMaleCount) / totalEmployeeCount);
+    int femaleEmployeePercentage = (int)Math.Round((double)(100 * ViewBag.EmployeeFemaleCount) / totalEmployeeCount);
+    EventCount eventCount = ViewBag.HighestEventNames as EventCount;
+}
+
+@section CustomCSS
+{
+}
+@section CustomJS
+{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(document).ready(function () {
+                Highcharts.chart('genderChart', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Oranı',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Kadın',
+                            y: @femaleEmployeePercentage
+                            }, {
+                                name: 'Erkek',
+                                y: @maleEmployeePercentage
+                                }]
+                    }]
+                });
+
+                Highcharts.chart('highestEventChart', {
+
+                    title: {
+                        text: ''
+                    },
+
+                    subtitle: {
+                        text: ''
+                    },
+                    yAxis: {
+                        title: { text: 'Toplam Aday' }
+                    },
+                    xAxis: {
+                        
+                        categories: @Html.Raw(Json.Encode(eventCount.EventName))
+                        },
+
+                    series: [{
+                        name : 'Toplam Aday',
+                        type: 'column',
+                        colorByPoint: true,
+                        data: @Html.Raw(Json.Encode(eventCount.Count)),
+                        showInLegend: false
+                    }]
+
+                });
+            });
+        });
+    </script>
 }
 
 <article class="content dashboard-page">
@@ -21,46 +104,46 @@
                         </div>
                         <div class="row row-sm stats-container">
                             <div class="col-xs-12 col-sm-6 stat-col">
-                                <div class="stat-icon"> <i class="fa fa-pencil-square-o"></i> </div>
+                                <div class="stat-icon"> <i class="fa fa-glass"></i> </div>
                                 <div class="stat">
-                                    <div class="value"> 4 </div>
-                                    <div class="name"> Aktif İçerik </div>
-                                </div> <progress class="progress stat-progress" value="75" max="100">
+                                    <div class="value"> @ViewBag.EventCount </div>
+                                    <div class="name"> Aktif Etkinlik </div>
+                                </div> <progress class="progress stat-progress" value="100" max="100">
                                     <div class="progress">
-                                        <span class="progress-bar" style="width: 75%;"></span>
+                                        <span class="progress-bar" style="width: 100%;"></span>
                                     </div>
                                 </progress>
                             </div>
                             <div class="col-xs-12 col-sm-6 stat-col">
+                                <div class="stat-icon"> <i class="fa fa-male"></i> </div>
+                                <div class="stat">
+                                    <div class="value"> @ViewBag.EmployeeCount </div>
+                                    <div class="name"> Aktif Aday </div>
+                                </div> <progress class="progress stat-progress" value="100" max="100">
+                                    <div class="progress">
+                                        <span class="progress-bar" style="width: 100%;"></span>
+                                    </div>
+                                </progress>
+                            </div>
+                            <div class="col-xs-12 col-sm-6  stat-col">
+                                <div class="stat-icon"> <i class="fa fa-suitcase"></i> </div>
+                                <div class="stat">
+                                    <div class="value"> @ViewBag.ProfessionCount </div>
+                                    <div class="name"> Aktif Meslek </div>
+                                </div> <progress class="progress stat-progress" value="100" max="100">
+                                    <div class="progress">
+                                        <span class="progress-bar" style="width: 100%;"></span>
+                                    </div>
+                                </progress>
+                            </div>
+                            <div class="col-xs-12 col-sm-6  stat-col">
                                 <div class="stat-icon"> <i class="fa fa-bullhorn"></i> </div>
                                 <div class="stat">
-                                    <div class="value"> 6 </div>
-                                    <div class="name"> Aktif Haber & Duyuru </div>
-                                </div> <progress class="progress stat-progress" value="25" max="100">
+                                    <div class="value"> @ViewBag.AnnouncementCount </div>
+                                    <div class="name"> Aktif Duyuru </div>
+                                </div> <progress class="progress stat-progress" value="100" max="100">
                                     <div class="progress">
-                                        <span class="progress-bar" style="width: 25%;"></span>
-                                    </div>
-                                </progress>
-                            </div>
-                            <div class="col-xs-12 col-sm-6  stat-col">
-                                <div class="stat-icon"> <i class="fa fa-th-large"></i> </div>
-                                <div class="stat">
-                                    <div class="value"> 7 </div>
-                                    <div class="name"> Aktif Menü </div>
-                                </div> <progress class="progress stat-progress" value="60" max="100">
-                                    <div class="progress">
-                                        <span class="progress-bar" style="width: 60%;"></span>
-                                    </div>
-                                </progress>
-                            </div>
-                            <div class="col-xs-12 col-sm-6  stat-col">
-                                <div class="stat-icon"> <i class="fa fa-users"></i> </div>
-                                <div class="stat">
-                                    <div class="value"> 2 </div>
-                                    <div class="name"> Aktif Kullanıcı </div>
-                                </div> <progress class="progress stat-progress" value="34" max="100">
-                                    <div class="progress">
-                                        <span class="progress-bar" style="width: 34%;"></span>
+                                        <span class="progress-bar" style="width: 100%;"></span>
                                     </div>
                                 </progress>
                             </div>
@@ -73,77 +156,112 @@
                     <div class="card-header bordered">
                         <div class="header-block">
                             <h3 class="title">
-                                Son 5 Haber
-                            </h3> <a href="@Url.Action("yeni-haber-ekle","haber")" class="btn btn-primary btn-sm rounded">
+                                Son 5 Etkinlik
+                            </h3> <a href="@Url.Action("yeni-etkinlik-ekle","etkinlik")" class="btn btn-primary btn-sm rounded">
                                 Yeni Ekle
                             </a>
-                        </div>            
+                        </div>
                     </div>
                     <ul class="item-list striped">
                         <li class="item item-list-header hidden-sm-down">
                             <div class="item-row">
-                                <div class="item-col item-col-header fixed item-col-img xs"></div>
                                 <div class="item-col item-col-header item-col-author">
                                     <div> <span>Başlık</span> </div>
                                 </div>
                                 <div class="item-col item-col-header item-col-author">
-                                    <div> <span>Permalink</span> </div>
+                                    <div> <span>Lokasyon</span> </div>
                                 </div>
                                 <div class="item-col item-col-header item-col-author">
-                                    <div> <span>Yayın Durumu</span> </div>
+                                    <div> <span>Başlangıç</span> </div>
                                 </div>
-                                <div class="item-col item-col-header item-col-date">
-                                    <div> <span>Oluşturulma Tarihi</span> </div>
+                                <div class="item-col item-col-header item-col-author">
+                                    <div> <span>Bitiş</span> </div>
                                 </div>
                                 <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
                             </div>
                         </li>
-                        @foreach (var newsItem in Model)
+                        @foreach (var eventItem in Model)
                         {
-                            <li class="item">
-                                <div class="item-row">
-                                    <div class="item-col item-col-author">
-                                        <div class="item-heading">Başlık</div>
-                                        <div>
-                                            <a href="@Url.Action("yeni-haber-ekle", "haber", new { newsID = newsItem.ID })" class="">
-                                                <h4 class="item-title">@newsItem.Title</h4>
-                                            </a>
-                                        </div>
+                        <li class="item">
+                            <div class="item-row">
+                                <div class="item-col item-col-author">
+                                    <div class="item-heading">Başlık</div>
+                                    <div>
+                                        <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })" class="">
+                                            <h4 class="item-title">@eventItem.Name</h4>
+                                        </a>
                                     </div>
-                                    <div class="item-col item-col-author">
-                                        <div class="item-heading">Permalink</div>
-                                        <div class="no-overflow"> <a href="@Url.Action("yeni-haber-ekle", "haber", new { newsID = newsItem.ID })">@newsItem.Permalink</a> </div>
-                                    </div>
-                                    <div class="item-col item-col-author">
-                                        <div class="item-heading">Yayın Durumu</div>
-                                        <div class="no-overflow"> <a href="@Url.Action("yeni-haber-ekle", "haber", new { newsID = newsItem.ID })">@(Html.Raw(newsItem.IsPublished ? "Yayında" : "Yayında Değil"))</a> </div>
-                                    </div>
-                                    <div class="item-col item-col-date">
-                                        <div class="item-heading">Oluşturulma Tarihi</div>
-                                        <div class="no-overflow"> @newsItem.CreatedDate </div>
-                                    </div>
-                                    <div class="item-col fixed item-col-actions-dropdown">
-                                        <div class="item-actions-dropdown">
-                                            <a class="item-actions-toggle-btn">
-                                                <span class="inactive">
-                                                    <i class="fa fa-cog"></i>
-                                                </span> <span class="active">
-                                                    <i class="fa fa-chevron-circle-right"></i>
-                                                </span>
-                                            </a>
-                                            <div class="item-actions-block">
-                                                <ul class="item-actions-list">
-                                                    <li>
-                                                        <a class="edit" href="@Url.Action("yeni-haber-ekle", "haber", new { newsID = newsItem.ID })"><i class="fa fa-pencil"></i> </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                </div>
+                                <div class="item-col item-col-author">
+                                    <div class="item-heading">Lokasyon</div>
+                                    <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.Location</a> </div>
+                                </div>
+                                <div class="item-col item-col-author">
+                                    <div class="item-heading">Başlangıç</div>
+                                    <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.BeginDate.ToShortDateString()</a> </div>
+                                </div>
+                                <div class="item-col item-col-author">
+                                    <div class="item-heading">Bitiş</div>
+                                    <div class="no-overflow"> <a href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })">@eventItem.EndDate.ToShortDateString()</a> </div>
+                                </div>
+                                <div class="item-col fixed item-col-actions-dropdown">
+                                    <div class="item-actions-dropdown">
+                                        <a class="item-actions-toggle-btn">
+                                            <span class="inactive">
+                                                <i class="fa fa-cog"></i>
+                                            </span> <span class="active">
+                                                <i class="fa fa-chevron-circle-right"></i>
+                                            </span>
+                                        </a>
+                                        <div class="item-actions-block">
+                                            <ul class="item-actions-list">
+                                                <li>
+                                                    <a class="edit" href="@Url.Action("yeni-etkinlik-ekle", "etkinlik", new { eventID = eventItem.ID })"><i class="fa fa-pencil"></i> </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </div>
+                        </li>
                         }
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title-block">
+                            <h3 class="title">
+                                Aday Cinsiyet Dağılımı
+                            </h3>
+                        </div>
+                        <section class="example">
+                            <div class="flot-chart">
+                                <div class="flot-chart-pie-content" id="genderChart"></div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title-block">
+                            <h3 class="title">
+                                En Çok Katılım Olan 5 Etkinlik
+                            </h3>
+                        </div>
+                        <section class="example">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="highestEventChart"></div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>

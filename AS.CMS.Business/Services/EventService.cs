@@ -3,6 +3,7 @@ using AS.CMS.Business.Interfaces;
 using AS.CMS.Data.Interfaces;
 using AS.CMS.Domain.Base.Event;
 using AS.CMS.Domain.Common;
+using AS.CMS.Domain.Dto;
 using NHibernate.Criterion;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +93,26 @@ namespace AS.CMS.Business.Services
                 PageData = _eventRepository.GetWithCriteriaByPaging(activeContentPagingcriteria, pagingFilter, CriteriaHelper.GetDefaultOrder()),
                 Count = _eventRepository.GetRowCountWithCriteria(rowCountcriteria)
             };
+        }
+
+        public EventCount GetEventCounts()
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<EventEmployee>();
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+            IList<EventEmployee> eventCountList = _eventEmployeeRepository.GetWithCriteria(defaultCriteria).Take(5).ToList();
+
+            var nameGroups = eventCountList
+                            .GroupBy(x => x.Event.Name)
+                            .Select(x => new
+                                {
+                                    EventName = x.Key,
+                                    EventCount = x.Count()
+                                })
+                            .OrderByDescending(x => x.EventCount).ToArray();
+
+            return new EventCount() {
+                EventName = nameGroups.Select(x => x.EventName).ToArray(),
+                Count = nameGroups.Select(x => x.EventCount).ToArray() };
         }
 
         public Event GetEventWithID(int eventID)

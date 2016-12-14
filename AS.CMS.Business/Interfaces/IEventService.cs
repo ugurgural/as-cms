@@ -1,5 +1,6 @@
 ﻿using AS.CMS.Domain.Base.Event;
 using AS.CMS.Domain.Common;
+using AS.CMS.Domain.Dto;
 using System.Collections.Generic;
 
 namespace AS.CMS.Business.Interfaces
@@ -13,5 +14,6 @@ namespace AS.CMS.Business.Interfaces
         IList<EventEmployee> GetEventEmployeeWithID(int employeeID, int eventID);
         bool SaveEventEmployee(EventEmployee eventEmployeeEntity);
         Event GetEventWithID(int eventID);
+        EventCount GetEventCounts();
     }
 }

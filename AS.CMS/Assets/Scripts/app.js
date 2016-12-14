@@ -1273,7 +1273,7 @@ $(function () {
 
 	function setThemeState() {
 
-		$styleLink.attr('href', '/Assets/Css/app-green.css');
+		$styleLink.attr('href', '/Assets/Css/app-blue.css');
 
 
 		// App classes
