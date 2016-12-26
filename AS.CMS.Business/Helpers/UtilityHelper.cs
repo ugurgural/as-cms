@@ -47,7 +47,6 @@ namespace AS.CMS.Business.Helpers
             return HttpContext.Current.Server.MapPath("~/Dosyalar");
         }
 
-        //TODO: Eğer zip dosyası belirtilen yolda daha önce üretildiyse içindeki dosyalar ile yeni kaydedilecek dosyaların tek tek hash karşılaştırmalarının yapılıp aynı değil ise update edilmesi gerekiyor. şu an logic eğer kaydedilecek dosyayı zipin içinde bulduysa silip yenisini ekliyor.
         public static byte[] GenerateZIPFileFromFileList(string[] fileList, string zipFilePath)
         {
             string serverPath = GetEditorFilesServerPath();
@@ -56,19 +55,28 @@ namespace AS.CMS.Business.Helpers
             {
                 foreach (var filePath in fileList)
                 {
-                    string fileName = filePath.Remove(0, filePath.LastIndexOf("/") + 1);
-
                     if (!string.IsNullOrWhiteSpace(filePath))
                     {
-                        var zipEntryContainsThisFile = archive.GetEntry(fileName);
+                        string currentfileName = filePath.Remove(0, filePath.LastIndexOf("/") + 1);
+                        string currentfilePath = HttpContext.Current.Server.MapPath(string.Format("~{0}", filePath));
+
+                        var zipEntryContainsThisFile = archive.GetEntry(currentfileName);
+                        FileStream currentFile = File.Open(currentfilePath, FileMode.Open);
 
                         if (zipEntryContainsThisFile != null)
                         {
-                            zipEntryContainsThisFile.Delete();
-                            archive.CreateEntryFromFile(HttpContext.Current.Server.MapPath(string.Format("~{0}", filePath)), filePath.Remove(0, filePath.LastIndexOf("/") + 1), CompressionLevel.Fastest);
+                            if (zipEntryContainsThisFile.Length != currentFile.Length)
+                            {
+                                zipEntryContainsThisFile.Delete();
+                                archive.CreateEntryFromFile(currentfilePath, currentfileName, CompressionLevel.Fastest);
+                            }
+                        }
+                        else
+                        {
+                            archive.CreateEntryFromFile(currentfilePath, currentfileName, CompressionLevel.Fastest);
                         }
                     }
-                }  
+                }
             }
 
             return GetFile(zipFilePath);
