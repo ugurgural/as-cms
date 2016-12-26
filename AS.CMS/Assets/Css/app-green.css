@@ -997,6 +997,8 @@ label,
         content: "\f005"; }
     .images-container .controls .control-btn.remove {
       color: #FF4444; }
+    .images-container .controls .control-btn.download {
+      color: #85CE36; }
 
 .images-container .image {
   background-size: cover;

@@ -3,8 +3,8 @@
         selectFileWithCKFinder();
     });
 
-    $(".add-single-image").click(function () {
-        selectMainImageFileWithCKFinder();
+    $(".add-employee-image").click(function () {
+        selectEmployeeImageWithCKFinder();
     });
 
     if (!$('#saveEmployeeForm').length) {
@@ -37,15 +37,43 @@
 
 });
 
-$('.images-container.gallery').on({
+$('.images-container.gallery.cv').on({
     drop: function () {
         $("#CVFile").val("");
 
-        $(".images-container.gallery .image-container").each(function (item) {
+        $(".images-container.gallery.cv .image-container").each(function (item) {
             if ($(this).data("fileurl") != undefined) {
                 $("#CVFile").val($("#CVFile").val() + $(this).data("fileurl") + ",");
             }
         });
+    }
+});
+
+$('.images-container.gallery.employee').on({
+    drop: function () {
+        $("#Picture").val("");
+
+        $(".images-container.gallery.employee .image-container").each(function (item) {
+            if ($(this).data("fileurl") != undefined) {
+                $("#Picture").val($("#Picture").val() + $(this).data("fileurl") + ",");
+            }
+        });
+    }
+});
+
+$(document).on("click", ".employee-upload-remove", function () {
+    var confirmDialog = confirm("Resmi Silmek İstediğinizden Emin Misiniz ?");
+    if (confirmDialog) {
+
+        $(this).parent().parent().remove();
+        $("#Picture").val("");
+
+        $(".images-container.gallery.employee .image-container").each(function (item) {
+            if ($(this).data("fileurl") != undefined) {
+                $("#Picture").val($("#Picture").val() + $(this).data("fileurl") + ",");
+            }
+        });
+
     }
 });
 
@@ -56,7 +84,7 @@ $(document).on("click", ".upload-remove", function () {
         $(this).parent().parent().remove();
         $("#CVFile").val("");
 
-        $(".images-container.gallery .image-container").each(function (item) {
+        $(".images-container.gallery.cv .image-container").each(function (item) {
             if ($(this).data("fileurl") != undefined) {
                 $("#CVFile").val($("#CVFile").val() + $(this).data("fileurl") + ",");
             }
@@ -110,8 +138,8 @@ function selectFileWithCKFinder() {
             finder.on('files:choose', function (evt) {
                 var file = evt.data.files.toArray();
                 for (var i = 0; i < file.length; i++) {
-                    var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file[i].getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn move\"><i class=\"fa fa-arrows\"></i></a><a href=\"#\" class=\"control-btn remove upload-remove\"><i class=\"fa fa-trash-o\"></i></a></div><div class=\"image\"\"><i class=\"fa fa-file-pdf-o\"></i></div></div>";
-                    $(".images-container.gallery").append(uploadItem);
+                    var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file[i].getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn move\"><i class=\"fa fa-arrows\"></i></a><a href=\"#\" class=\"control-btn remove upload-remove\"><i class=\"fa fa-trash-o\"></i></a><a href=\"" + file[i].getUrl() + "\" class=\"control-btn download\"><i class=\"fa fa-download\"></i></a></div><div class=\"image\"\"><i class=\"fa fa-file-pdf-o\"></i></div></div>";
+                    $(".images-container.gallery.cv").append(uploadItem);
                     $("#CVFile").val($("#CVFile").val() + file[i].getUrl() + ",");
                 }
             });
@@ -119,18 +147,19 @@ function selectFileWithCKFinder() {
     });
 }
 
-function selectMainImageFileWithCKFinder() {
+function selectEmployeeImageWithCKFinder() {
     CKFinder.modal({
         chooseFiles: true,
         width: 800,
         height: 600,
         onInit: function (finder) {
             finder.on('files:choose', function (evt) {
-                var file = evt.data.files.first();
-                var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file.getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn remove upload-remove-single\"><i class=\"fa fa-trash-o\"></i></a></div><div class=\"image\"\"><i class=\"fa fa-file-pdf-o\"></i></div></div>";
-                $(".images-container.single").empty();
-                $(".images-container.single").append(uploadItem);
-                $("#picture").val(file.getUrl());
+                var file = evt.data.files.toArray();
+                for (var i = 0; i < file.length; i++) {
+                    var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file[i].getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn move\"><i class=\"fa fa-arrows\"></i></a><a href=\"#\" class=\"control-btn remove employee-upload-remove\"><i class=\"fa fa-trash-o\"></i></a><a href=\"" + file[i].getUrl() + "\" download=\"" + file[i].getUrl() + "\" target=\"_blank\" class=\"control-btn download\"><i class=\"fa fa-download\"></i></a></div><div class=\"image\" style=\"background-image:url('" + file[i].getUrl() + "')\"></div></div>";
+                    $(".images-container.gallery.employee").append(uploadItem);
+                    $("#Picture").val($("#Picture").val() + file[i].getUrl() + ",");
+                }
             });
         }
     });

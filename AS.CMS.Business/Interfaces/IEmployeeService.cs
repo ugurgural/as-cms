@@ -9,5 +9,6 @@ namespace AS.CMS.Business.Interfaces
         PageResultSet<Employee> GetActiveEmployees(PagingFilter pagingFilter);
         PageResultSet<Employee> GetActiveEmployeesFromSearch(Employee employeeSearchCriteria, PagingFilter pagingFilter);
         Employee GetEmployeeWithID(int employeeID);
+        int GetEmployeeCountByGender(GenderType gender);
     }
 }
