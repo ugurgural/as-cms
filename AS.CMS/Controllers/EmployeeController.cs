@@ -99,5 +99,11 @@ namespace AS.CMS.Controllers
 
             return RedirectToAction("aday-listesi", "aday");
         }
+
+        [Route("resim-indir")]
+        public FileResult DownLoad(string filePath, string fileList)
+        {
+            return File(UtilityHelper.GenerateZIPFileFromFileList(fileList.Split(','), filePath), "application/zip", filePath.Remove(0, filePath.LastIndexOf("/") + 1));
+        }
     }
 }

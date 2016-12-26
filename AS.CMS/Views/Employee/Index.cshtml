@@ -67,6 +67,9 @@
                                         <a class="edit" title="CV Görüntüle" href="@Url.Action("yeni-aday-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-file-text-o"></i> </a>
                                     </li>
                                     <li>
+                                        <a class="edit" title="Tüm Resimleri İndir" href="@Url.Action("resim-indir", "aday", new { filePath = string.Format("/Dosyalar/Resimler/{0}-{1}-{2}-tumresimler.zip", employeeItem.ID, employeeItem.FirstName.Trim(), employeeItem.LastName.Trim()), fileList = employeeItem.Picture })"> <i class="fa fa-download"></i> </a>
+                                    </li>
+                                    <li>
                                         <a class="edit" title="Katıldığı Etkinlikler" href="@Url.Action("yeni-aday-ekle", "aday", new {  employeeID = employeeItem.ID })"> <i class="fa fa-calendar-o"></i> </a>
                                     </li>
                                     <li>

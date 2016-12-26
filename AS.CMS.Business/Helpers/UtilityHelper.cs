@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -23,6 +26,7 @@ namespace AS.CMS.Business.Helpers
 
             return strBuilder.ToString();
         }
+
         public static string GetSiteDomain()
         {
             return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
@@ -33,5 +37,29 @@ namespace AS.CMS.Business.Helpers
             return Regex.Replace(value, "<(.|\\n)*?>", string.Empty);
         }
 
+        public static byte[] GetFile(string filePath)
+        {
+            return File.ReadAllBytes(filePath);
+        }
+
+        public static byte[] GenerateZIPFileFromFileList(string[] fileList, string zipFilePath)
+        {
+            using (ZipArchive archive = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
+            {
+                if (archive.Entries != null && archive.Entries.Count > 0)
+                {
+                    var fileInZip = (from f in archive.Entries where f.Name == Path.GetFileName(zipFilePath) select f).FirstOrDefault();
+                    fileInZip.Delete();
+                }
+
+                foreach (var filePath in fileList)
+                {
+                    archive.CreateEntryFromFile(filePath, Path.GetFileName(filePath), CompressionLevel.Fastest);
+                    
+                }
+
+                return GetFile(zipFilePath);
+            }
+        }
     }
 }
