@@ -6,7 +6,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("meslek")]
+    [RoutePrefix("api/meslek")]
     public class ProfessionController : ApiController
     {
         private IProfessionService _professionService;
@@ -18,9 +18,9 @@ namespace AS.CMS.Controllers
 
         [Route("meslek-listesi")]
         [HttpGet]
-        public ApiResult List(PagingFilter pageFilter)
+        public ApiResult List()
         {
-            PageResultSet<Profession> activeProfessions = _professionService.GetActiveProfessions(pageFilter);
+            PageResultSet<Profession> activeProfessions = _professionService.GetActiveProfessions(new PagingFilter());
             return new ApiResult() { Data = activeProfessions.PageData, Message = "OK", Success = true };
         }
 

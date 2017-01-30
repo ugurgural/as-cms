@@ -8,3 +8,7 @@ C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Domain\bin\Debug\AS.CMS.Domain.pdb
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Domain\obj\Debug\AS.CMS.Domain.csprojResolveAssemblyReference.cache
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Domain\obj\Debug\AS.CMS.Domain.dll
 C:\Users\Ugur\Desktop\TFS\AS.CMS\AS.CMS.Domain\obj\Debug\AS.CMS.Domain.pdb
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\bin\Debug\AS.CMS.Domain.dll
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\bin\Debug\AS.CMS.Domain.pdb
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\obj\Debug\AS.CMS.Domain.dll
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\obj\Debug\AS.CMS.Domain.pdb

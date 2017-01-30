@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("uye")]
+    [RoutePrefix("api/uye")]
     public class MemberController : ApiController
     {
         private IMemberService _memberService;
@@ -20,9 +20,9 @@ namespace AS.CMS.Controllers
         }
 
         [Route("uye-listesi")]
-        public ApiResult List(PagingFilter pageFilter)
+        public ApiResult List()
         {
-            PageResultSet<Member> activeMembers = _memberService.GetActiveMembers(pageFilter);
+            PageResultSet<Member> activeMembers = _memberService.GetActiveMembers(new PagingFilter());
 
             return new ApiResult() { Data = activeMembers.PageData, Message = "OK", Success = true };
         }

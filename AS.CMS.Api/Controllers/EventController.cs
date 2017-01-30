@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("etkinlik")]
+    [RoutePrefix("api/etkinlik")]
     public class EventController : ApiController
     {
         private IEventService _eventService;
@@ -27,9 +27,9 @@ namespace AS.CMS.Controllers
 
         [Route("etkinlik-listesi")]
         [HttpGet]
-        public ApiResult List(PagingFilter pageFilter)
+        public ApiResult List()
         {
-            PageResultSet<Event> activeEvents = _eventService.GetActiveEvents(pageFilter);
+            PageResultSet<Event> activeEvents = _eventService.GetActiveEvents(new PagingFilter());
             return new ApiResult() { Data = activeEvents.PageData, Message = "OK", Success = true };
         }
 

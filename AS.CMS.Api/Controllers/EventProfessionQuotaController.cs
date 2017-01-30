@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("etkinlik-kota")]
+    [RoutePrefix("api/etkinlik-kota")]
     public class EventProfessionQuotaController : ApiController
     {
         private IEventProfessionQuotaService _eventProfessionQuotaService;
@@ -24,9 +24,9 @@ namespace AS.CMS.Controllers
 
         [Route("etkinlik-kota-listesi")]
         [HttpGet]
-        public ApiResult Index(PagingFilter pageFilter)
+        public ApiResult Index()
         {
-            PageResultSet<EventProfessionQuota> activeEventProfessionQuotas = _eventProfessionQuotaService.GetActiveEventProfessionQuotas(pageFilter);
+            PageResultSet<EventProfessionQuota> activeEventProfessionQuotas = _eventProfessionQuotaService.GetActiveEventProfessionQuotas(new PagingFilter());
 
             return new ApiResult() { Data = activeEventProfessionQuotas.PageData, Message = "OK", Success = true };
         }

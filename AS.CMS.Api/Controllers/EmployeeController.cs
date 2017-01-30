@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("aday")]
+    [RoutePrefix("api/aday")]
     public class EmployeeController : ApiController
     {
         private IEmployeeService _employeeService;
@@ -22,9 +22,9 @@ namespace AS.CMS.Controllers
 
         [Route("aday-listesi")]
         [HttpGet]
-        public ApiResult List(PagingFilter pageFilter)
+        public ApiResult List()
         {
-            PageResultSet<Employee> activeEmployees = _employeeService.GetActiveEmployees(pageFilter);
+            PageResultSet<Employee> activeEmployees = _employeeService.GetActiveEmployees(new PagingFilter());
             return new ApiResult() { Data = activeEmployees.PageData, Message = "OK", Success = true };
         }
 

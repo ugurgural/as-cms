@@ -1,30 +1,33 @@
-﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(AS.CMS.Api.Bootstrap.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(AS.CMS.Api.Bootstrap.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(AS.CMS.Api.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(AS.CMS.Api.App_Start.NinjectWebCommon), "Stop")]
 
-namespace AS.CMS.Api.Bootstrap
+namespace AS.CMS.Api.App_Start
 {
-    using Data.UOW.Helpers;
-    using Data.UOW.Interfaces;
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-    using Ninject;
-    using Ninject.Web.Common;
-    using Ninject.Extensions.Conventions;
     using System;
     using System.Web;
-    public class NinjectWebCommon
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+    using Ninject.Extensions.Conventions;
+    using Ninject;
+    using Ninject.Web.Common;
+    using Data.UOW.Interfaces;
+    using Data.UOW.Helpers;
+    using System.Web.Http;
+    using Ninject.Web.WebApi;
+
+    public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start()
+        public static void Start() 
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-
+        
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -32,7 +35,7 @@ namespace AS.CMS.Api.Bootstrap
         {
             bootstrapper.ShutDown();
         }
-
+        
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -46,6 +49,7 @@ namespace AS.CMS.Api.Bootstrap
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
                 return kernel;
             }
             catch
@@ -63,9 +67,8 @@ namespace AS.CMS.Api.Bootstrap
         {
             // unit of work per request
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
-
             // default binding for everything except unit of work
             kernel.Bind(x => x.FromAssembliesMatching("*").SelectAllClasses().Excluding<UnitOfWork>().BindDefaultInterface());
-        }
+        }        
     }
 }
