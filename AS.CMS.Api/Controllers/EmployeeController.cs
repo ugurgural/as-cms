@@ -2,13 +2,14 @@
 using AS.CMS.Domain.Base;
 using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Common;
+using AS.CMS.Domain.Dto;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
     [RoutePrefix("aday")]
-    public class EmployeeController : Controller
+    public class EmployeeController : ApiController
     {
         private IEmployeeService _employeeService;
         private IProfessionService _professionService;
@@ -20,15 +21,16 @@ namespace AS.CMS.Controllers
         }
 
         [Route("aday-listesi")]
-        public IList<Employee> List(PagingFilter pageFilter)
+        [HttpGet]
+        public ApiResult List(PagingFilter pageFilter)
         {
             PageResultSet<Employee> activeEmployees = _employeeService.GetActiveEmployees(pageFilter);
-            return activeEmployees.PageData;
+            return new ApiResult() { Data = activeEmployees.PageData, Message = "OK", Success = true };
         }
 
         [Route("aday-kayit")]
         [HttpPost]
-        public bool SaveEmployee(Employee employeeEntity, EmployeeAvailability employeeAvailability, string[] employeeProfessions, string[] employeeWorkDays, string[] employeeWorkType)
+        public ApiResult SaveEmployee(Employee employeeEntity, EmployeeAvailability employeeAvailability, string[] employeeProfessions, string[] employeeWorkDays, string[] employeeWorkType)
         {
             if (employeeAvailability != null)
             {
@@ -68,7 +70,7 @@ namespace AS.CMS.Controllers
             
             bool result = _employeeService.SaveEmployee(employeeEntity);
 
-            return result;
+            return new ApiResult() { Data = null, Message = "OK", Success = true };
         }
     }
 }

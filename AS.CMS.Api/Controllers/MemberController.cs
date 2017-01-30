@@ -2,53 +2,40 @@
 using AS.CMS.Business.Interfaces;
 using AS.CMS.Domain.Base;
 using AS.CMS.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using AS.CMS.Domain.Dto;
+using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
     [RoutePrefix("uye")]
-    [CustomAuthorize(Roles = "Admin, Editor")]
-    public class MemberController : BaseController
+    public class MemberController : ApiController
     {
         private IMemberService _memberService;
         private IRoleService _roleService;
 
-        public MemberController(IMemberService memberService, IRoleService roleService, IModuleService moduleService) : base(moduleService)
+        public MemberController(IMemberService memberService, IRoleService roleService)
         {
             _memberService = memberService;
             _roleService = roleService;
         }
 
         [Route("uye-listesi")]
-        public ActionResult Index(PagingFilter pageFilter)
+        public ApiResult List(PagingFilter pageFilter)
         {
             PageResultSet<Member> activeMembers = _memberService.GetActiveMembers(pageFilter);
-            pageFilter.PlaceHolderText = "Mail adreslerinde ara";
-            SetPageFilters(pageFilter, activeMembers.Count);
 
-            return View(activeMembers.PageData);
+            return new ApiResult() { Data = activeMembers.PageData, Message = "OK", Success = true };
         }
 
-        [Route("yeni-uye-ekle")]
-        public ActionResult AddOrEdit(int? memberID)
+        [Route("uye/{memberID}")]
+        public ApiResult Get(int memberID)
         {
-            Member currentMember = new Member();
-
-            if (memberID.HasValue && memberID.Value > 0)
-            {
-                currentMember = _memberService.GetMemberWithID(memberID.Value);
-            }
-
-            return View(currentMember);
+            return new ApiResult() { Data = _memberService.GetMemberWithID(memberID), Message = "OK", Success = true };
         }
 
         [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveMember(Member memberEntity, string memberPicture)
+        [Route("uye-kayit")]
+        public ApiResult SaveMember(Member memberEntity, string memberPicture)
         {
             memberEntity.Picture = memberPicture;
 
@@ -57,22 +44,10 @@ namespace AS.CMS.Controllers
                 memberEntity.Password = UtilityHelper.GenerateMD5Hash(memberEntity.Password);
             }
 
-            memberEntity.Roles.Add(_roleService.GetRoleWithID(1));
-            memberEntity.Roles.Add(_roleService.GetRoleWithID(2));
-            memberEntity.Roles.Add(_roleService.GetRoleWithID(3));
+            memberEntity.Roles.Add(_roleService.GetRoleWithID(4));
             bool result = _memberService.SaveMember(memberEntity);
 
-            if (result)
-            {
-                SetModalStatusMessage(ModalStatus.Success);
-            }
-            else
-            {
-                SetModalStatusMessage(ModalStatus.Error);
-            }
-
-            return RedirectToAction("uye-listesi", "uye");
+            return new ApiResult() { Data = null, Message = "OK", Success = result };
         }
-
     }
 }

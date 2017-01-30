@@ -1,60 +1,41 @@
 ﻿using AS.CMS.Business.Interfaces;
 using AS.CMS.Domain.Base;
 using AS.CMS.Domain.Common;
-using System.Web.Mvc;
+using AS.CMS.Domain.Dto;
+using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
     [RoutePrefix("meslek")]
-    [CustomAuthorize(Roles = "Admin, Editor")]
-    public class ProfessionController : BaseController
+    public class ProfessionController : ApiController
     {
         private IProfessionService _professionService;
 
-        public ProfessionController(IProfessionService professionService, IModuleService moduleService) : base(moduleService)
+        public ProfessionController(IProfessionService professionService)
         {
             _professionService = professionService;
         }
 
         [Route("meslek-listesi")]
-        public ActionResult Index(PagingFilter pageFilter)
+        [HttpGet]
+        public ApiResult List(PagingFilter pageFilter)
         {
             PageResultSet<Profession> activeProfessions = _professionService.GetActiveProfessions(pageFilter);
-            pageFilter.PlaceHolderText = "İsimlerde ara";
-            SetPageFilters(pageFilter, activeProfessions.Count);
-
-            return View(activeProfessions.PageData);
+            return new ApiResult() { Data = activeProfessions.PageData, Message = "OK", Success = true };
         }
 
-        [Route("yeni-meslek-ekle")]
-        public ActionResult AddOrEdit(int? professionID)
+        [Route("meslek/{professionID}")]
+        public ApiResult Get(int professionID)
         {
-            Profession currentProfession = new Profession();
-
-            if (professionID.HasValue && professionID.Value > 0)
-            {
-                currentProfession = _professionService.GetProfessionWithID(professionID.Value);
-            }
-
-            return View(currentProfession);
+            return new ApiResult() { Data = _professionService.GetProfessionWithID(professionID), Message = "OK", Success = true };
         }
 
         [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveProfession(Profession professionEntity)
+        [Route("meslek-kayit")]
+        public ApiResult SaveProfession(Profession professionEntity)
         {
             bool result = _professionService.SaveProfession(professionEntity);
-
-            if (result)
-            {
-                SetModalStatusMessage(ModalStatus.Success);
-            }
-            else
-            {
-                SetModalStatusMessage(ModalStatus.Error);
-            }
-
-            return RedirectToAction("meslek-listesi", "meslek");
+            return new ApiResult() { Data = null, Message = "OK", Success = result };
         }
     }
 }

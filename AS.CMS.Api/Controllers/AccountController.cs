@@ -1,16 +1,13 @@
 ﻿using AS.CMS.Domain.Common;
 using AS.CMS.Business.Interfaces;
-using Newtonsoft.Json;
-using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
+using AS.CMS.Domain.Dto;
 using System.Linq;
+using System.Web.Http;
 
 namespace AS.CMS.Api.Controllers
 {
     [RoutePrefix("hesap")]
-    public class AccountController : Controller
+    public class AccountController : ApiController
     {
         private IMemberService _memberService;
 
@@ -21,7 +18,7 @@ namespace AS.CMS.Api.Controllers
 
         [HttpPost]
         [Route("giris-yap")]
-        public CustomPrincipalSerializeModel Login(string userName, string password)
+        public ApiResult Login(string userName, string password)
         {
             var member = _memberService.GetMember(userName, password);
             if (member != null)
@@ -35,11 +32,11 @@ namespace AS.CMS.Api.Controllers
                 memberModel.Picture = member.Picture;
                 memberModel.Roles = roles;
 
-                return memberModel;
+                return new ApiResult() { Data = memberModel, Message = "OK", Success = true };
             }
             else
             {
-                return null;
+                return new ApiResult() { Data = null, Message = "Hatalı Giriş", Success = false };
             }
         }
     }

@@ -1,60 +1,43 @@
 ﻿using AS.CMS.Business.Interfaces;
 using AS.CMS.Domain.Base.Event;
 using AS.CMS.Domain.Common;
-using System.Web.Mvc;
+using AS.CMS.Domain.Dto;
+using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
     [RoutePrefix("etkinlik")]
-    [CustomAuthorize(Roles = "Admin, Editor")]
-    public class EventTypeController : BaseController
+    public class EventTypeController : ApiController
     {
         private IEventTypeService _eventTypeService;
 
-        public EventTypeController(IEventTypeService eventTypeService, IModuleService moduleService) : base(moduleService)
+        public EventTypeController(IEventTypeService eventTypeService)
         {
             _eventTypeService = eventTypeService;
         }
 
+        [HttpGet]
         [Route("etkinlik-tipleri-listesi")]
-        public ActionResult Index(PagingFilter pageFilter)
+        public ApiResult List(PagingFilter pageFilter)
         {
             PageResultSet<EventType> activeEventTypes = _eventTypeService.GetActiveEventTypes(pageFilter);
-            pageFilter.PlaceHolderText = "İsimlerde ara";
-            SetPageFilters(pageFilter, activeEventTypes.Count);
 
-            return View(activeEventTypes.PageData);
+            return new ApiResult() { Data = activeEventTypes.PageData, Message = "OK", Success = true };
         }
 
-        [Route("yeni-etkinlik-tipi-ekle")]
-        public ActionResult AddOrEdit(int? eventTypeID)
+        [Route("etkinlik-tipi/{eventTypeID}")]
+        public ApiResult Get(int eventTypeID)
         {
-            EventType currentEventType = new EventType();
-
-            if (eventTypeID.HasValue && eventTypeID.Value > 0)
-            {
-                currentEventType = _eventTypeService.GetEventTypeWithID(eventTypeID.Value);
-            }
-
-            return View(currentEventType);
+            return new ApiResult() { Data = _eventTypeService.GetEventTypeWithID(eventTypeID), Message = "OK", Success = true };
         }
 
         [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveEventType(EventType eventTypeEntity)
+        [Route("etkinlik-tipi-kayit")]
+        public ApiResult SaveEventType(EventType eventTypeEntity)
         {
             bool result = _eventTypeService.SaveEventType(eventTypeEntity);
 
-            if (result)
-            {
-                SetModalStatusMessage(ModalStatus.Success);
-            }
-            else
-            {
-                SetModalStatusMessage(ModalStatus.Error);
-            }
-
-            return RedirectToAction("etkinlik-tipleri-listesi", "etkinlik");
+            return new ApiResult() { Data = null, Message = "OK", Success = result };
         }
     }
 }
