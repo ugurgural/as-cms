@@ -12,3 +12,4 @@ C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\bin\Debug\AS.CMS.Domain.
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\bin\Debug\AS.CMS.Domain.pdb
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\obj\Debug\AS.CMS.Domain.dll
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\obj\Debug\AS.CMS.Domain.pdb
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\obj\Debug\AS.CMS.Domain.csprojResolveAssemblyReference.cache

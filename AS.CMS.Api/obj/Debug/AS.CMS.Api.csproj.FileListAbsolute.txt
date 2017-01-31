@@ -63,7 +63,6 @@ D:\Git\Ugur\AS.CMS\AS.CMS.Api\bin\NHibernate.xml
 D:\Git\Ugur\AS.CMS\AS.CMS.Api\bin\FluentNHibernate.pdb
 D:\Git\Ugur\AS.CMS\AS.CMS.Api\bin\FluentNHibernate.xml
 D:\Git\Ugur\AS.CMS\AS.CMS.Api\bin\Iesi.Collections.xml
-C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\obj\Debug\AS.CMS.Api.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\bin\roslyn\csc.exe
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -130,5 +129,6 @@ C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\bin\NHibernate.xml
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\bin\FluentNHibernate.pdb
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\bin\FluentNHibernate.xml
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\bin\Iesi.Collections.xml
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\obj\Debug\AS.CMS.Api.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\obj\Debug\AS.CMS.Api.dll
 C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Api\obj\Debug\AS.CMS.Api.pdb

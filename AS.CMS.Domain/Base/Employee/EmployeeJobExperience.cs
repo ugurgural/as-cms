@@ -1,5 +1,5 @@
 ﻿using AS.CMS.Domain.Interfaces;
-
+using System.Runtime.Serialization;
 
 namespace AS.CMS.Domain.Base.Employee
 {
@@ -12,6 +12,7 @@ namespace AS.CMS.Domain.Base.Employee
         public virtual string QuitReason { get; set; }
         public virtual decimal Salary { get; set; }
         public virtual bool ActiveJob { get; set; }
+        [IgnoreDataMember]
         public virtual Employee Employee { get; set; }
     }
 }

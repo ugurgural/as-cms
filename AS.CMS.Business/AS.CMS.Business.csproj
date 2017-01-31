@@ -94,6 +94,7 @@
     <Compile Include="Helpers\CriteriaHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\MemberHelper.cs" />
+    <Compile Include="Helpers\NHibernateContractResolver.cs" />
     <Compile Include="Helpers\UtilityHelper.cs" />
     <Compile Include="Interfaces\IEmployeeService.cs" />
     <Compile Include="Interfaces\IContentService.cs" />
