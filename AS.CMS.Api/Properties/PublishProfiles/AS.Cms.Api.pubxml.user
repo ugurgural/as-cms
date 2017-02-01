@@ -10,7 +10,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AS.CMS.Api.dll">
-      <publishTime>02/01/2017 14:54:24</publishTime>
+      <publishTime>02/01/2017 23:13:17</publishTime>
     </File>
     <File Include="bin/AS.CMS.Business.dll">
       <publishTime>02/01/2017 14:15:43</publishTime>
@@ -133,7 +133,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/31/2017 23:33:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/01/2017 14:16:46</publishTime>
+      <publishTime>02/01/2017 23:13:18</publishTime>
     </File>
   </ItemGroup>
 </Project>

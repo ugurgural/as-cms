@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,6 +19,11 @@ namespace AS.CMS
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            if (ConfigurationManager.AppSettings["SSLEnabled"] != null && Convert.ToBoolean(ConfigurationManager.AppSettings["SSLEnabled"]))
+            {
+                GlobalFilters.Filters.Add(new RequireHttpsAttribute());
+            }
         }
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
