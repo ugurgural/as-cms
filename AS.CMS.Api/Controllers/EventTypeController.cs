@@ -6,7 +6,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("api/etkinlik")]
+    [RoutePrefix("etkinlik")]
     public class EventTypeController : ApiController
     {
         private IEventTypeService _eventTypeService;

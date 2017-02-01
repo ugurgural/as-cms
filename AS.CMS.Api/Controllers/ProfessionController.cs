@@ -6,7 +6,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("api/meslek")]
+    [RoutePrefix("meslek")]
     public class ProfessionController : ApiController
     {
         private IProfessionService _professionService;

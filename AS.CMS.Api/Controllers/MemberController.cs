@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("api/uye")]
+    [RoutePrefix("uye")]
     public class MemberController : ApiController
     {
         private IMemberService _memberService;

@@ -6,7 +6,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Api.Controllers
 {
-    [RoutePrefix("api/hesap")]
+    [RoutePrefix("hesap")]
     public class AccountController : ApiController
     {
         private IMemberService _memberService;

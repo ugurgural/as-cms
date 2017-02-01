@@ -3,12 +3,11 @@ using AS.CMS.Domain.Base;
 using AS.CMS.Domain.Base.Event;
 using AS.CMS.Domain.Common;
 using AS.CMS.Domain.Dto;
-using System.Collections.Generic;
 using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("api/etkinlik-kota")]
+    [RoutePrefix("etkinlik-kota")]
     public class EventProfessionQuotaController : ApiController
     {
         private IEventProfessionQuotaService _eventProfessionQuotaService;

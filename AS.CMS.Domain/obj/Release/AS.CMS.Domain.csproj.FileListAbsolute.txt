@@ -8,3 +8,8 @@ D:\Git\Ugur\AS.CMS\AS.CMS.Domain\bin\Release\AS.CMS.Domain.pdb
 D:\Git\Ugur\AS.CMS\AS.CMS.Domain\obj\Release\AS.CMS.Domain.csprojResolveAssemblyReference.cache
 D:\Git\Ugur\AS.CMS\AS.CMS.Domain\obj\Release\AS.CMS.Domain.dll
 D:\Git\Ugur\AS.CMS\AS.CMS.Domain\obj\Release\AS.CMS.Domain.pdb
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\bin\Release\AS.CMS.Domain.dll
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\bin\Release\AS.CMS.Domain.pdb
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\obj\Release\AS.CMS.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\obj\Release\AS.CMS.Domain.dll
+C:\Users\Administrator\Desktop\Git\AS.CMS\AS.CMS.Domain\obj\Release\AS.CMS.Domain.pdb

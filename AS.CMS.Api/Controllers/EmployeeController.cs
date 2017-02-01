@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace AS.CMS.Controllers
 {
-    [RoutePrefix("api/aday")]
+    [RoutePrefix("aday")]
     public class EmployeeController : ApiController
     {
         private IEmployeeService _employeeService;
