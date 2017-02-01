@@ -47,3 +47,9 @@ Temporary Items
 .apdisk
 /AS.CMS.Api/bin
 /AS.CMS.Api/obj/Debug
+
+*.suo
+*.user
+bin
+obj
+packages
