@@ -18,6 +18,7 @@ namespace AS.CMS.Domain.Base.Employee
         public virtual string Phone { get; set; }
         public virtual string Address { get; set; }
         public virtual string MailAddress { get; set; }
+        public virtual string Password { get; set; }
         public virtual DateTime BirthDate { get; set; }
         public virtual string BirthPlace { get; set; }
         public virtual GenderType Gender { get; set; }

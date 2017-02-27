@@ -65,6 +65,11 @@ namespace AS.CMS.Controllers
         [ValidateInput(false)]
         public ActionResult SaveEmployee(Employee employeeEntity, EmployeeAvailability employeeAvailability, string[] employeeProfessions, string[] employeeWorkDays, string[] employeeWorkType)
         {
+            if (!string.IsNullOrWhiteSpace(employeeEntity.Password))
+            {
+                employeeEntity.Password = UtilityHelper.GenerateMD5Hash(employeeEntity.Password);
+            }
+
             if (employeeAvailability != null)
             {
                 if (employeeWorkDays.Length > 0)

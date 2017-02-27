@@ -28,6 +28,24 @@ namespace AS.CMS.Controllers
             return new ApiResult() { Data = activeEmployees.PageData, Message = "OK", Success = true };
         }
 
+        [Route("giris")]
+        [HttpGet]
+        public ApiResult Login(string mail, string password)
+        {
+            var currentEmployee = _employeeService.GetEmployeeWithMailAndPassword(mail, password);
+
+            return new ApiResult() { Data = currentEmployee, Message = "OK", Success = currentEmployee != null };
+        }
+
+        [Route("yeni-aday")]
+        [HttpGet]
+        public ApiResult Register(Employee employeeEntity)
+        {
+            bool result = _employeeService.SaveEmployee(employeeEntity);
+
+            return new ApiResult() { Data = null, Message = "OK", Success = true };
+        }
+
         [Route("aday-kayit")]
         [HttpPost]
         public ApiResult SaveEmployee(Employee employeeEntity, EmployeeAvailability employeeAvailability, string[] employeeProfessions, string[] employeeWorkDays, string[] employeeWorkType)
@@ -72,5 +90,7 @@ namespace AS.CMS.Controllers
 
             return new ApiResult() { Data = null, Message = "OK", Success = true };
         }
+
+
     }
 }

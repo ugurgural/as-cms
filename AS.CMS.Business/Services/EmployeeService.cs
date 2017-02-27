@@ -4,6 +4,7 @@ using AS.CMS.Data.Interfaces;
 using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Common;
 using NHibernate.Criterion;
+using System.Linq;
 
 namespace AS.CMS.Business.Services
 {
@@ -125,6 +126,15 @@ namespace AS.CMS.Business.Services
         public Employee GetEmployeeWithID(int employeeID)
         {
             return _employeeRepository.GetById(employeeID);
+        }
+
+        public Employee GetEmployeeWithMailAndPassword(string mail, string password)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<Employee>();
+            defaultCriteria.Add(Expression.Eq("MailAddress", mail));
+            defaultCriteria.Add(Expression.Eq("Password", UtilityHelper.GenerateMD5Hash(password)));
+
+            return _employeeRepository.GetWithCriteria(defaultCriteria).FirstOrDefault();
         }
 
         #endregion

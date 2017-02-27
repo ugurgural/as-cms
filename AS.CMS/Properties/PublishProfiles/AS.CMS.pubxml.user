@@ -1972,19 +1972,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2017 15:23:52</publishTime>
     </File>
     <File Include="bin/AS.CMS.Business.dll">
-      <publishTime>02/01/2017 14:15:43</publishTime>
+      <publishTime>02/02/2017 23:06:20</publishTime>
     </File>
     <File Include="bin/AS.CMS.Data.dll">
-      <publishTime>02/01/2017 14:15:42</publishTime>
+      <publishTime>02/02/2017 23:06:20</publishTime>
     </File>
     <File Include="bin/AS.CMS.Data.UOW.dll">
-      <publishTime>02/01/2017 14:15:42</publishTime>
+      <publishTime>02/02/2017 23:06:20</publishTime>
     </File>
     <File Include="bin/AS.CMS.dll">
-      <publishTime>02/01/2017 23:13:01</publishTime>
+      <publishTime>02/02/2017 23:06:37</publishTime>
     </File>
     <File Include="bin/AS.CMS.Domain.dll">
-      <publishTime>02/01/2017 14:15:42</publishTime>
+      <publishTime>02/02/2017 23:06:19</publishTime>
     </File>
     <File Include="bin/Autofac.dll">
       <publishTime>01/28/2017 15:23:52</publishTime>
@@ -2176,7 +2176,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2017 15:23:52</publishTime>
     </File>
     <File Include="Views/Employee/AddOrEdit.cshtml">
-      <publishTime>01/28/2017 15:23:52</publishTime>
+      <publishTime>02/02/2017 20:53:11</publishTime>
     </File>
     <File Include="Views/Employee/Index.cshtml">
       <publishTime>01/28/2017 15:23:52</publishTime>
