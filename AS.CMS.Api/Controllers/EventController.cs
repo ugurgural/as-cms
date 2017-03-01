@@ -33,6 +33,22 @@ namespace AS.CMS.Controllers
             return new ApiResult() { Data = activeEvents.PageData, Message = "OK", Success = true };
         }
 
+        [Route("gecmis-etkinlik-listesi")]
+        [HttpGet]
+        public ApiResult PastEventList()
+        {
+            IList<Event> activeEvents = _eventService.GetPastEvents();
+            return new ApiResult() { Data = activeEvents, Message = "OK", Success = true };
+        }
+
+        [Route("katildigin-etkinlikler/{employeeID}")]
+        [HttpGet]
+        public ApiResult EmployeeAttendedEvents(int employeeID)
+        {
+            IList<Event> attendedEvents = _eventService.GetEventWithEmployeeID(employeeID);
+            return new ApiResult() { Data = attendedEvents, Message = "OK", Success = true};
+        }
+
         [Route("etkinlik/{eventID}")]
         [HttpGet]
         public ApiResult Get(int eventID)

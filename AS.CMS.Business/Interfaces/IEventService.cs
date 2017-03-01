@@ -9,8 +9,10 @@ namespace AS.CMS.Business.Interfaces
     {
         bool SaveEvent(Event eventEntity);
         PageResultSet<Event> GetActiveEvents(PagingFilter pagingFilter);
+        IList<Event> GetPastEvents();
         IList<EventEmployee> GetActiveEventEmployees(int eventID);
         IList<EventEmployee> GetActiveEmployeeEvents(int employeeID);
+        IList<Event> GetEventWithEmployeeID(int employeeID);
         IList<EventEmployee> GetEventEmployeeWithID(int employeeID, int eventID);
         bool SaveEventEmployee(EventEmployee eventEmployeeEntity);
         Event GetEventWithID(int eventID);
