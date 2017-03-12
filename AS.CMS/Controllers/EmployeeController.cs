@@ -4,6 +4,7 @@ using AS.CMS.Domain.Base;
 using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Common;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace AS.CMS.Controllers
@@ -65,12 +66,16 @@ namespace AS.CMS.Controllers
         [ValidateInput(false)]
         public ActionResult SaveEmployee(Employee employeeEntity, EmployeeAvailability employeeAvailability, string[] employeeProfessions, string[] employeeWorkDays, string[] employeeWorkType)
         {
+            employeeEntity.EmployeeJobExperience = employeeEntity.EmployeeJobExperience.Where(x => !string.IsNullOrWhiteSpace(x.Title)).ToList();
+            employeeEntity.EmployeeEducation = employeeEntity.EmployeeEducation.Where(x => !string.IsNullOrWhiteSpace(x.OrganizationName)).ToList();
+            employeeEntity.EmployeeCertificateAndLanguage = employeeEntity.EmployeeCertificateAndLanguage.Where(x => !string.IsNullOrWhiteSpace(x.Title)).ToList();
+
             if (!string.IsNullOrWhiteSpace(employeeEntity.Password))
             {
                 employeeEntity.Password = UtilityHelper.GenerateMD5Hash(employeeEntity.Password);
             }
 
-            if (employeeAvailability != null)
+            if (employeeAvailability != null && employeeAvailability.WorkDays != null && employeeAvailability.WorkType != null)
             {
                 if (employeeWorkDays.Length > 0)
                 {
@@ -96,7 +101,7 @@ namespace AS.CMS.Controllers
 
             List<Profession> professionList = new List<Profession>();
 
-            if (employeeProfessions.Length > 0)
+            if (employeeProfessions != null && employeeProfessions.Length > 0)
             {
                 for (int i = 0; i < employeeProfessions.Length; i++)
                 {
