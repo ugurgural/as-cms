@@ -133,7 +133,8 @@ namespace AS.CMS.Business.Services
             DetachedCriteria defaultCriteria = DetachedCriteria.For<Employee>();
             defaultCriteria.Add(Expression.Eq("MailAddress", mail));
             defaultCriteria.Add(Expression.Eq("Password", UtilityHelper.GenerateMD5Hash(password)));
-
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+            
             return _employeeRepository.GetWithCriteria(defaultCriteria).FirstOrDefault();
         }
 

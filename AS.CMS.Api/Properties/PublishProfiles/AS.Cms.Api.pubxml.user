@@ -10,10 +10,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AS.CMS.Api.dll">
-      <publishTime>03/01/2017 23:10:22</publishTime>
+      <publishTime>03/13/2017 22:43:38</publishTime>
     </File>
     <File Include="bin/AS.CMS.Business.dll">
-      <publishTime>03/01/2017 23:10:17</publishTime>
+      <publishTime>03/13/2017 22:43:33</publishTime>
     </File>
     <File Include="bin/AS.CMS.Data.dll">
       <publishTime>02/02/2017 23:06:20</publishTime>

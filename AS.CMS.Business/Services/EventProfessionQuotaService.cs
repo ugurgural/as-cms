@@ -63,6 +63,15 @@ namespace AS.CMS.Business.Services
             return _eventProfessionQuotaRepository.GetWithCriteria(defaultCriteria);
         }
 
+        public IList<EventProfessionQuota> GetEventProfessionQuotaWithEventID(int eventID)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<EventProfessionQuota>();
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+            defaultCriteria.Add(Expression.Eq("Event.ID", eventID));
+
+            return _eventProfessionQuotaRepository.GetWithCriteria(defaultCriteria);
+        }
+
         public EventProfessionQuota GetEventProfessionQuotaWithID(int eventProfessionQuotaID)
         {
             return _eventProfessionQuotaRepository.GetById(eventProfessionQuotaID);

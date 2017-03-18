@@ -10,5 +10,6 @@ namespace AS.CMS.Business.Interfaces
         PageResultSet<EventProfessionQuota> GetActiveEventProfessionQuotas(PagingFilter pagingFilter);
         EventProfessionQuota GetEventProfessionQuotaWithID(int EventProfessionQuotaID);
         IList<EventProfessionQuota> GetEventProfessionQuotaWithProfessionID(int eventID, int professionID);
+        IList<EventProfessionQuota> GetEventProfessionQuotaWithEventID(int eventID);
     }
 }

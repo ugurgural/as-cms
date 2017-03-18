@@ -109,3 +109,20 @@ function selectFileWithCKFinder() {
         }
     });
 }
+
+function selectMainImageFileWithCKFinder() {
+    CKFinder.modal({
+        chooseFiles: true,
+        width: 800,
+        height: 600,
+        onInit: function (finder) {
+            finder.on('files:choose', function (evt) {
+                var file = evt.data.files.first();
+                var uploadItem = "<div class=\"image-container\" data-fileurl=\"" + file.getUrl() + "\"><div class=\"controls\"><a href=\"#\" class=\"control-btn remove upload-remove-single\"><i class=\"fa fa-trash-o\"></i></a></div><div class=\"image\" style=\"background-image:url('" + file.getUrl() + "')\"></div></div>";
+                $(".images-container.single").empty();
+                $(".images-container.single").append(uploadItem);
+                $("#EventDocument").val(file.getUrl());
+            });
+        }
+    });
+}

@@ -4,6 +4,7 @@ using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Common;
 using AS.CMS.Domain.Dto;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace AS.CMS.Controllers
@@ -33,6 +34,14 @@ namespace AS.CMS.Controllers
         public ApiResult Login(string mail, string password)
         {
             var currentEmployee = _employeeService.GetEmployeeWithMailAndPassword(mail, password);
+
+            if (currentEmployee != null)
+            {
+                currentEmployee.EmployeeAvailability = currentEmployee.EmployeeAvailability.Where(x => x.IsActive == true).ToList();
+                currentEmployee.EmployeeCertificateAndLanguage = currentEmployee.EmployeeCertificateAndLanguage.Where(x => x.IsActive == true).ToList();
+                currentEmployee.EmployeeEducation = currentEmployee.EmployeeEducation.Where(x => x.IsActive == true).ToList();
+                currentEmployee.EmployeeJobExperience = currentEmployee.EmployeeJobExperience.Where(x => x.IsActive == true).ToList();
+            }
 
             return new ApiResult() { Data = currentEmployee, Message = "OK", Success = currentEmployee != null };
         }

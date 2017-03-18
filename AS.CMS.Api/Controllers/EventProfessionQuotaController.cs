@@ -30,10 +30,10 @@ namespace AS.CMS.Controllers
             return new ApiResult() { Data = activeEventProfessionQuotas.PageData, Message = "OK", Success = true };
         }
 
-        [Route("etkinlik-kota")]
-        public ApiResult AddOrEdit(int eventProfessionQuotaID)
+        [Route("etkinlik-kota/{eventID}")]
+        public ApiResult GetProfessionQuotaWithEventID(int eventID)
         {
-            return new ApiResult() { Data = _eventProfessionQuotaService.GetEventProfessionQuotaWithID(eventProfessionQuotaID), Message = "OK", Success = true };
+            return new ApiResult() { Data = _eventProfessionQuotaService.GetEventProfessionQuotaWithEventID(eventID), Message = "OK", Success = true };
         }
 
         [HttpPost]
