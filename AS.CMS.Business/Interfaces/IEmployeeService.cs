@@ -11,5 +11,6 @@ namespace AS.CMS.Business.Interfaces
         Employee GetEmployeeWithID(int employeeID);
         int GetEmployeeCountByGender(GenderType gender);
         Employee GetEmployeeWithMailAndPassword(string mail, string password);
+        Employee GetEmployeeWithMail(string mail);
     }
 }

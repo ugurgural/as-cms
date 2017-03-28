@@ -25,24 +25,36 @@ namespace AS.CMS.Business.Services
 
         public bool SaveEmployee(Employee employeeEntity)
         {
-            foreach (var jobExperienceItem in employeeEntity.EmployeeJobExperience)
+            if (employeeEntity.EmployeeJobExperience != null)
             {
-                jobExperienceItem.Employee = employeeEntity;
+                foreach (var jobExperienceItem in employeeEntity.EmployeeJobExperience)
+                {
+                    jobExperienceItem.Employee = employeeEntity;
+                }
             }
 
-            foreach (var educationItem in employeeEntity.EmployeeEducation)
+            if (employeeEntity.EmployeeEducation != null)
             {
-                educationItem.Employee = employeeEntity;
+                foreach (var educationItem in employeeEntity.EmployeeEducation)
+                {
+                    educationItem.Employee = employeeEntity;
+                }
             }
 
-            foreach (var certificateItem in employeeEntity.EmployeeCertificateAndLanguage)
+            if (employeeEntity.EmployeeCertificateAndLanguage != null)
             {
-                certificateItem.Employee = employeeEntity;
+                foreach (var certificateItem in employeeEntity.EmployeeCertificateAndLanguage)
+                {
+                    certificateItem.Employee = employeeEntity;
+                }
             }
 
-            foreach (var availabilityItem in employeeEntity.EmployeeAvailability)
+            if (employeeEntity.EmployeeAvailability != null)
             {
-                availabilityItem.Employee = employeeEntity;
+                foreach (var availabilityItem in employeeEntity.EmployeeAvailability)
+                {
+                    availabilityItem.Employee = employeeEntity;
+                }
             }
 
             if (employeeEntity.ID == 0)
@@ -134,7 +146,15 @@ namespace AS.CMS.Business.Services
             defaultCriteria.Add(Expression.Eq("MailAddress", mail));
             defaultCriteria.Add(Expression.Eq("Password", UtilityHelper.GenerateMD5Hash(password)));
             defaultCriteria.Add(Expression.Eq("IsActive", true));
-            
+
+            return _employeeRepository.GetWithCriteria(defaultCriteria).FirstOrDefault();
+        }
+
+        public Employee GetEmployeeWithMail(string mail)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<Employee>();
+            defaultCriteria.Add(Expression.Eq("MailAddress", mail));
+
             return _employeeRepository.GetWithCriteria(defaultCriteria).FirstOrDefault();
         }
 

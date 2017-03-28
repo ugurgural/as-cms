@@ -3,6 +3,7 @@ using AS.CMS.Domain.Base;
 using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Common;
 using AS.CMS.Domain.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -47,12 +48,22 @@ namespace AS.CMS.Controllers
         }
 
         [Route("yeni-aday")]
-        [HttpGet]
+        [HttpPost]
         public ApiResult Register(Employee employeeEntity)
         {
-            bool result = _employeeService.SaveEmployee(employeeEntity);
+            ApiResult result = null;
+            employeeEntity.BirthDate = DateTime.Now;
+            if (_employeeService.GetEmployeeWithMail(employeeEntity.MailAddress) != null)
+            {
+                result = new ApiResult() { Data = null, Message = "Mevcut Mail Adresi İle Kayıtlı Bir Üye Sistemde Mevcut, Lütfen Bilgilerinizi Kontrol Ediniz!", Success = false };
+            }
+            else
+            {
+                _employeeService.SaveEmployee(employeeEntity);
+                result = new ApiResult() { Data = null, Message = "OK", Success = true };
+            }
 
-            return new ApiResult() { Data = null, Message = "OK", Success = true };
+            return result;
         }
 
         [Route("aday-kayit")]
