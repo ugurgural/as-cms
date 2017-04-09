@@ -2,6 +2,8 @@
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -80,6 +82,41 @@ namespace AS.CMS.Business.Helpers
             }
 
             return GetFile(zipFilePath);
+        }
+
+        public static bool SendMail(string mail, string subject, string body)
+        {
+            bool result = false;
+
+            try
+            {
+                var fromAddress = new MailAddress("b2hrapp@gmail.com");
+                var toAddress = new MailAddress(mail);
+                string fromPassword = "b2hrcmsapp";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
+                    Timeout = 5000
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+
+                result = true;
+            }
+            catch { }
+
+            return result;
         }
     }
 }

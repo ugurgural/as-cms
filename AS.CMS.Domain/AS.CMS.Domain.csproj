@@ -64,6 +64,7 @@
     <Compile Include="Base\Profession.cs" />
     <Compile Include="Base\Role.cs" />
     <Compile Include="Common\CustomPrincipal.cs" />
+    <Compile Include="Common\EmployeeStatus.cs" />
     <Compile Include="Common\GenderType.cs" />
     <Compile Include="Common\MenuItemType.cs" />
     <Compile Include="Common\ModalStatus.cs" />

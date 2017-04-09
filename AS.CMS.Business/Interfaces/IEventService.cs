@@ -11,9 +11,10 @@ namespace AS.CMS.Business.Interfaces
         PageResultSet<Event> GetActiveEvents(PagingFilter pagingFilter);
         IList<Event> GetPastEvents();
         IList<EventEmployee> GetActiveEventEmployees(int eventID);
+        IList<EventEmployee> GetApprovalEventEmployees(int eventID);
         IList<EventEmployee> GetActiveEmployeeEvents(int employeeID);
         IList<Event> GetEventWithEmployeeID(int employeeID);
-        IList<EventEmployee> GetEventEmployeeWithID(int employeeID, int eventID);
+        IList<EventEmployee> GetEventEmployeeWithID(int employeeID, int eventID, bool isActive = true);
         bool SaveEventEmployee(EventEmployee eventEmployeeEntity);
         Event GetEventWithID(int eventID);
         EventCount GetEventCounts();

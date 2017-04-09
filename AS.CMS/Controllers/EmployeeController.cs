@@ -32,6 +32,16 @@ namespace AS.CMS.Controllers
             return View(activeEmployees.PageData);
         }
 
+        [Route("onaylanmamis-aday-listesi")]
+        public ActionResult EmployeeApproval(PagingFilter pageFilter)
+        {
+            PageResultSet<Employee> activeEmployees = _employeeService.GetApprovalEmployees(pageFilter);
+            pageFilter.PlaceHolderText = "İsimlerde ara";
+            SetPageFilters(pageFilter, activeEmployees.Count);
+
+            return View(activeEmployees.PageData);
+        }
+
         [Route("yeni-aday-ekle")]
         public ActionResult AddOrEdit(int? employeeID)
         {

@@ -294,12 +294,13 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 form-control-label text-xs-right">
-                            Aktif:
+                           Onay Durumu:
                         </label>
                         <div class="col-sm-10">
-                            <select id="IsActive" name="IsActive" class="c-select form-control boxed">
-                                <option value="true" @Html.Raw(currentEmployee.IsActive ? "selected" : string.Empty)>Evet</option>
-                                <option value="false" @Html.Raw(!currentEmployee.IsActive ? "selected" : string.Empty)>Hayır</option>
+                            <select id="Status" name="Status" class="c-select form-control boxed">
+                                <option value="0" @Html.Raw(currentEmployee.Status == EmployeeStatus.NotActive ? "selected" : string.Empty)>Onaylanmamış</option>
+                                <option value="1" @Html.Raw(currentEmployee.Status == EmployeeStatus.Active ? "selected" : string.Empty)>Aktif</option>
+                                <option value="2" @Html.Raw(currentEmployee.Status == EmployeeStatus.Deleted ? "selected" : string.Empty)>Silinmiş</option>
                             </select>
                         </div>
                     </div>
@@ -384,7 +385,7 @@
                     <br />
                     <h5>İş Deneyimi</h5>
                     <div class="form-group row">
-                        @for (int i = 0; i < 3; ++i)
+                        @for (int i = 0; i < (Model.EmployeeJobExperience == null ? 3 : Model.EmployeeJobExperience.Count); ++i)
                         {
                         @Html.HiddenFor(m => m.EmployeeJobExperience[i].ID)
                         <div class="col-sm-3">
@@ -412,7 +413,7 @@
                     <br />
                     <h5>Eğitim Bilgileri</h5>
                     <div class="form-group row">
-                        @for (int i = 0; i < 3; ++i)
+                        @for (int i = 0; i < (Model.EmployeeEducation == null ? 3 : Model.EmployeeEducation.Count); ++i)
                         {
                         @Html.HiddenFor(m => m.EmployeeEducation[i].ID)
                         <div class="col-sm-4">
@@ -432,7 +433,7 @@
                     <br />
                     <h5>Yabancı Dil</h5>
                     <div class="form-group row">
-                        @for (int i = 0; i < 3; ++i)
+                        @for (int i = 0; i < (Model.EmployeeCertificateAndLanguage == null ? 3 : Model.EmployeeCertificateAndLanguage.Count); ++i)
                         {
                         @Html.HiddenFor(m => m.EmployeeCertificateAndLanguage[i].ID)
                         <div class="col-sm-3">

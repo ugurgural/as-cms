@@ -168,6 +168,19 @@ namespace AS.CMS.Controllers
             return RedirectToAction("etkinlik-listesi", "etkinlik");
         }
 
+        [Route("etkinlik-aday-onay")]
+        public ActionResult ApproveEventEmployee(int eventID, int employeeID)
+        {
+            EventEmployee currentEventEmployee = _eventService.GetEventEmployeeWithID(employeeID, eventID, false).FirstOrDefault();
+            currentEventEmployee.IsActive = true;
+
+            SetModalStatusMessage(ModalStatus.Success, "Seçilen aday etkinlik listesine eklenmiştir !");
+            _eventService.SaveEventEmployee(currentEventEmployee);
+            UtilityHelper.SendMail(currentEventEmployee.Employee.MailAddress, "Başvurunuz Hakkında !", string.Format("{0} tarihinde başvurmuş olduğunuz {1} etkinliğine kaydınız onaylanmıştır, lütfen etkinlik kurallarını tekrar gözden geçirerek etkinlik tarihinde belirtilen konumda olunuz.", currentEventEmployee.CreatedDate, currentEventEmployee.Event.Name));
+
+            return RedirectToAction("etkinlik-listesi", "etkinlik");
+        }
+
         [Route("etkinlik-uygun-aday-listesi")]
         public ActionResult EventAvailableEmployees(Employee employeeSearchCriteria)
         {
@@ -209,6 +222,14 @@ namespace AS.CMS.Controllers
         public ActionResult EventWorkingEmployees(int eventID)
         {
             IList<EventEmployee> availableEventEmployees = _eventService.GetActiveEventEmployees(eventID);
+            SetPageFilters(new PagingFilter(), availableEventEmployees.Count);
+            return View(availableEventEmployees);
+        }
+
+        [Route("etkinlik-basvuran-aday-listesi")]
+        public ActionResult EventApprovalEmployees(int eventID)
+        {
+            IList<EventEmployee> availableEventEmployees = _eventService.GetApprovalEventEmployees(eventID);
             SetPageFilters(new PagingFilter(), availableEventEmployees.Count);
             return View(availableEventEmployees);
         }

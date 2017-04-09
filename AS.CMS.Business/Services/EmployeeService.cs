@@ -74,6 +74,24 @@ namespace AS.CMS.Business.Services
             DetachedCriteria rowCountcriteria = CriteriaHelper.GetDefaultSearchCriteria<Employee>("FirstName", pagingFilter.SearchText);
             DetachedCriteria activeContentPagingcriteria = CriteriaHelper.GetDefaultSearchCriteria<Employee>("FirstName", pagingFilter.SearchText);
 
+            rowCountcriteria.Add(Expression.Eq("Status", EmployeeStatus.Active));
+            activeContentPagingcriteria.Add(Expression.Eq("Status", EmployeeStatus.Active));
+
+            return new PageResultSet<Employee>()
+            {
+                PageData = _employeeRepository.GetWithCriteriaByPaging(activeContentPagingcriteria, pagingFilter, CriteriaHelper.GetDefaultOrder()),
+                Count = _employeeRepository.GetRowCountWithCriteria(rowCountcriteria)
+            };
+        }
+
+        public PageResultSet<Employee> GetApprovalEmployees(PagingFilter pagingFilter)
+        {
+            DetachedCriteria rowCountcriteria = CriteriaHelper.GetDefaultSearchCriteria<Employee>("FirstName", pagingFilter.SearchText);
+            DetachedCriteria activeContentPagingcriteria = CriteriaHelper.GetDefaultSearchCriteria<Employee>("FirstName", pagingFilter.SearchText);
+
+            rowCountcriteria.Add(Expression.Eq("Status", EmployeeStatus.NotActive));
+            activeContentPagingcriteria.Add(Expression.Eq("Status", EmployeeStatus.NotActive));
+
             return new PageResultSet<Employee>()
             {
                 PageData = _employeeRepository.GetWithCriteriaByPaging(activeContentPagingcriteria, pagingFilter, CriteriaHelper.GetDefaultOrder()),
@@ -85,6 +103,7 @@ namespace AS.CMS.Business.Services
         {
             DetachedCriteria defaultCriteria = DetachedCriteria.For<Employee>();
             defaultCriteria.Add(Expression.Eq("IsActive", true));
+            defaultCriteria.Add(Expression.Eq("Status", EmployeeStatus.Active));
             defaultCriteria.Add(Expression.Eq("Gender", gender));
 
             return _employeeRepository.GetRowCountWithCriteria(defaultCriteria);
@@ -94,6 +113,7 @@ namespace AS.CMS.Business.Services
         {
             DetachedCriteria defaultCriteria = DetachedCriteria.For<Employee>();
             defaultCriteria.Add(Expression.Eq("IsActive", true));
+            defaultCriteria.Add(Expression.Eq("Status", EmployeeStatus.Active));
 
             if (!string.IsNullOrWhiteSpace(employeeSearchCriteria.FirstName))
             {
@@ -146,6 +166,7 @@ namespace AS.CMS.Business.Services
             defaultCriteria.Add(Expression.Eq("MailAddress", mail));
             defaultCriteria.Add(Expression.Eq("Password", UtilityHelper.GenerateMD5Hash(password)));
             defaultCriteria.Add(Expression.Eq("IsActive", true));
+            defaultCriteria.Add(Expression.Eq("Status", EmployeeStatus.Active));
 
             return _employeeRepository.GetWithCriteria(defaultCriteria).FirstOrDefault();
         }

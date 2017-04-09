@@ -136,9 +136,9 @@ namespace AS.CMS.Controllers
                 return new ApiResult() { Data = null, Message = "Seçilen aday için etkinlik kotası dolmuştur. Lütfen kontrol ediniz !", Success = false };
             }
 
-            _eventService.SaveEventEmployee(new EventEmployee() { Employee = currentEmployee, Event = currentEvent });
+            _eventService.SaveEventEmployee(new EventEmployee() { Employee = currentEmployee, Event = currentEvent, IsActive = false });
 
-            return new ApiResult() { Data = null, Message = "Seçilen aday etkinliğe dahil edilmiştir.", Success = true };
+            return new ApiResult() { Data = null, Message = "Etkinlik başvurunuz alınmıştır, onaylanmanız durumunda mail ile bilgilendirileceksiniz.", Success = true };
         }
 
         [Route("etkinlik-aday-sayi/{eventID}")]

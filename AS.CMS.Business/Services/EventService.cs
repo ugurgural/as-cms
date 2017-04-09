@@ -65,6 +65,15 @@ namespace AS.CMS.Business.Services
             return _eventEmployeeRepository.GetWithCriteria(defaultCriteria).Where(x => x.Event.IsActive == true).ToList();
         }
 
+        public IList<EventEmployee> GetApprovalEventEmployees(int eventID)
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<EventEmployee>();
+            defaultCriteria.Add(Expression.Eq("Event.ID", eventID));
+            defaultCriteria.Add(Expression.Eq("IsActive", false));
+
+            return _eventEmployeeRepository.GetWithCriteria(defaultCriteria).Where(x => x.Event.IsActive == true).ToList();
+        }
+
         public IList<EventEmployee> GetActiveEmployeeEvents(int employeeID)
         {
             DetachedCriteria defaultCriteria = DetachedCriteria.For<EventEmployee>();
@@ -83,12 +92,12 @@ namespace AS.CMS.Business.Services
             return _eventEmployeeRepository.GetWithCriteria(defaultCriteria).Where(x => x.Event.IsActive == true).Select(x => x.Event).ToList();
         }
 
-        public IList<EventEmployee> GetEventEmployeeWithID(int employeeID, int eventID)
+        public IList<EventEmployee> GetEventEmployeeWithID(int employeeID, int eventID, bool isActive = true)
         {
             DetachedCriteria defaultCriteria = DetachedCriteria.For<EventEmployee>();
             defaultCriteria.Add(Expression.Eq("Employee.ID", employeeID));
             defaultCriteria.Add(Expression.Eq("Event.ID", eventID));
-            defaultCriteria.Add(Expression.Eq("IsActive", true));
+            defaultCriteria.Add(Expression.Eq("IsActive", isActive));
 
             return _eventEmployeeRepository.GetWithCriteria(defaultCriteria);
         }
