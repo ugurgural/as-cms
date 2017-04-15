@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Linq;
+using AS.CMS.Business.Helpers;
+using AS.CMS.Domain.Base.Employee;
 
 namespace AS.CMS.Controllers
 {
@@ -13,10 +15,12 @@ namespace AS.CMS.Controllers
     public class AccountController : Controller
     {
         private IMemberService _memberService;
+        private IEmployeeService _employeeService;
 
-        public AccountController(IMemberService memberService)
+        public AccountController(IMemberService memberService, IEmployeeService employeeService)
         {
             _memberService = memberService;
+            _employeeService = employeeService;
         }
 
         [AllowAnonymous]
@@ -66,6 +70,28 @@ namespace AS.CMS.Controllers
             }
 
             return View("Login");
+        }
+
+        [AllowAnonymous]
+        [Route("yeni-sifre")]
+        public ActionResult LostPassword()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult ChangePassword(string mail,string password)
+        {  
+            Employee currentEmployee = _employeeService.GetEmployeeWithMail(mail);
+            if (currentEmployee != null)
+            {
+                currentEmployee.Password = UtilityHelper.GenerateMD5Hash(password);
+                _employeeService.SaveEmployee(currentEmployee);
+                ViewBag.ErrorMessage = "Şifreniz değiştirildi, uygulamanızdan giriş yapabilirsiniz.";
+            }
+
+            return View("LostPassword");
         }
 
         [AllowAnonymous]

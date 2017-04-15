@@ -1110,6 +1110,7 @@
     <Content Include="Views\Layout\_ListSearchBase.cshtml" />
     <Content Include="Views\Employee\EmployeeApproval.cshtml" />
     <Content Include="Views\Event\EventApprovalEmployees.cshtml" />
+    <Content Include="Views\Account\LostPassword.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

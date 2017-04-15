@@ -1,4 +1,5 @@
-﻿using AS.CMS.Business.Interfaces;
+﻿using AS.CMS.Business.Helpers;
+using AS.CMS.Business.Interfaces;
 using AS.CMS.Domain.Base;
 using AS.CMS.Domain.Base.Employee;
 using AS.CMS.Domain.Common;
@@ -53,6 +54,7 @@ namespace AS.CMS.Controllers
         {
             ApiResult result = null;
             employeeEntity.BirthDate = DateTime.Now;
+            employeeEntity.Password = UtilityHelper.GenerateMD5Hash(employeeEntity.Password);
             if (_employeeService.GetEmployeeWithMail(employeeEntity.MailAddress) != null)
             {
                 result = new ApiResult() { Data = null, Message = "Mevcut Mail Adresi İle Kayıtlı Bir Üye Sistemde Mevcut, Lütfen Bilgilerinizi Kontrol Ediniz!", Success = false };
@@ -61,6 +63,21 @@ namespace AS.CMS.Controllers
             {
                 _employeeService.SaveEmployee(employeeEntity);
                 result = new ApiResult() { Data = null, Message = "OK", Success = true };
+            }
+
+            return result;
+        }
+
+        [HttpGet]
+        [Route("yeni-sifre")]
+        public ApiResult LostPassword(string mail)
+        {
+            ApiResult result = null;
+
+            if (_employeeService.GetEmployeeWithMail(mail) != null)
+            {
+                UtilityHelper.SendMail(mail, "Yeni Üyelik Şifreniz", string.Format("Şifrenizi sıfırlama talebinde bulundunuz, aşağıdaki linkten şifrenizi sıfırlayabilirsiniz.<br /><br />{0}", Request.RequestUri.GetLeftPart(UriPartial.Authority).ToString() + "/hesap/yeni-sifre?mail=" + mail));
+                result = new ApiResult() { Data = null, Message = "Şifre sıfırlama talebiniz alındı. Lütfen belirttiğiniz mail adresini kontrol edin.", Success = true };
             }
 
             return result;
