@@ -53,9 +53,20 @@ namespace AS.CMS.Controllers
         public ApiResult Register(Employee employeeEntity)
         {
             ApiResult result = null;
-            employeeEntity.BirthDate = DateTime.Now;
-            employeeEntity.Password = UtilityHelper.GenerateMD5Hash(employeeEntity.Password);
-            if (_employeeService.GetEmployeeWithMail(employeeEntity.MailAddress) != null)
+            employeeEntity.BirthDate = employeeEntity.ID > 0 ? employeeEntity.BirthDate : DateTime.Now;
+
+            if (!string.IsNullOrWhiteSpace(employeeEntity.Password))
+            {
+
+                employeeEntity.Password = UtilityHelper.GenerateMD5Hash(employeeEntity.Password);
+            }
+            else
+            {
+                employeeEntity.Password = _employeeService.GetEmployeeWithID(employeeEntity.ID).Password;
+            }
+
+
+            if (employeeEntity.ID == 0 && _employeeService.GetEmployeeWithMail(employeeEntity.MailAddress) != null)
             {
                 result = new ApiResult() { Data = null, Message = "Mevcut Mail Adresi İle Kayıtlı Bir Üye Sistemde Mevcut, Lütfen Bilgilerinizi Kontrol Ediniz!", Success = false };
             }

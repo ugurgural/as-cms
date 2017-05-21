@@ -16,7 +16,7 @@ namespace AS.CMS.Business.Helpers
         public static string GenerateMD5Hash(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
-
+            
             md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
             byte[] result = md5.Hash;
 

@@ -114,6 +114,15 @@ namespace AS.CMS.Business.Services
             };
         }
 
+        public IList<Event> GetActiveEventsByEndDate()
+        {
+            DetachedCriteria defaultCriteria = DetachedCriteria.For<Event>();
+            defaultCriteria.Add(Expression.Gt("EndDate", DateTime.Now));
+            defaultCriteria.Add(Expression.Eq("IsActive", true));
+
+            return _eventRepository.GetWithCriteria(defaultCriteria);
+        }
+
         public IList<Event> GetPastEvents()
         {
             DetachedCriteria defaultCriteria = DetachedCriteria.For<Event>();

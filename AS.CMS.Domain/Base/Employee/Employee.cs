@@ -42,6 +42,7 @@ namespace AS.CMS.Domain.Base.Employee
         public virtual string JeanSize { get; set; }
         public virtual string SkirtSize { get; set; }
         public virtual EmployeeStatus Status { get; set; }
+        public virtual bool IsFacebookUser { get; set; }
         public virtual IList<EmployeeAvailability> EmployeeAvailability { get; set; }
         public virtual IList<EmployeeCertificateAndLanguage> EmployeeCertificateAndLanguage { get; set; }
         public virtual IList<EmployeeEducation> EmployeeEducation { get; set; }

@@ -29,8 +29,8 @@ namespace AS.CMS.Controllers
         [HttpGet]
         public ApiResult List()
         {
-            PageResultSet<Event> activeEvents = _eventService.GetActiveEvents(new PagingFilter());
-            return new ApiResult() { Data = activeEvents.PageData, Message = "OK", Success = true };
+            IList<Event> activeEvents = _eventService.GetActiveEventsByEndDate();
+            return new ApiResult() { Data = activeEvents, Message = "OK", Success = true };
         }
 
         [Route("gecmis-etkinlik-listesi")]
