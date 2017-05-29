@@ -153,7 +153,9 @@ namespace AS.CMS.Data.Repositories
 
             try
             {
+                
                 _unitOfWork.BeginTransaction();
+                _unitOfWork.Session.Clear();
                 _unitOfWork.Session.Update(entity);
                 _unitOfWork.Session.Flush();
                 _unitOfWork.Commit();

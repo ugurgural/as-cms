@@ -6,6 +6,9 @@ using AS.CMS.Domain.Common;
 using AS.CMS.Domain.Dto;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web.Http;
 
@@ -46,6 +49,39 @@ namespace AS.CMS.Controllers
             }
 
             return new ApiResult() { Data = currentEmployee, Message = "OK", Success = currentEmployee != null };
+        }
+
+        [Route("resim-kaydet")]
+        [HttpPost]
+        public ApiResult SaveImage(ImageModel imageModel)
+        {
+            ApiResult result = null;
+
+            try
+            {
+                byte[] bytes = Convert.FromBase64String(imageModel.ImageURL);
+
+                Image currentImg;
+                string imageExtension = imageModel.ImageType.Contains("jpeg") ? ".jpg" : ".png";
+                using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    currentImg = Image.FromStream(ms);
+
+                    string filePath = ConfigurationManager.AppSettings["UploadPath"];
+                    string fileWebPath = ConfigurationManager.AppSettings["UploadWebPath"];
+                    string fileName = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + imageExtension;
+
+                    currentImg.Save(Path.Combine(filePath + fileName));
+
+                    result = new ApiResult() { Data = fileWebPath + fileName, Message = "OK", Success = true };
+                }
+            }
+            catch (Exception)
+            {
+                result = new ApiResult() { Data = null, Message = "OK", Success = false };
+            }
+
+            return result;
         }
 
         [Route("yeni-aday")]
@@ -132,8 +168,8 @@ namespace AS.CMS.Controllers
                 }
 
                 employeeEntity.Profession = professionList;
-            }     
-            
+            }
+
             bool result = _employeeService.SaveEmployee(employeeEntity);
 
             return new ApiResult() { Data = null, Message = "OK", Success = true };

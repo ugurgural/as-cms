@@ -66,6 +66,7 @@
     <Compile Include="Common\CustomPrincipal.cs" />
     <Compile Include="Common\EmployeeStatus.cs" />
     <Compile Include="Common\GenderType.cs" />
+    <Compile Include="Common\ImageModel.cs" />
     <Compile Include="Common\MenuItemType.cs" />
     <Compile Include="Common\ModalStatus.cs" />
     <Compile Include="Common\PageResultSet.cs" />
